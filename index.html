@@ -3,21 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onofriana — Fado · </title>
-<meta name="description" content="Onofriana — fado com raiz, rigor e presença. Para eventos, receções oficiais, festivais e momentos com memória. Lisboa.">
+<title>Onofriana — A Herança Feminina do Fado</title>
+<meta name="description" content="Onofriana — espetáculos de fado com formação integralmente feminina. Para eventos corporativos, receções oficiais, festivais e momentos únicos.">
 
+<!-- ════════════════════════════════════════════════
+     FONTES  —  não alterar sem rever o CSS
+     ════════════════════════════════════════════════ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Petit+Formal+Script&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
+/* ════════════════════════════════════════════════
+   VARIÁVEIS DE COR
+   Para alterar a paleta, basta mudar estes valores.
+   ════════════════════════════════════════════════
+
+   --preto          fundo principal
+   --escuro         fundo secundário (secções alternadas)
+   --vinho          cor de acento principal (vermelho vinho)
+   --vinho-claro    versão mais clara do vinho (destaques, itálicos)
+   --branco         cor do texto corrente
+   --cinza          texto secundário, captions, rodapé
+   --borda          cor das linhas/bordas decorativas
+*/
 :root {
-  --preto:         #0a0806;
-  --escuro:        #110e0a;
-  --dourado:       #c9a84c;
-  --dourado-claro: #e8d5a3;
-  --creme:         #f5f0e8;
-  --cinza:         #8a8078;
-  --borda:         rgba(201,168,76,0.2);
+  --preto:        #080507;
+  --escuro:       #0f0b0d;
+  --vinho:        #6b1020;
+  --vinho-claro:  #a8384a;
+  --branco:       #f5f2f0;
+  --cinza:        #7a7070;
+  --borda:        rgba(107,16,32,0.3);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,22 +41,22 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--preto);
-  color: var(--creme);
+  color: var(--branco);
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   overflow-x: hidden;
   cursor: default;
 }
 
-/* Textura de grão */
+/* Textura de grão subtil sobre toda a página */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1000;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* ── NAVEGAÇÃO ── */
@@ -52,14 +68,15 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(10,8,6,0.95), transparent);
+  background: linear-gradient(to bottom, rgba(8,5,7,0.97), transparent);
   transition: background 0.4s, backdrop-filter 0.4s;
 }
 
+/* LOGO no nav */
 .nav-logo {
   font-family: 'Petit Formal Script', cursive;
   font-size: 1.6rem;
-  color: var(--dourado);
+  color: var(--branco);
   text-decoration: none;
   letter-spacing: 0.02em;
 }
@@ -70,15 +87,19 @@ nav {
   list-style: none;
 }
 
+/* ════════════════════════════════════════
+   LINKS DA NAV — para adicionar/remover
+   itens, editar os <li> dentro de <ul class="nav-links">
+   ════════════════════════════════════════ */
 .nav-links a {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 300;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--dourado-claro);
+  color: var(--branco);
   text-decoration: none;
-  opacity: 0.7;
+  opacity: 0.55;
   transition: opacity 0.3s;
 }
 .nav-links a:hover { opacity: 1; }
@@ -100,97 +121,104 @@ nav {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,168,76,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
-    linear-gradient(to bottom, #0a0806 0%, #12100d 50%, #0a0806 100%);
+    radial-gradient(ellipse 55% 45% at 50% 55%, rgba(107,16,32,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 80% 20%, rgba(107,16,32,0.06) 0%, transparent 60%),
+    linear-gradient(to bottom, #080507 0%, #100810 50%, #080507 100%);
 }
 
+/* Linha decorativa fina acima do título */
 .hero-ornament {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 200;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--dourado);
-  margin-bottom: 32px;
+  color: var(--vinho-claro);
+  margin-bottom: 36px;
   position: relative;
   animation: fadeUp 1.2s ease forwards;
   opacity: 0;
   animation-delay: 0.3s;
 }
 
+/* ════════════════════════════════════════
+   TÍTULO PRINCIPAL (hero)
+   Para alterar o tamanho: ajustar clamp()
+   ════════════════════════════════════════ */
 .hero-title {
   font-family: 'Petit Formal Script', cursive;
-  font-size: clamp(4rem, 10vw, 8rem);
-  color: var(--dourado);
+  font-size: clamp(4.5rem, 11vw, 9rem);
+  color: var(--branco);
   line-height: 1;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   position: relative;
   animation: fadeUp 1.2s ease forwards;
   opacity: 0;
   animation-delay: 0.6s;
-  text-shadow: 0 0 80px rgba(201,168,76,0.15);
+  text-shadow: 0 0 100px rgba(107,16,32,0.3);
 }
 
 .hero-subtitle {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 200;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: var(--dourado-claro);
+  color: var(--branco);
   opacity: 0;
-  margin-bottom: 60px;
+  margin-bottom: 64px;
   animation: fadeUp 1.2s ease forwards;
   animation-delay: 0.9s;
 }
 
 .hero-line {
   width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--dourado), transparent);
-  margin: 0 auto 50px;
+  height: 70px;
+  background: linear-gradient(to bottom, var(--vinho-claro), transparent);
+  margin: 0 auto 56px;
   opacity: 0;
   animation: fadeUp 1.2s ease forwards;
   animation-delay: 1.1s;
 }
 
+/* Tagline central */
 .hero-tagline {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.15rem, 2.5vw, 1.55rem);
   font-style: italic;
   font-weight: 300;
-  color: var(--creme);
+  color: var(--branco);
   opacity: 0;
-  max-width: 600px;
-  line-height: 1.7;
+  max-width: 560px;
+  line-height: 1.75;
   animation: fadeUp 1.2s ease forwards;
   animation-delay: 1.3s;
 }
 
 .hero-cta {
-  margin-top: 50px;
+  margin-top: 56px;
   opacity: 0;
   animation: fadeUp 1.2s ease forwards;
   animation-delay: 1.6s;
 }
 
+/* Botão principal */
 .btn-primary {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 300;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--dourado);
-  border: 1px solid rgba(201,168,76,0.5);
-  padding: 16px 40px;
+  color: var(--branco);
+  border: 1px solid rgba(245,242,240,0.35);
+  padding: 16px 44px;
   text-decoration: none;
   transition: all 0.4s;
   display: inline-block;
 }
 .btn-primary:hover {
-  background: rgba(201,168,76,0.08);
-  border-color: var(--dourado);
-  letter-spacing: 0.4em;
+  background: rgba(107,16,32,0.2);
+  border-color: var(--vinho-claro);
+  letter-spacing: 0.45em;
 }
 
 /* ── BASE DAS SECÇÕES ── */
@@ -199,35 +227,38 @@ section {
   position: relative;
 }
 
+/* Rótulo pequeno acima dos títulos */
 .section-label {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 300;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--dourado);
-  opacity: 0.7;
+  color: var(--vinho-claro);
+  opacity: 0.8;
   margin-bottom: 20px;
 }
 
+/* Título de secção */
 .section-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 300;
   line-height: 1.2;
-  color: var(--creme);
+  color: var(--branco);
   margin-bottom: 24px;
 }
 .section-title em {
   font-style: italic;
-  color: var(--dourado-claro);
+  color: rgba(245,242,240,0.6);
 }
 
+/* Linha decorativa sob os títulos */
 .ornament-line {
-  width: 60px;
+  width: 50px;
   height: 1px;
-  background: var(--dourado);
-  margin-bottom: 40px;
-  opacity: 0.6;
+  background: var(--vinho);
+  margin-bottom: 48px;
+  opacity: 0.8;
 }
 
 /* ── SECÇÃO: O PROJETO ── */
@@ -241,40 +272,50 @@ section {
   gap: 100px;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
+  align-items: start;
 }
 
 .sobre-texto p {
-  font-size: 1.1rem;
-  line-height: 1.9;
-  color: rgba(245,240,232,0.8);
-  margin-bottom: 24px;
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: rgba(245,242,240,0.78);
+  margin-bottom: 22px;
 }
 .sobre-texto p strong {
-  color: var(--dourado-claro);
+  color: var(--branco);
   font-weight: 400;
 }
 
+/* Bloco de citação com linha à esquerda */
 .sobre-quote {
-  border-left: 1px solid var(--dourado);
-  padding: 24px 32px;
+  border-left: 1px solid var(--vinho);
+  padding: 22px 30px;
   margin: 40px 0;
-  background: rgba(201,168,76,0.03);
+  background: rgba(107,16,32,0.06);
 }
 .sobre-quote p {
-  font-size: 1.3rem !important;
+  font-size: 1.25rem !important;
   font-style: italic;
-  color: var(--dourado-claro) !important;
-  line-height: 1.6 !important;
+  color: var(--branco) !important;
+  line-height: 1.65 !important;
   margin: 0 !important;
+  opacity: 0.85;
 }
 
 .sobre-visual { position: relative; }
 
+/* ════════════════════════════════════════
+   IMAGENS — Como substituir os placeholders
+
+   Para usar uma imagem real:
+   1. Carregue o ficheiro (ex: foto.jpg) para a pasta do site no GitHub
+   2. Substitua o <div class="foto-placeholder">...</div> por:
+      <img src="foto.jpg" alt="Descrição" style="width:100%; display:block;">
+   ════════════════════════════════════════ */
 .foto-placeholder {
   width: 100%;
   aspect-ratio: 3/4;
-  background: linear-gradient(135deg, #1a1610 0%, #2a2318 50%, #1a1610 100%);
+  background: linear-gradient(160deg, #130810 0%, #1e0f15 50%, #0f070b 100%);
   border: 1px solid var(--borda);
   display: flex;
   flex-direction: column;
@@ -287,29 +328,108 @@ section {
   content: '';
   position: absolute;
   inset: 20px;
-  border: 1px solid rgba(201,168,76,0.1);
+  border: 1px solid rgba(107,16,32,0.15);
 }
 .foto-placeholder-text {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--dourado);
-  opacity: 0.4;
+  color: var(--vinho-claro);
+  opacity: 0.35;
 }
 .foto-caption {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--cinza);
-  margin-top: 16px;
+  margin-top: 18px;
   text-align: center;
+}
+
+/* ── SECÇÃO: IMAGEM / VÍDEO ── */
+#media {
+  background: var(--escuro);
+  padding: 100px 60px;
+}
+
+.media-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ════════════════════════════════════════
+   PLACEHOLDER DE VÍDEO
+   Quando tiver vídeo real, substituir .video-placeholder por:
+   <video src="video.mp4" controls style="width:100%;display:block;"></video>
+   Ou para YouTube:
+   <iframe width="100%" style="aspect-ratio:16/9;" src="https://www.youtube.com/embed/ID_DO_VIDEO" frameborder="0" allowfullscreen></iframe>
+   ════════════════════════════════════════ */
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(160deg, #130810 0%, #1e0f15 50%, #0f070b 100%);
+  border: 1px solid var(--borda);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.video-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(107,16,32,0.12);
+}
+.video-placeholder-icon {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(107,16,32,0.45);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.video-placeholder-icon::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 15px;
+  border-color: transparent transparent transparent rgba(245,242,240,0.22);
+  margin-left: 4px;
+}
+.video-placeholder-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--vinho-claro);
+  opacity: 0.35;
+}
+
+.media-texto p {
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: rgba(245,242,240,0.75);
+  margin-bottom: 20px;
+}
+.media-texto p em {
+  font-style: italic;
+  color: var(--branco);
 }
 
 /* ── SECÇÃO: A HISTÓRIA ── */
 #historia {
-  background: var(--escuro);
+  background: var(--preto);
   text-align: center;
   padding: 140px 60px;
 }
@@ -321,120 +441,124 @@ section {
 
 .historia-data {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.4em;
+  font-size: 0.58rem;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--dourado);
-  opacity: 0.6;
-  margin-bottom: 32px;
+  color: var(--vinho-claro);
+  opacity: 0.7;
+  margin-bottom: 36px;
 }
 
 .historia-titulo {
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 300;
   line-height: 1.3;
-  color: var(--creme);
-  margin-bottom: 40px;
+  color: var(--branco);
+  margin-bottom: 48px;
 }
 .historia-titulo em {
   font-style: italic;
-  color: var(--dourado-claro);
+  color: rgba(245,242,240,0.6);
 }
 
 .historia-texto {
   font-size: 1.05rem;
-  line-height: 2;
-  color: rgba(245,240,232,0.75);
+  line-height: 2.05;
+  color: rgba(245,242,240,0.72);
   text-align: left;
 }
-.historia-texto p { margin-bottom: 24px; }
+.historia-texto p { margin-bottom: 26px; }
 
+/* Ornamento decorativo central */
 .historia-ornamento {
   font-family: 'Petit Formal Script', cursive;
-  font-size: 4rem;
-  color: var(--dourado);
-  opacity: 0.15;
-  margin: 40px 0;
+  font-size: 3.5rem;
+  color: var(--vinho);
+  opacity: 0.22;
+  margin: 48px 0;
   line-height: 1;
 }
 
-/* ── SECÇÃO: PRESENÇA ── */
-#presenca {
+/* ── SECÇÃO: ESPETÁCULOS ── */
+#espetaculos {
   background: linear-gradient(to bottom, var(--escuro), var(--preto));
 }
 
-.presenca-inner {
+.espetaculos-header {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+/* Grelha 2x2 dos formatos */
+.espetaculos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.presenca-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-top: 60px;
-}
-
-.presenca-item {
-  padding: 50px 40px;
-  background: rgba(255,255,255,0.015);
+.espetaculo-item {
+  padding: 50px;
+  background: rgba(255,255,255,0.012);
   border: 1px solid var(--borda);
   transition: all 0.4s;
   position: relative;
   overflow: hidden;
 }
-.presenca-item::before {
+.espetaculo-item::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 1px;
-  background: linear-gradient(to right, var(--dourado), transparent);
+  width: 100%; height: 2px;
+  background: linear-gradient(to right, var(--vinho), transparent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s;
 }
-.presenca-item:hover::before { transform: scaleX(1); }
-.presenca-item:hover { background: rgba(201,168,76,0.025); }
+.espetaculo-item:hover::before { transform: scaleX(1); }
+.espetaculo-item:hover { background: rgba(107,16,32,0.05); }
 
-.presenca-num {
+.espetaculo-num {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 0.58rem;
-  letter-spacing: 0.3em;
-  color: var(--dourado);
-  opacity: 0.45;
-  margin-bottom: 24px;
-  display: block;
+  letter-spacing: 0.32em;
+  color: var(--vinho-claro);
+  opacity: 0.55;
+  margin-bottom: 22px;
 }
 
-.presenca-titulo {
-  font-size: 1.35rem;
+.espetaculo-titulo {
+  font-size: 1.5rem;
   font-weight: 300;
-  color: var(--creme);
+  color: var(--branco);
+  margin-bottom: 10px;
   line-height: 1.3;
-  margin-bottom: 20px;
 }
-.presenca-titulo em {
+.espetaculo-titulo em {
   font-style: italic;
-  color: var(--dourado-claro);
+  color: rgba(245,242,240,0.6);
 }
 
-.presenca-divider {
-  width: 30px;
-  height: 1px;
-  background: var(--dourado);
-  opacity: 0.35;
-  margin-bottom: 20px;
+.espetaculo-duracao {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--vinho-claro);
+  opacity: 0.65;
+  margin-bottom: 22px;
 }
 
-.presenca-desc {
+.espetaculo-desc {
   font-size: 0.95rem;
   line-height: 1.85;
-  color: rgba(245,240,232,0.6);
+  color: rgba(245,242,240,0.6);
 }
 
 /* ── SECÇÃO: CONTACTO ── */
 #contacto {
-  background: linear-gradient(to bottom, var(--preto), #080604);
+  background: linear-gradient(to bottom, var(--preto), #050305);
   padding: 140px 60px;
 }
 
@@ -449,41 +573,41 @@ section {
 
 .contacto-info p {
   font-size: 1.05rem;
-  line-height: 1.9;
-  color: rgba(245,240,232,0.7);
+  line-height: 1.95;
+  color: rgba(245,242,240,0.68);
   margin-bottom: 20px;
 }
 
-.contacto-detalhe { margin-top: 48px; }
+.contacto-detalhe { margin-top: 52px; }
 
 .contacto-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 28px;
   padding-bottom: 28px;
-  border-bottom: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(107,16,32,0.18);
 }
 
 .contacto-item-label {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.3em;
+  font-size: 0.56rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--dourado);
-  opacity: 0.6;
-  margin-bottom: 6px;
+  color: var(--vinho-claro);
+  opacity: 0.65;
+  margin-bottom: 7px;
 }
 
 .contacto-item-valor {
   font-size: 1.1rem;
-  color: var(--creme);
+  color: var(--branco);
 }
 .contacto-item-valor a {
-  color: var(--creme);
+  color: var(--branco);
   text-decoration: none;
   transition: color 0.3s;
 }
-.contacto-item-valor a:hover { color: var(--dourado); }
+.contacto-item-valor a:hover { color: var(--vinho-claro); }
 
 /* ── FORMULÁRIO ── */
 .form-group { margin-bottom: 24px; }
@@ -491,19 +615,19 @@ section {
 .form-label {
   display: block;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.3em;
+  font-size: 0.56rem;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--dourado);
+  color: var(--vinho-claro);
   opacity: 0.7;
   margin-bottom: 10px;
 }
 
 .form-input, .form-select, .form-textarea {
   width: 100%;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(201,168,76,0.2);
-  color: var(--creme);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(107,16,32,0.25);
+  color: var(--branco);
   font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-weight: 300;
@@ -513,24 +637,24 @@ section {
   appearance: none;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: rgba(201,168,76,0.6);
-  background: rgba(201,168,76,0.03);
+  border-color: rgba(107,16,32,0.7);
+  background: rgba(107,16,32,0.04);
 }
 .form-textarea { height: 120px; resize: vertical; }
-.form-select option { background: #1a1610; color: var(--creme); }
+.form-select option { background: #130810; color: var(--branco); }
 .form-input::placeholder, .form-textarea::placeholder {
-  color: rgba(245,240,232,0.25);
+  color: rgba(245,242,240,0.2);
 }
 
 .form-submit {
   width: 100%;
   background: transparent;
-  border: 1px solid rgba(201,168,76,0.5);
-  color: var(--dourado);
+  border: 1px solid rgba(107,16,32,0.55);
+  color: var(--branco);
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 300;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
   padding: 18px;
   cursor: pointer;
@@ -538,40 +662,40 @@ section {
   margin-top: 8px;
 }
 .form-submit:hover {
-  background: rgba(201,168,76,0.08);
-  border-color: var(--dourado);
-  letter-spacing: 0.45em;
+  background: rgba(107,16,32,0.15);
+  border-color: var(--vinho-claro);
+  letter-spacing: 0.48em;
 }
 
 /* ── RODAPÉ ── */
 footer {
   padding: 60px;
-  border-top: 1px solid rgba(201,168,76,0.1);
+  border-top: 1px solid rgba(107,16,32,0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #080604;
+  background: #050305;
 }
 
 .footer-logo {
   font-family: 'Petit Formal Script', cursive;
   font-size: 1.8rem;
-  color: var(--dourado);
-  opacity: 0.7;
+  color: var(--branco);
+  opacity: 0.65;
 }
 
 .footer-tagline {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-style: italic;
   color: var(--cinza);
 }
 
 .footer-copy {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.55rem;
+  font-size: 0.53rem;
   letter-spacing: 0.2em;
   color: var(--cinza);
-  opacity: 0.5;
+  opacity: 0.45;
   text-align: right;
 }
 
@@ -584,7 +708,7 @@ footer {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.85s ease, transform 0.85s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -593,12 +717,13 @@ footer {
 
 /* ── RESPONSIVO ── */
 @media (max-width: 900px) {
-  nav { padding: 24px 30px; }
-  .nav-links { gap: 24px; }
-  section { padding: 80px 30px; }
+  nav { padding: 22px 28px; }
+  .nav-links { gap: 22px; }
+  section { padding: 80px 28px; }
   .sobre-grid,
+  .media-inner,
   .contacto-inner { grid-template-columns: 1fr; gap: 50px; }
-  .presenca-grid { grid-template-columns: 1fr; }
+  .espetaculos-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 20px; text-align: center; }
   .footer-copy { text-align: center; }
 }
@@ -606,37 +731,48 @@ footer {
 </head>
 <body>
 
-<!-- ── NAVEGAÇÃO ── -->
+<!-- ════════════════════════════════════════════════
+     NAVEGAÇÃO
+     Para adicionar/remover itens: editar os <li>
+     ════════════════════════════════════════════════ -->
 <nav>
   <a href="#inicio" class="nav-logo">Onofriana</a>
   <ul class="nav-links">
     <li><a href="#sobre">O Projeto</a></li>
     <li><a href="#historia">A História</a></li>
-    <li><a href="#presenca">Presença</a></li>
+    <li><a href="#espetaculos">Espetáculos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ════════════════════════════════════════════════
+     HERO — ECRÃ INICIAL
+     ════════════════════════════════════════════════ -->
 <section id="inicio">
   <div class="hero-bg"></div>
 
-  <div class="hero-ornament">Lisboa · Fado · Património da Humanidade</div>
+  <!-- Slogan acima do nome — editar livremente -->
+  <div class="hero-ornament">A herança feminina do Fado</div>
 
+  <!-- Nome principal -->
   <h1 class="hero-title">Onofriana</h1>
 
-  <p class="hero-subtitle">Fado · Lisboa</p>
+  <!-- Subtítulo -->
+  <p class="hero-subtitle">Espetáculos de Fado</p>
 
   <div class="hero-line"></div>
 
-  <p class="hero-tagline">A herança feminina do Fado.</p>
+  <!-- Tagline -->
+  <p class="hero-tagline">O nome que o fado guardou.</p>
 
   <div class="hero-cta">
-    <a href="#contacto" class="btn-primary">Falar Connosco</a>
+    <a href="#sobre" class="btn-primary">Entrar</a>
   </div>
 </section>
 
-<!-- ── O PROJETO ── -->
+<!-- ════════════════════════════════════════════════
+     SECÇÃO: O PROJETO
+     ════════════════════════════════════════════════ -->
 <section id="sobre">
   <div class="sobre-grid">
 
@@ -645,31 +781,70 @@ footer {
       <h2 class="section-title">O nome que o<br><em>fado guardou</em></h2>
       <div class="ornament-line"></div>
 
-      <p>Onofriana foi o segundo nome de <strong>Maria Severa Onofriana</strong> — a primeira fadista da história, nascida na Madragoa em 1820, morta na Rua do Capelão, na Mouraria, em 1846. O nome que a história guardou foi Severa. Onofriana ficou para quem sabe procurar.</p>
+      <p>Sou a Onofriana.</p>
 
-      <p>É desse lugar — culto, rigoroso, feminino — que partimos. A Onofriana não é entretenimento. É uma proposta cultural com raiz histórica, rigor artístico e presença cénica. Para quem quer oferecer algo com peso.</p>
+      <p>Nasci de um nome que a história quase deixou cair no silêncio. <strong>Maria Severa Onofriana</strong> — a primeira voz que o fado reconheceu como sua. A história guardou o nome Severa. Onofriana ficou mais escondido, quase íntimo, como certas palavras que pertencem apenas a quem conhece verdadeiramente o lugar de onde vieram.</p>
+
+      <p>É desse nome que parto.</p>
+
+      <p>Existo para levar o fado onde ele pode ser ouvido com atenção. Não como cenário, não como curiosidade — como presença cultural com história, com peso e com memória.</p>
 
       <div class="sobre-quote">
-        <p>O fado não se explica. Apresenta-se.<br>Desde a primeira voz.</p>
+        <p>O fado não se anuncia.<br>Acontece desde a primeira voz.</p>
       </div>
 
-      <p>Trabalhamos com empresas, câmaras municipais, festivais e receções protocolares que reconhecem no fado aquilo que ele é: <strong>Património Imaterial da Humanidade</strong>.</p>
+      <p>Trabalho com empresas, instituições e famílias que reconhecem a diferença entre entretenimento e cultura. Lugares onde a música não é ruído de fundo, mas parte do momento. Onde se sabe que certas tradições continuam vivas porque alguém as mantém com seriedade.</p>
+
+      <p>Sou uma das raras formações integralmente femininas em atividade no fado em Portugal. Não é um detalhe — é o que me define.</p>
     </div>
 
     <div class="sobre-visual reveal">
+      <!-- IMAGEM: quando tiver fotografia, substituir este bloco por:
+           <img src="nome-do-ficheiro.jpg" alt="Onofriana" style="width:100%; display:block;"> -->
       <div class="foto-placeholder">
         <span class="foto-placeholder-text">Fotografia · Em breve</span>
       </div>
-      <p class="foto-caption">Onofriana · Lisboa</p>
+      <p class="foto-caption">Onofriana · Portugal</p>
     </div>
 
   </div>
 </section>
 
-<!-- ── A HISTÓRIA ── -->
+<!-- ════════════════════════════════════════════════
+     SECÇÃO: A PRESENÇA (vídeo + texto)
+     ════════════════════════════════════════════════ -->
+<section id="media">
+  <div class="media-inner">
+
+    <!-- VÍDEO: quando tiver vídeo, substituir este bloco por:
+         Para ficheiro local: <video src="video.mp4" controls style="width:100%;display:block;"></video>
+         Para YouTube: <iframe width="100%" style="aspect-ratio:16/9;border:none;" src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen></iframe> -->
+    <div class="video-placeholder reveal">
+      <div class="video-placeholder-icon"></div>
+      <span class="video-placeholder-text">Vídeo · Em breve</span>
+    </div>
+
+    <div class="media-texto reveal">
+      <p class="section-label">A Presença</p>
+      <h2 class="section-title">O gesto<br><em>que permanece</em></h2>
+      <div class="ornament-line"></div>
+
+      <p>O fado nasce sempre de um lugar. Primeiro é o silêncio — a sala que se recompõe, a respiração que abranda. Depois vem a música. Uma guitarra que começa devagar, uma voz que encontra o seu caminho.</p>
+
+      <p>Cada atuação nasce de um princípio simples: <em>criar um momento onde a música encontra o seu lugar</em> e quem escuta se torna parte dele. Não como espetáculo que passa — como instante que permanece.</p>
+
+      <p>O contexto muda. O princípio permanece: o fado apresenta-se com rigor, com respeito pelo seu território e com a presença que esta música exige.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     SECÇÃO: A HISTÓRIA (Maria Severa Onofriana)
+     ════════════════════════════════════════════════ -->
 <section id="historia">
   <div class="historia-inner reveal">
-    <p class="historia-data">Lisboa · 1820 — 1846</p>
+    <p class="historia-data">1820 — 1846</p>
 
     <h2 class="historia-titulo">Maria Severa <em>Onofriana</em><br>a primeira fadista</h2>
 
@@ -677,62 +852,82 @@ footer {
 
     <div class="historia-texto">
       <p>Em 1820, na Madragoa — bairro de pescadores à beira do Tejo — nasceu Maria Severa Onofriana. Filha de uma vendedeira de peixe, cresceu entre a rua e a música, entre a pobreza e o talento que nenhuma circunstância conseguiu conter.</p>
-      <p>Cantou nas tascas da Mouraria, nos salões do Conde do Vimioso, nos becos de Lisboa que ainda hoje guardam a memória da sua voz. Morreu em 1846, com vinte e seis anos, na Rua do Capelão.</p>
-      <p>A história guardou o nome Severa. O nome Onofriana ficou — íntimo, raro, verdadeiro. É esse nome que escolhemos para nos apresentar ao mundo.</p>
+
+      <p>Cantou nas tascas da Mouraria, nos salões do Conde do Vimioso, nos becos que ainda hoje guardam a memória da sua voz. O fado nasceu nas casas pequenas onde a noite se prolongava entre vozes e guitarras, e onde cada canção carregava mais do que melodia — carregava vida, destino, território.</p>
+
+      <p>Morreu em 1846, com vinte e seis anos, na Rua do Capelão. A história guardou o nome Severa. O nome Onofriana ficou — íntimo, raro, verdadeiro.</p>
+
+      <p>É esse nome que escolhemos para nos apresentar ao mundo.</p>
     </div>
   </div>
 </section>
 
-<!-- ── PRESENÇA ── -->
-<section id="presenca">
-  <div class="presenca-inner">
+<!-- ════════════════════════════════════════════════
+     SECÇÃO: ESPETÁCULOS
+     Para adicionar/remover um formato:
+     copiar ou apagar um bloco <div class="espetaculo-item">
+     ════════════════════════════════════════════════ -->
+<section id="espetaculos">
 
-    <div class="reveal">
-      <p class="section-label">Presença</p>
-      <h2 class="section-title">Para cada momento,<br><em>o fado certo</em></h2>
-      <div class="ornament-line"></div>
+  <div class="espetaculos-header reveal">
+    <p class="section-label">Espetáculos</p>
+    <h2 class="section-title">Para cada momento,<br><em>um fado diferente</em></h2>
+    <div class="ornament-line"></div>
+  </div>
+
+  <div class="espetaculos-grid">
+
+    <div class="espetaculo-item reveal">
+      <p class="espetaculo-num">— 01</p>
+      <h3 class="espetaculo-titulo">Espetáculo<br><em>de Sala</em></h3>
+      <p class="espetaculo-duracao">45 a 75 minutos</p>
+      <p class="espetaculo-desc">Para auditórios, teatros municipais e salões nobres. As canções são apresentadas com contextualização histórica e poética — para públicos exigentes e audiências internacionais.</p>
     </div>
 
-    <div class="presenca-grid">
-
-      <div class="presenca-item reveal">
-        <span class="presenca-num">— 01</span>
-        <h3 class="presenca-titulo">Empresas e<br><em>Instituições</em></h3>
-        <div class="presenca-divider"></div>
-        <p class="presenca-desc">Para quem quer oferecer aos seus convidados uma experiência portuguesa a que muito poucos têm acesso. Cada sessão é construída em diálogo com o cliente.</p>
-      </div>
-
-      <div class="presenca-item reveal">
-        <span class="presenca-num">— 02</span>
-        <h3 class="presenca-titulo">Receções<br><em>Oficiais</em></h3>
-        <div class="presenca-divider"></div>
-        <p class="presenca-desc">Câmaras municipais, visitas de Estado, delegações nacionais e internacionais. Discrição, rigor e presença em cada detalhe.</p>
-      </div>
-
-      <div class="presenca-item reveal">
-        <span class="presenca-num">— 03</span>
-        <h3 class="presenca-titulo">Festivais e<br><em>Programação Cultural</em></h3>
-        <div class="presenca-divider"></div>
-        <p class="presenca-desc">O fado levado ao seu contexto com a seriedade que merece. Para públicos exigentes, nacionais e internacionais, que querem compreender o que estão a ouvir.</p>
-      </div>
-
+    <div class="espetaculo-item reveal">
+      <p class="espetaculo-num">— 02</p>
+      <h3 class="espetaculo-titulo">Receção<br><em>Oficial</em></h3>
+      <p class="espetaculo-duracao">20 a 30 minutos</p>
+      <p class="espetaculo-desc">Adaptado a contextos protocolares, visitas de Estado e receções a delegações nacionais e internacionais. Discrição, rigor e presença em cada detalhe.</p>
     </div>
+
+    <div class="espetaculo-item reveal">
+      <p class="espetaculo-num">— 03</p>
+      <h3 class="espetaculo-titulo">Evento<br><em>Corporativo</em></h3>
+      <p class="espetaculo-duracao">Duração personalizável</p>
+      <p class="espetaculo-desc">Para empresas que querem oferecer aos seus convidados uma experiência portuguesa a que muito poucos têm acesso. Cada sessão é construída em diálogo com o cliente.</p>
+    </div>
+
+    <div class="espetaculo-item reveal">
+      <p class="espetaculo-num">— 04</p>
+      <h3 class="espetaculo-titulo">Sessão com<br><em>Mediação Cultural</em></h3>
+      <p class="espetaculo-duracao">60 a 90 minutos</p>
+      <p class="espetaculo-desc">Com contextualização histórica sobre o fado, o seu estatuto UNESCO e a sua ligação ao território. Ideal para públicos escolares, turísticos ou internacionais que queiram compreender o que estão a ouvir.</p>
+    </div>
+
   </div>
 </section>
 
-<!-- ── CONTACTO ── -->
+<!-- ════════════════════════════════════════════════
+     SECÇÃO: CONTACTO
+     ════════════════════════════════════════════════ -->
 <section id="contacto">
   <div class="contacto-inner">
 
     <div class="contacto-info reveal">
       <p class="section-label">Contacto</p>
-      <h2 class="section-title">Construamos<br><em>juntos</em></h2>
+      <h2 class="section-title">O fado<br><em>espera</em></h2>
       <div class="ornament-line"></div>
 
-      <p>Cada espetáculo começa com uma conversa. Conte-nos o seu evento, o seu espaço, o seu público. Construiremos algo à medida — sem fórmulas, com fado.</p>
+      <p>Cada espetáculo começa antes da primeira guitarra. Começa numa conversa onde se compreende o lugar, o momento e o público que irá escutar.</p>
+
+      <p>Há eventos que pedem proximidade e silêncio. Outros pedem presença e solenidade. O fado sabe encontrar o tom certo quando o espaço é respeitado.</p>
+
+      <p>Se deseja levar o fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião. A partir daí, a música encontrará o seu caminho.</p>
 
       <div class="contacto-detalhe">
 
+        <!-- Para alterar email: editar o href e o texto do <a> -->
         <div class="contacto-item">
           <span class="contacto-item-label">Email</span>
           <span class="contacto-item-valor">
@@ -748,20 +943,17 @@ footer {
         </div>
 
         <div class="contacto-item">
-          <span class="contacto-item-label">Instagram</span>
-          <span class="contacto-item-valor">
-            <a href="https://instagram.com/onofriana" target="_blank">instagram.com/onofriana</a>
-          </span>
-        </div>
-
-        <div class="contacto-item">
-          <span class="contacto-item-label">Cidade</span>
-          <span class="contacto-item-valor">Lisboa, Portugal</span>
+          <span class="contacto-item-label">Localização</span>
+          <span class="contacto-item-valor">Portugal</span>
         </div>
 
       </div>
     </div>
 
+    <!-- ════════════════════════════════════════
+         FORMULÁRIO DE CONTACTO
+         Para ligar ao Formspree, ver guia de publicação.
+         ════════════════════════════════════════ -->
     <div class="contacto-form reveal">
       <div class="form-group">
         <label class="form-label">Nome</label>
@@ -773,6 +965,7 @@ footer {
       </div>
       <div class="form-group">
         <label class="form-label">Tipo de evento</label>
+        <!-- Para adicionar opções, copiar um <option> -->
         <select class="form-select" id="f-tipo">
           <option value="" disabled selected>Selecione o tipo de evento</option>
           <option>Câmara Municipal / Entidade Pública</option>
@@ -785,7 +978,7 @@ footer {
       </div>
       <div class="form-group">
         <label class="form-label">Mensagem</label>
-        <textarea class="form-textarea" id="f-msg" placeholder="O evento, a data, o espaço. O resto construímos juntos."></textarea>
+        <textarea class="form-textarea" id="f-msg" placeholder="Descreva o seu evento, data aproximada e qualquer detalhe relevante..."></textarea>
       </div>
       <button class="form-submit" id="btn-enviar">Enviar Pedido</button>
     </div>
@@ -793,7 +986,9 @@ footer {
   </div>
 </section>
 
-<!-- ── RODAPÉ ── -->
+<!-- ════════════════════════════════════════════════
+     RODAPÉ
+     ════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">Onofriana</div>
   <div class="footer-tagline">A herança feminina do Fado.</div>
@@ -803,8 +998,11 @@ footer {
   </div>
 </footer>
 
+<!-- ════════════════════════════════════════════════
+     JAVASCRIPT
+     ════════════════════════════════════════════════ -->
 <script>
-  /* Scroll reveal */
+  /* Animação de scroll — não alterar */
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -816,19 +1014,20 @@ footer {
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  /* Nav ao scroll */
+  /* Nav — fundo sólido ao fazer scroll */
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
-      nav.style.background = 'rgba(10,8,6,0.97)';
+      nav.style.background = 'rgba(8,5,7,0.97)';
       nav.style.backdropFilter = 'blur(10px)';
     } else {
-      nav.style.background = 'linear-gradient(to bottom, rgba(10,8,6,0.95), transparent)';
+      nav.style.background = 'linear-gradient(to bottom, rgba(8,5,7,0.97), transparent)';
       nav.style.backdropFilter = 'none';
     }
   });
 
-  /* Formulário */
+  /* Formulário — mensagem simples (padrão)
+     Para ligar ao Formspree, ver guia de publicação. */
   document.getElementById('btn-enviar').addEventListener('click', () => {
     const nome  = document.getElementById('f-nome').value.trim();
     const email = document.getElementById('f-email').value.trim();
@@ -836,7 +1035,7 @@ footer {
       alert('Por favor preencha o nome e o email.');
       return;
     }
-    alert('A sua mensagem foi recebida. Responderemos através de fado@onofriana.pt');
+    alert('Obrigado, ' + nome + '. Responderemos brevemente através de fado@onofriana.pt');
   });
 </script>
 
