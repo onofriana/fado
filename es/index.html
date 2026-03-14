@@ -2,6 +2,66 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<script>
+/* ════════════════════════════════════════════════
+   DETECÇÃO DE LÍNGUA & SELECTOR MANUAL
+   - Lê preferência guardada em localStorage
+   - Se não houver preferência, detecta a língua do browser
+   - Redireciona para a versão correcta, uma única vez
+   - A escolha manual é guardada e respeitada nas visitas seguintes
+   ════════════════════════════════════════════════ */
+(function() {
+  var langMap = {
+    'pt': '/',
+    'en': '/en/',
+    'fr': '/fr/',
+    'es': '/es/',
+    'it': '/it/'
+  };
+
+  // Determina a língua actual a partir do path
+  function getCurrentLang() {
+    var path = window.location.pathname;
+    if (path.indexOf('/en/') === 0 || path === '/en') return 'en';
+    if (path.indexOf('/fr/') === 0 || path === '/fr') return 'fr';
+    if (path.indexOf('/es/') === 0 || path === '/es') return 'es';
+    if (path.indexOf('/it/') === 0 || path === '/it') return 'it';
+    return 'pt';
+  }
+
+  // Detecta língua preferida do browser
+  function detectBrowserLang() {
+    var langs = navigator.languages || [navigator.language || navigator.userLanguage || 'pt'];
+    for (var i = 0; i < langs.length; i++) {
+      var l = langs[i].toLowerCase().split('-')[0];
+      if (langMap[l]) return l;
+    }
+    return 'pt';
+  }
+
+  var currentLang = getCurrentLang();
+  var saved = localStorage.getItem('onofriana_lang');
+
+  // Se há preferência guardada e é diferente da página actual, redireciona
+  if (saved && saved !== currentLang && langMap[saved]) {
+    window.location.replace(langMap[saved]);
+    return;
+  }
+
+  // Se não há preferência guardada, detecta e redireciona (apenas uma vez)
+  if (!saved) {
+    var detected = detectBrowserLang();
+    if (detected !== currentLang && langMap[detected]) {
+      localStorage.setItem('onofriana_lang', detected);
+      window.location.replace(langMap[detected]);
+      return;
+    }
+    // Guarda a língua actual como preferência inicial
+    localStorage.setItem('onofriana_lang', currentLang);
+  }
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onofriana — La Herencia Femenina del Fado</title>
 <meta name="description" content="Onofriana — fado performances for corporate events, municipal councils, festivals and institutional receptions. The feminine heritage of fado.">
@@ -149,7 +209,10 @@ footer { background:#050305; border-top:1px solid rgba(107,16,32,0.18); position
   nav[aria-label="Navegación principal"] { padding:22px 28px; }
   .nav-links { gap:20px; }
   .nav-right { gap:24px; }
-  .lang-switcher { display:none; }
+  .lang-switcher { display:flex; gap:7px; }
+  .lang-switcher a { font-size:0.48rem; letter-spacing:0.12em; opacity:0.35; }
+  .lang-switcher a.active { opacity:0.85; }
+  .lang-switcher span { display:none; }
   section { padding:80px 28px; }
   #media { padding:80px 28px; }
   #contacto { padding:100px 28px; }
@@ -279,7 +342,7 @@ footer { background:#050305; border-top:1px solid rgba(107,16,32,0.18); position
       <p>Cada espectáculo comienza antes de la primera nota. Comienza en una conversación sobre el lugar, el momento y quiénes van a escuchar.</p>
       <p>Si quiere llevar el Fado a su evento, escríbanos. Cuéntenos el contexto, el espacio y la ocasión.</p>
       <div class="contacto-detalhe">
-        <div class="contacto-item"><span class="contacto-item-label">Email</span><span class="contacto-item-valor"><a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a></span></div>
+        <div class="contacto-item"><span class="contacto-item-label">Email</span><span class="contacto-item-valor"><a href="/cdn-cgi/l/email-protection#630502070c230c0d0c05110a020d024d1317"><span class="__cf_email__" data-cfemail="85e3e4e1eac5eaebeae3f7ece4ebe4abf5f1">[email&#160;protected]</span></a></span></div>
         <div class="contacto-item"><span class="contacto-item-label">Website</span><span class="contacto-item-valor"><a href="https://onofriana.pt">onofriana.pt</a></span></div>
       </div>
       <div class="contacto-social">
@@ -337,7 +400,7 @@ footer { background:#050305; border-top:1px solid rgba(107,16,32,0.18); position
     <div class="footer-col-contacto">
       <p class="footer-col-title">Contact</p>
       <div class="footer-contactos">
-        <div class="footer-contacto-item"><span class="footer-contacto-label">Email</span><a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a></div>
+        <div class="footer-contacto-item"><span class="footer-contacto-label">Email</span><a href="/cdn-cgi/l/email-protection#fe989f9a91be919091988c979f909fd08e8a"><span class="__cf_email__" data-cfemail="385e595c57785756575e4a5159565916484c">[email&#160;protected]</span></a></div>
         <div class="footer-contacto-item"><span class="footer-contacto-label">Website</span><a href="https://onofriana.pt">onofriana.pt</a></div>
       </div>
       <div class="footer-social">
@@ -361,14 +424,11 @@ footer { background:#050305; border-top:1px solid rgba(107,16,32,0.18); position
   <p>Utilizamos cookies de análisis (Google Analytics) para entender cómo se visita el sitio. Los datos son anonimizados y no identifican a ningún visitante. <a href="/privacidade.html">Saber más</a></p>
   <div class="cookie-btn-wrap"><button class="cookie-btn cookie-btn-reject" id="cookie-reject">Rechazar</button><button class="cookie-btn cookie-btn-accept" id="cookie-accept">Aceptar</button></div>
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const reveals=document.querySelectorAll('.reveal');
   const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}});},{threshold:0.1});
   reveals.forEach(el=>{el.classList.add('animate-ready');observer.observe(el);});
   const nav=document.querySelector('nav[aria-label="Navegación principal"]');
   window.addEventListener('scroll',()=>{if(window.scrollY>80){nav.style.background='rgba(8,5,7,0.97)';nav.style.backdropFilter='blur(10px)';}else{nav.style.background='linear-gradient(to bottom,rgba(8,5,7,0.97),transparent)';nav.style.backdropFilter='none';}});
   document.getElementById('btn-enviar').addEventListener('click',()=>{const nome=document.getElementById('f-nome').value.trim();const email=document.getElementById('f-email').value.trim();const msg=document.getElementById('f-msg').value.trim();if(!nome||!email||!msg){alert('Por favor rellene su nombre, email y mensaje.');return;}alert('Gracias, '+nome+'! Hemos recibido su solicitud y responderemos en breve.');document.getElementById('f-nome').value='';document.getElementById('f-email').value='';document.getElementById('f-tipo').selectedIndex=0;document.getElementById('f-msg').value='';});
-  (function(){var banner=document.getElementById('cookie-banner');var consent=localStorage.getItem('onofriana_cookie_consent');if(!consent||window.location.hash==='#cookie-reset'){localStorage.removeItem('onofriana_cookie_consent');banner.style.display='flex';}document.getElementById('cookie-accept').addEventListener('click',function(){localStorage.setItem('onofriana_cookie_consent','accepted');banner.style.display='none';});document.getElementById('cookie-reject').addEventListener('click',function(){localStorage.setItem('onofriana_cookie_consent','rejected');banner.style.display='none';});})();
-</script>
-</body>
-</html>
+  (function(){var banner=document.getElementById('cookie-banner');var consent=localStorage.getItem('onofriana_cookie_consent');if(!consent||window.location.hash==='#cookie-reset'){localStorage.removeItem('onofriana_cookie_consent');banner.style.display='flex'
