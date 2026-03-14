@@ -8,9 +8,9 @@
 <!-- ════════════════════════════════════════════════
      SEO — META TAGS
      ════════════════════════════════════════════════ -->
-<meta name="description" content="Onofriana — espetáculos de fado premium para eventos corporativos, câmaras municipais, receções oficiais e ocasiões institucionais. A herança feminina do fado.">
+<meta name="description" content="Onofriana — espetáculos de fado para eventos corporativos, câmaras municipais, festivais e receções institucionais. A herança feminina do fado.">
 <meta property="og:title" content="Onofriana — A Herança Feminina do Fado">
-<meta property="og:description" content="Espetáculos de fado para eventos corporativos, câmaras municipais e receções oficiais. Com Marta Rosa e Fernanda Maciel.">
+<meta property="og:description" content="Espetáculos de fado para empresas, câmaras municipais, festivais e receções institucionais. Presença cultural com rigor e memória.">
 <meta property="og:url" content="https://onofriana.pt">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_PT">
@@ -28,16 +28,12 @@
   "name": "Onofriana",
   "url": "https://onofriana.pt",
   "email": "fado@onofriana.pt",
-  "description": "Ensemble de fado feminino de prestígio, com espetáculos para eventos corporativos, institucionais e câmaras municipais.",
+  "description": "Espetáculos de fado para eventos corporativos, câmaras municipais, festivais e receções institucionais. Presença cultural com rigor e memória.",
   "genre": "Fado",
   "foundingLocation": {
     "@type": "Place",
     "name": "Portugal"
   },
-  "member": [
-    { "@type": "Person", "name": "Marta Rosa", "roleName": "Voz e viola de fado" },
-    { "@type": "Person", "name": "Fernanda Maciel", "roleName": "Guitarra portuguesa" }
-  ],
   "sameAs": [
     "https://instagram.com/onofriana",
     "https://facebook.com/onofriana",
@@ -125,8 +121,8 @@ body::before {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 1000;
-  opacity: 0.45;
+  z-index: 0;
+  opacity: 0.18;
 }
 
 /* ════════════════════════════════════════════════
@@ -167,7 +163,7 @@ body::before {
    NAVEGAÇÃO
    Para adicionar/remover itens: editar os <li>
    ══════════════════════════════════════════════ */
-nav {
+nav[aria-label="Navegação principal"] {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
@@ -346,7 +342,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .section-title em {
   font-style: italic;
-  color: rgba(245,242,240,0.55);
+  color: rgba(245,242,240,0.68);
 }
 
 .ornament-line {
@@ -376,7 +372,7 @@ section { padding: 120px 60px; position: relative; }
 .sobre-texto p {
   font-size: 1.08rem;
   line-height: 1.95;
-  color: rgba(245,242,240,0.76);
+  color: rgba(245,242,240,0.82);
   margin-bottom: 22px;
 }
 .sobre-texto p strong {
@@ -513,7 +509,7 @@ section { padding: 120px 60px; position: relative; }
 .media-texto p {
   font-size: 1.08rem;
   line-height: 1.95;
-  color: rgba(245,242,240,0.74);
+  color: rgba(245,242,240,0.82);
   margin-bottom: 20px;
 }
 .media-texto p em {
@@ -554,7 +550,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .historia-titulo em {
   font-style: italic;
-  color: rgba(245,242,240,0.55);
+  color: rgba(245,242,240,0.68);
 }
 
 .historia-ornamento {
@@ -569,98 +565,67 @@ section { padding: 120px 60px; position: relative; }
 .historia-texto {
   font-size: 1.05rem;
   line-height: 2.05;
-  color: rgba(245,242,240,0.7);
+  color: rgba(245,242,240,0.82);
   text-align: left;
 }
 .historia-texto p { margin-bottom: 26px; }
 
 /* ══════════════════════════════════════════════
-   SECÇÃO: ESPETÁCULOS
-   Para adicionar/remover um formato:
-   copiar ou apagar um bloco <div class="espetaculo-item">
+   SECÇÃO: COM QUEM TRABALHAMOS
    ══════════════════════════════════════════════ */
-#espetaculos {
+#presenca {
   background: linear-gradient(to bottom, var(--escuro), var(--preto));
 }
 
-.espetaculos-header {
-  max-width: 1200px;
-  margin: 0 auto 24px;
-}
-
-.espetaculos-intro {
-  max-width: 1200px;
-  margin: 0 auto 64px;
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: rgba(245,242,240,0.62);
-  font-style: italic;
-}
-
-.espetaculos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  max-width: 1200px;
+.presenca-inner {
+  max-width: 740px;
   margin: 0 auto;
 }
 
-.espetaculo-item {
-  padding: 48px 50px;
-  background: rgba(255,255,255,0.01);
-  border: 1px solid var(--borda);
-  transition: all 0.4s;
-  position: relative;
-  overflow: hidden;
-}
-.espetaculo-item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(to right, var(--vinho), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s;
-}
-.espetaculo-item:hover::before { transform: scaleX(1); }
-.espetaculo-item:hover { background: rgba(107,16,32,0.04); }
-
-.espetaculo-num {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.57rem;
-  letter-spacing: 0.32em;
-  color: var(--vinho-claro);
-  opacity: 0.5;
-  margin-bottom: 20px;
+.presenca-texto p {
+  font-size: 1.08rem;
+  line-height: 2.05;
+  color: rgba(245,242,240,0.82);
+  margin-bottom: 26px;
 }
 
-.espetaculo-titulo {
-  font-size: 1.45rem;
-  font-weight: 300;
-  color: var(--branco);
-  margin-bottom: 10px;
-  line-height: 1.3;
+.presenca-curadoria {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--borda);
 }
-.espetaculo-titulo em {
+
+.curadoria-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.curadoria-foto .foto-placeholder {
+  aspect-ratio: 3/4;
+  width: 100%;
+}
+
+.curadoria-texto p {
+  font-size: 1.0rem;
+  line-height: 1.95;
+  color: rgba(245,242,240,0.72);
   font-style: italic;
-  color: rgba(245,242,240,0.58);
 }
 
-.espetaculo-duracao {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.57rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--vinho-claro);
-  opacity: 0.6;
-  margin-bottom: 20px;
+@media (max-width: 600px) {
+  .curadoria-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .curadoria-foto .foto-placeholder {
+    aspect-ratio: 4/3;
+  }
 }
 
-.espetaculo-desc {
-  font-size: 0.95rem;
-  line-height: 1.85;
-  color: rgba(245,242,240,0.58);
+.presenca-cta {
+  margin-top: 56px;
 }
 
 /* ══════════════════════════════════════════════
@@ -683,7 +648,7 @@ section { padding: 120px 60px; position: relative; }
 .contacto-info p {
   font-size: 1.05rem;
   line-height: 1.95;
-  color: rgba(245,242,240,0.66);
+  color: rgba(245,242,240,0.82);
   margin-bottom: 20px;
 }
 
@@ -1040,9 +1005,13 @@ footer {
 }
 
 .reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+.reveal.animate-ready {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.85s ease, transform 0.85s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -1062,7 +1031,6 @@ footer {
   .sobre-grid,
   .media-inner,
   .contacto-inner { grid-template-columns: 1fr; gap: 50px; }
-  .espetaculos-grid { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 36px; }
   .footer-bottom { flex-direction: column; gap: 10px; padding: 18px 28px; text-align: center; }
   #cookie-banner { padding: 1rem 1.2rem; }
@@ -1084,9 +1052,9 @@ footer {
 <nav aria-label="Navegação principal">
   <a href="#inicio" class="nav-logo">Onofriana</a>
   <ul class="nav-links">
-    <li><a href="#sobre">Projeto</a></li>
-    <li><a href="#historia">História</a></li>
-    <li><a href="#espetaculos">Formato</a></li>
+    <li><a href="#sobre">O Nome</a></li>
+    <li><a href="#media">O Fado</a></li>
+    <li><a href="#presenca">Presença</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
@@ -1109,29 +1077,29 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════════════
-     SECÇÃO: O PROJETO
+     SECÇÃO: O NOME
      ══════════════════════════════════════════════ -->
 <section id="sobre" aria-labelledby="titulo-sobre">
   <div class="sobre-grid">
 
     <div class="sobre-texto reveal">
-      <p class="section-label" aria-hidden="true">O Projeto</p>
-      <h2 class="section-title" id="titulo-sobre">A Herança<br><em>Feminina do Fado</em></h2>
+      <p class="section-label" aria-hidden="true">O Nome</p>
+      <h2 class="section-title" id="titulo-sobre">Sou a<br><em>Onofriana</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
 
-      <p>Sou a Onofriana.</p>
+      <p>Nasci de um nome que a História quase deixou cair no silêncio. Maria Severa Onofriana foi a primeira voz que o Fado reconheceu como sua. Severa, o nome que o mito glorificou. Onofriana, mais despercebido, íntimo, lembra parte de uma história que permanece por desvendar.</p>
 
-      <p>Nasci de um nome que a história quase deixou cair no silêncio. <strong>Maria Severa Onofriana</strong> — a primeira voz que o fado reconheceu como sua. A história guardou o nome Severa. Onofriana ficou mais escondido, quase íntimo, como certas palavras que pertencem apenas a quem conhece verdadeiramente o lugar de onde vieram.</p>
+      <p>É esse, o meu nome para o mundo.</p>
 
-      <p>É desse nome que parto.</p>
-
-      <p>Existo para levar o fado onde ele pode ser ouvido com atenção. Não como cenário, não como curiosidade — como presença cultural com história, com peso e com memória.</p>
+      <p>Quero levar o Fado onde ele possa voltar a ser escutado e apreciado, não como pano de fundo, distração ou curiosidade, mas presença cultural viva, com pulsação e memória.</p>
 
       <div class="sobre-quote">
-        <p>O fado não se anuncia.<br>Acontece desde a primeira voz.</p>
+        <p>O Fado não se encena.<br>Acontece.</p>
       </div>
 
-      <p>Trabalho com empresas, instituições e famílias que reconhecem a diferença entre entretenimento e cultura. Lugares onde a música não é ruído de fundo, mas parte do momento. Onde se sabe que certas tradições continuam vivas porque alguém as mantém com seriedade.</p>
+      <p>A tradição não existe sem um sentido, e o nosso compromisso é integridade, intenção e profissionalismo.</p>
+
+      <p>Trabalhamos com quem quer oferecer algo com peso — não um espectáculo, um momento com memória.</p>
     </div>
 
     <div class="sobre-visual reveal">
@@ -1151,7 +1119,7 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════════════
-     SECÇÃO: A PRESENÇA (vídeo + texto)
+     SECÇÃO: O FADO (vídeo + texto)
      ══════════════════════════════════════════════ -->
 <section id="media" aria-labelledby="titulo-media">
   <div class="media-inner">
@@ -1166,15 +1134,19 @@ footer {
     </div>
 
     <div class="media-texto reveal">
-      <p class="section-label" aria-hidden="true">A Presença</p>
-      <h2 class="section-title" id="titulo-media">O gesto<br><em>que permanece</em></h2>
+      <p class="section-label" aria-hidden="true">O Fado</p>
+      <h2 class="section-title" id="titulo-media">Património<br><em>com responsabilidade</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
 
-      <p>O fado nasce sempre de um lugar. Primeiro é o silêncio — a sala que se recompõe, a respiração que abranda. Depois vem a música. Uma guitarra que começa devagar, uma voz que encontra o seu caminho.</p>
+      <p>O Fado é Património Cultural Imaterial da Humanidade desde 2011. Não por decreto — por reconhecimento. Porque havia algo ali que merecia ser preservado: uma forma de estar com a música que não se encontra em mais lado nenhum.</p>
 
-      <p>Cada atuação nasce de um princípio simples: <em>criar um momento onde a música encontra o seu lugar</em> e quem escuta se torna parte dele. Não como espetáculo que passa — como instante que permanece.</p>
+      <p>Esse reconhecimento traz responsabilidade.</p>
 
-      <p>O contexto muda. O princípio permanece: o fado apresenta-se com rigor, com respeito pelo seu território e com a presença que esta música exige.</p>
+      <p>O Fado não é cenário. Não é pano de fundo para uma conversa que continua. Quando o Fado entra numa sala, a sala muda. Ou devia mudar.</p>
+
+      <p>É essa mudança que a Onofriana procura — em cada lugar onde se apresenta. Não o Fado como produto. O Fado como acontecimento.</p>
+
+      <p>A tradição não se conserva em museus. Vive nos momentos em que alguém a trata com a seriedade que merece.</p>
     </div>
 
   </div>
@@ -1189,59 +1161,55 @@ footer {
     <h2 class="historia-titulo" id="titulo-historia">Maria Severa <em>Onofriana</em><br>a primeira fadista</h2>
     <div class="historia-ornamento" aria-hidden="true">✦</div>
     <div class="historia-texto">
-      <p>Em 1820, na Madragoa — bairro de pescadores à beira do Tejo — nasceu Maria Severa Onofriana. Filha de uma vendedeira de peixe, cresceu entre a rua e a música, entre a pobreza e o talento que nenhuma circunstância conseguiu conter.</p>
-      <p>Cantou nas tascas da Mouraria, nos salões do Conde do Vimioso, nos becos que ainda hoje guardam a memória da sua voz. O fado nasceu nas casas pequenas onde a noite se prolongava entre vozes e guitarras, e onde cada canção carregava mais do que melodia — carregava vida, destino, território.</p>
-      <p>Morreu em 1846, com vinte e seis anos, na Rua do Capelão. A história guardou o nome Severa. O nome Onofriana ficou — íntimo, raro, verdadeiro.</p>
-      <p>É esse nome que escolhemos para nos apresentar ao mundo.</p>
+      <p>Maria Severa Onofriana nasceu em 1820, na Madragoa. Filha de uma vendedeira de peixe, cresceu entre a rua e a música. Cantou nas tascas da Mouraria e nos salões do Conde do Vimioso. Morreu em 1846, com vinte e seis anos, na Rua do Capelão.</p>
+      <p>A história guardou o nome Severa. O mito tratou de o glorificar — romances, peças de teatro, o primeiro filme sonoro português. Severa tornou-se figura, símbolo, narrativa.</p>
+      <p>Onofriana ficou na sombra. Mais despercebido, menos maleável para o mito. É o nome de uma pessoa — não de uma personagem.</p>
+      <p>É por isso que é o nosso.</p>
+      <p>Não escolhemos o nome que a história celebrou. Escolhemos o que ela quase perdeu. Há nisso uma posição: o Fado não começa no mito. Começa na voz. E a voz tinha um nome completo.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════
-     SECÇÃO: ESPETÁCULOS
-     Para adicionar/remover um formato:
-     copiar ou apagar um bloco <div class="espetaculo-item">
+     SECÇÃO: COM QUEM TRABALHAMOS
      ══════════════════════════════════════════════ -->
-<section id="espetaculos" aria-labelledby="titulo-espetaculos">
+<section id="presenca" aria-labelledby="titulo-presenca">
+  <div class="presenca-inner">
 
-  <div class="espetaculos-header reveal">
-    <p class="section-label" aria-hidden="true">Espetáculos</p>
-    <h2 class="section-title" id="titulo-espetaculos">Alguns dos formatos<br><em>possíveis</em></h2>
-    <div class="ornament-line" aria-hidden="true"></div>
-  </div>
-
-  <p class="espetaculos-intro reveal">
-    Cada espetáculo nasce em diálogo com o lugar e o momento. Os formatos abaixo são pontos de partida — não limites. Falemos antes de decidir.
-  </p>
-
-  <div class="espetaculos-grid">
-
-    <div class="espetaculo-item reveal">
-      <p class="espetaculo-num" aria-hidden="true">— 01</p>
-      <h3 class="espetaculo-titulo">Espetáculo<br><em>de Sala</em></h3>
-      <p class="espetaculo-duracao">45 a 75 minutos</p>
-      <p class="espetaculo-desc">Para auditórios, teatros municipais e salões nobres. As canções são apresentadas com contextualização histórica e poética — para públicos exigentes e audiências internacionais.</p>
+    <div class="reveal">
+      <p class="section-label" aria-hidden="true">Presença</p>
+      <h2 class="section-title" id="titulo-presenca">Com quem<br><em>trabalhamos</em></h2>
+      <div class="ornament-line" aria-hidden="true"></div>
     </div>
 
-    <div class="espetaculo-item reveal">
-      <p class="espetaculo-num" aria-hidden="true">— 02</p>
-      <h3 class="espetaculo-titulo">Receção<br><em>Oficial</em></h3>
-      <p class="espetaculo-duracao">20 a 30 minutos</p>
-      <p class="espetaculo-desc">Adaptado a contextos protocolares, visitas de Estado e receções a delegações nacionais e internacionais. Discrição, rigor e presença em cada detalhe.</p>
+    <div class="presenca-texto reveal">
+      <p>Há eventos que pedem solenidade. Outros pedem intimidade. Alguns pedem as duas coisas ao mesmo tempo.</p>
+
+      <p>O que têm em comum é o critério: quem nos procura sabe que a música não é decoração. Sabe que um momento bem construído deixa memória — e que essa memória tem valor.</p>
+
+      <p>Trabalhamos com empresas, câmaras municipais, festivais, instituições culturais e famílias.</p>
+
+      <p>Em cada caso, o ponto de partida é o mesmo: uma conversa sobre o lugar, o momento e quem vai escutar. A partir daí, o Fado encontra o seu caminho.</p>
     </div>
 
-    <div class="espetaculo-item reveal">
-      <p class="espetaculo-num" aria-hidden="true">— 03</p>
-      <h3 class="espetaculo-titulo">Evento<br><em>Corporativo</em></h3>
-      <p class="espetaculo-duracao">Duração personalizável</p>
-      <p class="espetaculo-desc">Para empresas que querem oferecer aos seus convidados uma presença portuguesa a que muito poucos têm acesso. Cada sessão é construída em diálogo com o cliente.</p>
+    <div class="presenca-curadoria reveal">
+      <div class="curadoria-grid">
+        <div class="curadoria-foto">
+          <!-- IMAGEM: substituir este bloco por:
+               <img src="marta-rosa.jpg" alt="Marta Rosa, curadoria artística da Onofriana" style="width:100%;display:block;"> -->
+          <div class="foto-placeholder">
+            <span class="foto-placeholder-text">Marta Rosa</span>
+          </div>
+          <p class="foto-caption">Marta Rosa · Curadoria artística</p>
+        </div>
+        <div class="curadoria-texto">
+          <p>A curadoria artística da Onofriana é da responsabilidade de Marta Rosa — fadista, violista, letrista e compositora. Licenciada em Ciências Musicais pela Universidade Nova de Lisboa e em Canto pela Escola Superior de Música do IPL, construiu o seu percurso entre as casas de fado, a composição e a direcção artística. Uma das raras mulheres a tocar viola de fado profissionalmente.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="espetaculo-item reveal">
-      <p class="espetaculo-num" aria-hidden="true">— 04</p>
-      <h3 class="espetaculo-titulo">Sessão com<br><em>Mediação Cultural</em></h3>
-      <p class="espetaculo-duracao">60 a 90 minutos</p>
-      <p class="espetaculo-desc">Com contextualização histórica sobre o fado, o seu estatuto UNESCO e a sua ligação ao território. Ideal para públicos escolares, turísticos ou internacionais.</p>
+    <div class="presenca-cta reveal">
+      <a href="#contacto" class="btn-primary">Falar connosco</a>
     </div>
 
   </div>
@@ -1255,14 +1223,12 @@ footer {
 
     <div class="contacto-info reveal">
       <p class="section-label" aria-hidden="true">Contacto</p>
-      <h2 class="section-title" id="titulo-contacto">O fado<br><em>espera</em></h2>
+      <h2 class="section-title" id="titulo-contacto">Falar<br><em>connosco</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
 
-      <p>Cada espetáculo começa antes da primeira guitarra. Começa numa conversa onde se compreende o lugar, o momento e o público que irá escutar.</p>
+      <p>Cada espetáculo começa antes da primeira nota. Começa numa conversa sobre o lugar, o momento e quem vai escutar.</p>
 
-      <p>Há eventos que pedem proximidade e silêncio. Outros pedem presença e solenidade. O fado sabe encontrar o tom certo quando o espaço é respeitado.</p>
-
-      <p>Se deseja levar o fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião. A partir daí, a música encontrará o seu caminho.</p>
+      <p>Se quer levar o Fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião.</p>
 
       <!-- Redes sociais na secção de contacto -->
       <div class="contacto-social">
@@ -1337,9 +1303,9 @@ footer {
     <nav aria-label="Navegação do rodapé">
       <p class="footer-col-title">Navegação</p>
       <ul class="footer-col-links">
-        <li><a href="#sobre">O Projeto</a></li>
-        <li><a href="#historia">A História</a></li>
-        <li><a href="#espetaculos">Espetáculos</a></li>
+        <li><a href="#sobre">O Nome</a></li>
+        <li><a href="#media">O Fado</a></li>
+        <li><a href="#presenca">Presença</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -1351,7 +1317,7 @@ footer {
 
         <div class="footer-contacto-item">
           <span class="footer-contacto-label">Email</span>
-          <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a>
+          <a href="/cdn-cgi/l/email-protection#e38582878ca38c8d8c85918a828d82cd9397"><span class="__cf_email__" data-cfemail="b8ded9dcd7f8d7d6d7decad1d9d6d996c8cc">[email&#160;protected]</span></a>
         </div>
 
         <div class="footer-contacto-item">
@@ -1404,8 +1370,8 @@ footer {
 <!-- ══════════════════════════════════════════════
      JAVASCRIPT
      ══════════════════════════════════════════════ -->
-<script>
-  /* Animação de scroll — não alterar */
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* Animação de scroll — progressiva, não bloqueia conteúdo */
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1415,10 +1381,13 @@ footer {
       }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(el => {
+    el.classList.add('animate-ready');
+    observer.observe(el);
+  });
 
   /* Nav — fundo sólido ao fazer scroll */
-  const nav = document.querySelector('nav');
+  const nav = document.querySelector('nav[aria-label="Navegação principal"]');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
       nav.style.background = 'rgba(8,5,7,0.97)';
@@ -1460,14 +1429,4 @@ footer {
       localStorage.setItem('onofriana_cookie_consent', 'accepted');
       banner.style.display = 'none';
       if (window._onofrianaGA) window._onofrianaGA();
-    });
-
-    document.getElementById('cookie-reject').addEventListener('click', function() {
-      localStorage.setItem('onofriana_cookie_consent', 'rejected');
-      banner.style.display = 'none';
-    });
-  })();
-</script>
-
-</body>
-</html>
+  
