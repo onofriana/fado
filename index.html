@@ -4,7 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onofriana — A Herança Feminina do Fado</title>
-<meta name="description" content="Onofriana — espetáculos de fado. Para eventos corporativos, receções oficiais, festivais e momentos únicos.">
+
+<!-- ════════════════════════════════════════════════
+     SEO — META TAGS
+     ════════════════════════════════════════════════ -->
+<meta name="description" content="Onofriana — espetáculos de fado premium para eventos corporativos, câmaras municipais, receções oficiais e ocasiões institucionais. A herança feminina do fado.">
+<meta property="og:title" content="Onofriana — A Herança Feminina do Fado">
+<meta property="og:description" content="Espetáculos de fado para eventos corporativos, câmaras municipais e receções oficiais. Com Marta Rosa e Fernanda Maciel.">
+<meta property="og:url" content="https://onofriana.pt">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<!-- og:image — adicionar quando houver fotografia profissional (1200x630px recomendado):
+<meta property="og:image" content="https://onofriana.pt/assets/og-image.jpg"> -->
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ════════════════════════════════════════════════
+     SCHEMA JSON-LD
+     ════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Onofriana",
+  "url": "https://onofriana.pt",
+  "email": "fado@onofriana.pt",
+  "description": "Ensemble de fado feminino de prestígio, com espetáculos para eventos corporativos, institucionais e câmaras municipais.",
+  "genre": "Fado",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Portugal"
+  },
+  "member": [
+    { "@type": "Person", "name": "Marta Rosa", "roleName": "Voz e viola de fado" },
+    { "@type": "Person", "name": "Fernanda Maciel", "roleName": "Guitarra portuguesa" }
+  ],
+  "sameAs": [
+    "https://instagram.com/onofriana",
+    "https://facebook.com/onofriana",
+    "https://youtube.com/@onofriana",
+    "https://linkedin.com/company/onofriana"
+  ]
+}
+</script>
+
+<!-- ════════════════════════════════════════════════
+     GOOGLE ANALYTICS — carrega APENAS após consentimento
+     ════════════════════════════════════════════════ -->
+<script>
+  (function() {
+    var GA_ID = 'G-LRL8WTN2XQ';
+    window['ga-disable-' + GA_ID] = true;
+
+    function loadGA() {
+      if (window._gaLoaded) return;
+      window._gaLoaded = true;
+      window['ga-disable-' + GA_ID] = false;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      s.async = true;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+
+    if (localStorage.getItem('onofriana_cookie_consent') === 'accepted') {
+      loadGA();
+    }
+    window._onofrianaGA = loadGA;
+  })();
+</script>
 
 <!-- ════════════════════════════════════════════════
      FONTES  —  não alterar sem rever o CSS
@@ -56,6 +127,40 @@ body::before {
   pointer-events: none;
   z-index: 1000;
   opacity: 0.45;
+}
+
+/* ════════════════════════════════════════════════
+   ACESSIBILIDADE — SKIP LINK & FOCUS
+   ════════════════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--vinho-claro);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 99999;
+  transition: top 0.2s;
+  border-radius: 0 0 3px 3px;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--branco);
+  outline-offset: 2px;
+}
+
+/* Foco visível para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--vinho-claro);
+  outline-offset: 3px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ══════════════════════════════════════════════
@@ -358,7 +463,8 @@ section { padding: 120px 60px; position: relative; }
    PLACEHOLDER DE VÍDEO
    Para YouTube: substituir o div inteiro por:
    <iframe width="100%" style="aspect-ratio:16/9;border:none;"
-     src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen></iframe>
+     src="https://www.youtube.com/embed/ID_DO_VIDEO"
+     allowfullscreen title="Onofriana — espetáculo de fado"></iframe>
    ════════════════════════════════════════ */
 .video-placeholder {
   width: 100%;
@@ -672,6 +778,8 @@ section { padding: 120px 60px; position: relative; }
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   border-color: rgba(107,16,32,0.65);
   background: rgba(107,16,32,0.04);
+  outline: 2px solid var(--vinho-claro);
+  outline-offset: 2px;
 }
 .form-textarea { height: 120px; resize: vertical; }
 .form-select option { background: #130810; color: var(--branco); }
@@ -698,6 +806,20 @@ section { padding: 120px 60px; position: relative; }
   background: rgba(107,16,32,0.14);
   border-color: var(--vinho-claro);
   letter-spacing: 0.5em;
+}
+
+.form-rgpd {
+  font-size: 0.8rem;
+  color: rgba(245,242,240,0.38);
+  line-height: 1.6;
+  margin-top: 14px;
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: 0.04em;
+}
+.form-rgpd a {
+  color: var(--vinho-claro);
+  text-decoration: underline;
+  opacity: 0.8;
 }
 
 /* ══════════════════════════════════════════════
@@ -822,6 +944,8 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .footer-copy {
@@ -837,6 +961,74 @@ footer {
   font-style: italic;
   color: var(--cinza);
   opacity: 0.4;
+}
+
+.footer-privacidade {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  color: var(--cinza);
+  opacity: 0.38;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.footer-privacidade:hover { opacity: 0.7; color: var(--branco); }
+
+/* ══════════════════════════════════════════════
+   COOKIE BANNER
+   ══════════════════════════════════════════════ */
+#cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #110a0e;
+  color: rgba(245,242,240,0.82);
+  padding: 1.2rem 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  border-top: 1px solid rgba(107,16,32,0.5);
+  box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
+}
+#cookie-banner p {
+  flex: 1 1 320px;
+  margin: 0;
+}
+#cookie-banner a {
+  color: var(--vinho-claro);
+  text-decoration: underline;
+}
+.cookie-btn-wrap {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  padding: 0.5rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: opacity 0.2s, background 0.2s;
+}
+.cookie-btn:hover { opacity: 0.85; }
+.cookie-btn-accept {
+  background: var(--vinho);
+  color: var(--branco);
+  border: 1px solid var(--vinho-claro);
+}
+.cookie-btn-reject {
+  background: transparent;
+  color: var(--cinza);
+  border: 1px solid rgba(122,112,112,0.35);
 }
 
 /* ══════════════════════════════════════════════
@@ -873,25 +1065,23 @@ footer {
   .espetaculos-grid { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 36px; }
   .footer-bottom { flex-direction: column; gap: 10px; padding: 18px 28px; text-align: center; }
+  #cookie-banner { padding: 1rem 1.2rem; }
 }
 </style>
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRL8WTN2XQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-LRL8WTN2XQ');
-</script>
 </head>
 <body>
+
+<!-- ════════════════════════════════════════════════
+     ACESSIBILIDADE — SKIP LINK
+     Invisível em uso normal; aparece ao pressionar Tab
+     ════════════════════════════════════════════════ -->
+<a href="#conteudo-principal" class="skip-link">Saltar para o conteúdo principal</a>
 
 <!-- ══════════════════════════════════════════════
      NAVEGAÇÃO
      Para adicionar/remover itens: editar os <li>
      ══════════════════════════════════════════════ -->
-<nav>
+<nav aria-label="Navegação principal">
   <a href="#inicio" class="nav-logo">Onofriana</a>
   <ul class="nav-links">
     <li><a href="#sobre">Projeto</a></li>
@@ -901,15 +1091,17 @@ footer {
   </ul>
 </nav>
 
+<main id="conteudo-principal">
+
 <!-- ══════════════════════════════════════════════
      HERO
      ══════════════════════════════════════════════ -->
-<section id="inicio">
-  <div class="hero-bg"></div>
-  <div class="hero-ornament">Espetáculos de Fado</div>
-  <h1 class="hero-title">Onofriana</h1>
-  <p class="hero-subtitle"> </p>
-  <div class="hero-line"></div>
+<section id="inicio" aria-labelledby="hero-titulo">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-ornament" aria-hidden="true">Espetáculos de Fado</div>
+  <h1 class="hero-title" id="hero-titulo">Onofriana</h1>
+  <p class="hero-subtitle" aria-hidden="true"> </p>
+  <div class="hero-line" aria-hidden="true"></div>
   <p class="hero-tagline">A Herança Feminina do Fado</p>
   <div class="hero-cta">
     <a href="#sobre" class="btn-primary">Descobrir</a>
@@ -919,13 +1111,13 @@ footer {
 <!-- ══════════════════════════════════════════════
      SECÇÃO: O PROJETO
      ══════════════════════════════════════════════ -->
-<section id="sobre">
+<section id="sobre" aria-labelledby="titulo-sobre">
   <div class="sobre-grid">
 
     <div class="sobre-texto reveal">
-      <p class="section-label">O Projeto</p>
-      <h2 class="section-title">A Herança<br><em>Feminina do Fado</em></h2>
-      <div class="ornament-line"></div>
+      <p class="section-label" aria-hidden="true">O Projeto</p>
+      <h2 class="section-title" id="titulo-sobre">A Herança<br><em>Feminina do Fado</em></h2>
+      <div class="ornament-line" aria-hidden="true"></div>
 
       <p>Sou a Onofriana.</p>
 
@@ -940,16 +1132,17 @@ footer {
       </div>
 
       <p>Trabalho com empresas, instituições e famílias que reconhecem a diferença entre entretenimento e cultura. Lugares onde a música não é ruído de fundo, mas parte do momento. Onde se sabe que certas tradições continuam vivas porque alguém as mantém com seriedade.</p>
-
-   
     </div>
 
     <div class="sobre-visual reveal">
       <!-- IMAGEM: quando tiver fotografia, substituir este bloco por:
-           <img src="nome-do-ficheiro.jpg" alt="Onofriana" style="width:100%;display:block;"> -->
-         
+           <img src="nome-do-ficheiro.jpg" alt="Descrição da fotografia" style="width:100%;display:block;"> -->
       <div class="foto-placeholder">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Maria_Severa_-_Fado-S%C3%A4ngerin.jpg" alt="Descrição" style="width:100%;display:block;">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/68/Maria_Severa_-_Fado-S%C3%A4ngerin.jpg"
+          alt="Retrato de Maria Severa Onofriana (1820–1846), a primeira fadista reconhecida, em gravura do século XIX"
+          loading="lazy"
+          style="width:100%;display:block;">
       </div>
       <p class="foto-caption">Onofriana · Portugal</p>
     </div>
@@ -960,21 +1153,22 @@ footer {
 <!-- ══════════════════════════════════════════════
      SECÇÃO: A PRESENÇA (vídeo + texto)
      ══════════════════════════════════════════════ -->
-<section id="media">
+<section id="media" aria-labelledby="titulo-media">
   <div class="media-inner">
 
     <!-- VÍDEO: substituir por:
          <iframe width="100%" style="aspect-ratio:16/9;border:none;"
-           src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen></iframe> -->
-    <div class="video-placeholder reveal">
-      <div class="video-placeholder-icon"></div>
-      <span class="video-placeholder-text">Vídeo · Em breve</span>
+           src="https://www.youtube.com/embed/ID_DO_VIDEO"
+           allowfullscreen title="Onofriana — espetáculo de fado"></iframe> -->
+    <div class="video-placeholder reveal" role="img" aria-label="Espaço reservado para vídeo — em breve">
+      <div class="video-placeholder-icon" aria-hidden="true"></div>
+      <span class="video-placeholder-text" aria-hidden="true">Vídeo · Em breve</span>
     </div>
 
     <div class="media-texto reveal">
-      <p class="section-label">A Presença</p>
-      <h2 class="section-title">O gesto<br><em>que permanece</em></h2>
-      <div class="ornament-line"></div>
+      <p class="section-label" aria-hidden="true">A Presença</p>
+      <h2 class="section-title" id="titulo-media">O gesto<br><em>que permanece</em></h2>
+      <div class="ornament-line" aria-hidden="true"></div>
 
       <p>O fado nasce sempre de um lugar. Primeiro é o silêncio — a sala que se recompõe, a respiração que abranda. Depois vem a música. Uma guitarra que começa devagar, uma voz que encontra o seu caminho.</p>
 
@@ -989,11 +1183,11 @@ footer {
 <!-- ══════════════════════════════════════════════
      SECÇÃO: A HISTÓRIA
      ══════════════════════════════════════════════ -->
-<section id="historia">
+<section id="historia" aria-labelledby="titulo-historia">
   <div class="historia-inner reveal">
-    <p class="historia-data">1820 — 1846</p>
-    <h2 class="historia-titulo">Maria Severa <em>Onofriana</em><br>a primeira fadista</h2>
-    <div class="historia-ornamento">✦</div>
+    <p class="historia-data" aria-hidden="true">1820 — 1846</p>
+    <h2 class="historia-titulo" id="titulo-historia">Maria Severa <em>Onofriana</em><br>a primeira fadista</h2>
+    <div class="historia-ornamento" aria-hidden="true">✦</div>
     <div class="historia-texto">
       <p>Em 1820, na Madragoa — bairro de pescadores à beira do Tejo — nasceu Maria Severa Onofriana. Filha de uma vendedeira de peixe, cresceu entre a rua e a música, entre a pobreza e o talento que nenhuma circunstância conseguiu conter.</p>
       <p>Cantou nas tascas da Mouraria, nos salões do Conde do Vimioso, nos becos que ainda hoje guardam a memória da sua voz. O fado nasceu nas casas pequenas onde a noite se prolongava entre vozes e guitarras, e onde cada canção carregava mais do que melodia — carregava vida, destino, território.</p>
@@ -1008,12 +1202,12 @@ footer {
      Para adicionar/remover um formato:
      copiar ou apagar um bloco <div class="espetaculo-item">
      ══════════════════════════════════════════════ -->
-<section id="espetaculos">
+<section id="espetaculos" aria-labelledby="titulo-espetaculos">
 
   <div class="espetaculos-header reveal">
-    <p class="section-label">Espetáculos</p>
-    <h2 class="section-title">Alguns dos formatos<br><em>possíveis</em></h2>
-    <div class="ornament-line"></div>
+    <p class="section-label" aria-hidden="true">Espetáculos</p>
+    <h2 class="section-title" id="titulo-espetaculos">Alguns dos formatos<br><em>possíveis</em></h2>
+    <div class="ornament-line" aria-hidden="true"></div>
   </div>
 
   <p class="espetaculos-intro reveal">
@@ -1023,28 +1217,28 @@ footer {
   <div class="espetaculos-grid">
 
     <div class="espetaculo-item reveal">
-      <p class="espetaculo-num">— 01</p>
+      <p class="espetaculo-num" aria-hidden="true">— 01</p>
       <h3 class="espetaculo-titulo">Espetáculo<br><em>de Sala</em></h3>
       <p class="espetaculo-duracao">45 a 75 minutos</p>
       <p class="espetaculo-desc">Para auditórios, teatros municipais e salões nobres. As canções são apresentadas com contextualização histórica e poética — para públicos exigentes e audiências internacionais.</p>
     </div>
 
     <div class="espetaculo-item reveal">
-      <p class="espetaculo-num">— 02</p>
+      <p class="espetaculo-num" aria-hidden="true">— 02</p>
       <h3 class="espetaculo-titulo">Receção<br><em>Oficial</em></h3>
       <p class="espetaculo-duracao">20 a 30 minutos</p>
       <p class="espetaculo-desc">Adaptado a contextos protocolares, visitas de Estado e receções a delegações nacionais e internacionais. Discrição, rigor e presença em cada detalhe.</p>
     </div>
 
     <div class="espetaculo-item reveal">
-      <p class="espetaculo-num">— 03</p>
+      <p class="espetaculo-num" aria-hidden="true">— 03</p>
       <h3 class="espetaculo-titulo">Evento<br><em>Corporativo</em></h3>
       <p class="espetaculo-duracao">Duração personalizável</p>
       <p class="espetaculo-desc">Para empresas que querem oferecer aos seus convidados uma presença portuguesa a que muito poucos têm acesso. Cada sessão é construída em diálogo com o cliente.</p>
     </div>
 
     <div class="espetaculo-item reveal">
-      <p class="espetaculo-num">— 04</p>
+      <p class="espetaculo-num" aria-hidden="true">— 04</p>
       <h3 class="espetaculo-titulo">Sessão com<br><em>Mediação Cultural</em></h3>
       <p class="espetaculo-duracao">60 a 90 minutos</p>
       <p class="espetaculo-desc">Com contextualização histórica sobre o fado, o seu estatuto UNESCO e a sua ligação ao território. Ideal para públicos escolares, turísticos ou internacionais.</p>
@@ -1056,13 +1250,13 @@ footer {
 <!-- ══════════════════════════════════════════════
      SECÇÃO: CONTACTO
      ══════════════════════════════════════════════ -->
-<section id="contacto">
+<section id="contacto" aria-labelledby="titulo-contacto">
   <div class="contacto-inner">
 
     <div class="contacto-info reveal">
-      <p class="section-label">Contacto</p>
-      <h2 class="section-title">O fado<br><em>espera</em></h2>
-      <div class="ornament-line"></div>
+      <p class="section-label" aria-hidden="true">Contacto</p>
+      <h2 class="section-title" id="titulo-contacto">O fado<br><em>espera</em></h2>
+      <div class="ornament-line" aria-hidden="true"></div>
 
       <p>Cada espetáculo começa antes da primeira guitarra. Começa numa conversa onde se compreende o lugar, o momento e o público que irá escutar.</p>
 
@@ -1070,77 +1264,66 @@ footer {
 
       <p>Se deseja levar o fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião. A partir daí, a música encontrará o seu caminho.</p>
 
-   
       <!-- Redes sociais na secção de contacto -->
       <div class="contacto-social">
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/onofriana" target="_blank" class="social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
+        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Instagram da Onofriana (abre em nova janela)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-
-        <!-- Facebook -->
-        <a href="https://facebook.com/onofriana" target="_blank" class="social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
+        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Facebook da Onofriana (abre em nova janela)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-
-        <!-- YouTube -->
-        <a href="https://youtube.com/@onofriana" target="_blank" class="social-link" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-          </svg>
+        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="social-link" aria-label="YouTube da Onofriana (abre em nova janela)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         </a>
-
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/onofriana" target="_blank" class="social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
+        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn da Onofriana (abre em nova janela)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-
       </div>
     </div>
 
     <!-- FORMULÁRIO -->
     <div class="contacto-form reveal">
       <div class="form-group">
-        <label class="form-label">Nome</label>
-        <input type="text" class="form-input" id="f-nome" placeholder="O seu nome">
+        <label class="form-label" for="f-nome">Nome</label>
+        <input type="text" class="form-input" id="f-nome" name="nome" placeholder="O seu nome" autocomplete="name" aria-required="true">
       </div>
       <div class="form-group">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-input" id="f-email" placeholder="O seu email">
+        <label class="form-label" for="f-email">Email</label>
+        <input type="email" class="form-input" id="f-email" name="email" placeholder="O seu email" autocomplete="email" aria-required="true">
       </div>
       <div class="form-group">
-        <label class="form-label">Tipo de evento</label>
-        <select class="form-select" id="f-tipo">
+        <label class="form-label" for="f-tipo">Tipo de evento</label>
+        <select class="form-select" id="f-tipo" name="tipo_evento">
           <option value="" disabled selected>Selecione o tipo de evento</option>
-          <option>Câmara Municipal / Entidade Pública</option>
-          <option>Evento Corporativo</option>
-          <option>Festa Privada</option>
-          <option>Festival / Programação Cultural</option>
-          <option>Receção Oficial / Protocolar</option>
-          <option>Outro</option>
+          <option value="camara">Câmara Municipal / Entidade Pública</option>
+          <option value="corporativo">Evento Corporativo</option>
+          <option value="privado">Festa Privada</option>
+          <option value="festival">Festival / Programação Cultural</option>
+          <option value="protocolar">Receção Oficial / Protocolar</option>
+          <option value="outro">Outro</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Mensagem</label>
-        <textarea class="form-textarea" id="f-msg" placeholder="Descreva o seu evento, data aproximada e qualquer detalhe relevante..."></textarea>
+        <label class="form-label" for="f-msg">Mensagem</label>
+        <textarea class="form-textarea" id="f-msg" name="mensagem" placeholder="Descreva o seu evento, data aproximada e qualquer detalhe relevante..." aria-required="true"></textarea>
       </div>
-      <button class="form-submit" id="btn-enviar">Enviar Pedido</button>
+      <button class="form-submit" id="btn-enviar" type="button">Enviar Pedido</button>
+      <p class="form-rgpd">
+        Ao submeter este formulário confirma que leu a nossa
+        <a href="/privacidade.html">Política de Privacidade</a>.
+        Os seus dados são usados exclusivamente para responder ao seu pedido.
+      </p>
     </div>
 
   </div>
 </section>
 
+</main>
+
 <!-- ══════════════════════════════════════════════
      RODAPÉ
      ══════════════════════════════════════════════ -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-main">
 
     <!-- Coluna 1: Logo + tagline -->
@@ -1151,7 +1334,7 @@ footer {
 
     <!-- Coluna 2: Navegação
          Para adicionar/remover links, editar os <li> -->
-    <div class="footer-col-nav">
+    <nav aria-label="Navegação do rodapé">
       <p class="footer-col-title">Navegação</p>
       <ul class="footer-col-links">
         <li><a href="#sobre">O Projeto</a></li>
@@ -1159,7 +1342,7 @@ footer {
         <li><a href="#espetaculos">Espetáculos</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-    </div>
+    </nav>
 
     <!-- Coluna 3: Contactos + redes sociais -->
     <div class="footer-col-contacto">
@@ -1173,30 +1356,25 @@ footer {
 
         <div class="footer-contacto-item">
           <span class="footer-contacto-label">Website</span>
-          <a href="https://onofriana.pt" target="_blank">onofriana.pt</a>
+          <a href="https://onofriana.pt">onofriana.pt</a>
         </div>
 
       </div>
 
       <!-- Redes sociais no rodapé -->
       <div class="footer-social">
-
-        <a href="https://instagram.com/onofriana" target="_blank" class="footer-social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram da Onofriana">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-
-        <a href="https://facebook.com/onofriana" target="_blank" class="footer-social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook da Onofriana">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-
-        <a href="https://youtube.com/@onofriana" target="_blank" class="footer-social-link" aria-label="YouTube">
-          <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube da Onofriana">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         </a>
-
-        <a href="https://linkedin.com/company/onofriana" target="_blank" class="footer-social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn da Onofriana">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-
       </div>
     </div>
 
@@ -1205,8 +1383,23 @@ footer {
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Onofriana · Todos os direitos reservados</span>
     <span class="footer-bottom-tagline">O nome que o fado guardou.</span>
+    <a href="/privacidade.html" class="footer-privacidade">Privacidade &amp; Cookies</a>
   </div>
 </footer>
+
+<!-- ══════════════════════════════════════════════
+     COOKIE BANNER
+     ══════════════════════════════════════════════ -->
+<div id="cookie-banner" style="display:none;" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
+  <p>
+    Usamos cookies de análise (Google Analytics) para entender como o site é visitado. Os dados são anonimizados e não identificam nenhum visitante.
+    <a href="/privacidade.html">Saber mais</a>
+  </p>
+  <div class="cookie-btn-wrap">
+    <button class="cookie-btn cookie-btn-reject" id="cookie-reject">Recusar</button>
+    <button class="cookie-btn cookie-btn-accept" id="cookie-accept">Aceitar</button>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════
      JAVASCRIPT
@@ -1241,12 +1434,39 @@ footer {
   document.getElementById('btn-enviar').addEventListener('click', () => {
     const nome  = document.getElementById('f-nome').value.trim();
     const email = document.getElementById('f-email').value.trim();
-    if (!nome || !email) {
-      alert('Por favor preencha o nome e o email.');
+    const msg   = document.getElementById('f-msg').value.trim();
+    if (!nome || !email || !msg) {
+      alert('Por favor preencha o nome, email e mensagem.');
       return;
     }
-    alert('Obrigado, ' + nome + '. Responderemos brevemente através de fado@onofriana.pt');
+    alert('Obrigado, ' + nome + '! Recebemos o seu pedido e responderemos em breve.');
+    document.getElementById('f-nome').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-tipo').selectedIndex = 0;
+    document.getElementById('f-msg').value = '';
   });
+
+  /* Cookie Banner */
+  (function() {
+    var banner = document.getElementById('cookie-banner');
+    var consent = localStorage.getItem('onofriana_cookie_consent');
+
+    if (!consent || window.location.hash === '#cookie-reset') {
+      localStorage.removeItem('onofriana_cookie_consent');
+      banner.style.display = 'flex';
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('onofriana_cookie_consent', 'accepted');
+      banner.style.display = 'none';
+      if (window._onofrianaGA) window._onofrianaGA();
+    });
+
+    document.getElementById('cookie-reject').addEventListener('click', function() {
+      localStorage.setItem('onofriana_cookie_consent', 'rejected');
+      banner.style.display = 'none';
+    });
+  })();
 </script>
 
 </body>
