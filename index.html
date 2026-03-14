@@ -1148,7 +1148,7 @@ footer {
       <div class="contacto-detalhe">
         <div class="contacto-item">
           <span class="contacto-item-label">Email</span>
-          <span class="contacto-item-valor"><a href="/cdn-cgi/l/email-protection#ddbbbcb9b29db2b3b2bbafb4bcb3bcf3ada9"><span class="__cf_email__" data-cfemail="a9cfc8cdc6e9c6c7c6cfdbc0c8c7c887d9dd">[email&#160;protected]</span></a></span>
+          <span class="contacto-item-valor"><a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a></span>
         </div>
         <div class="contacto-item">
           <span class="contacto-item-label">Website</span>
@@ -1175,20 +1175,7 @@ footer {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           <span class="social-link-label">LinkedIn</span>
         </a>
-      <!-- Spotify player -->
-      <div class="spotify-player" style="margin-top:32px;">
-        <iframe
-          src="https://open.spotify.com/embed/playlist/7pUqSEz0ieKmzi5ORtAcP2?utm_source=generator&theme=0"
-          width="100%"
-          height="380"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          style="border-radius:0; border:1px solid rgba(107,16,32,0.28); display:block;"
-          title="Onofriana — Spotify">
-        </iframe>
-      </div>
-      </div>
+</div>
     </div>
     <div class="contacto-form reveal">
       <div class="form-group">
@@ -1223,6 +1210,20 @@ footer {
       </p>
     </div>
   </div>
+
+  <!-- Spotify -->
+  <div style="max-width:740px; margin:56px auto 0;">
+    <iframe
+      src="https://open.spotify.com/embed/playlist/7pUqSEz0ieKmzi5ORtAcP2?utm_source=generator&theme=0"
+      width="100%"
+      height="380"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      style="border-radius:0; border:1px solid rgba(107,16,32,0.28); display:block;"
+      title="Onofriana — Spotify">
+    </iframe>
+  </div>
 </section>
 
 </main>
@@ -1247,7 +1248,7 @@ footer {
       <div class="footer-contactos">
         <div class="footer-contacto-item">
           <span class="footer-contacto-label">Email</span>
-          <a href="/cdn-cgi/l/email-protection#88eee9ece7c8e7e6e7eefae1e9e6e9a6f8fc"><span class="__cf_email__" data-cfemail="aacccbcec5eac5c4c5ccd8c3cbc4cb84dade">[email&#160;protected]</span></a>
+          <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a>
         </div>
         <div class="footer-contacto-item">
           <span class="footer-contacto-label">Website</span>
@@ -1291,7 +1292,21 @@ footer {
   </div>
 </div>
 
+<!-- SELECTOR DE LÍNGUA FLUTUANTE -->
+<div class="lang-float">
+  <div class="lang-float-menu" id="lang-menu">
+    <a class="active" href="/">PT</a>
+    <a href="/en/">EN</a>
+    <a href="/fr/">FR</a>
+    <a href="/es/">ES</a>
+    <a href="/it/">IT</a>
+  </div>
+  <div class="lang-float-toggle" id="lang-toggle">PT &#9662;</div>
+</div>
+
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* Animação de scroll */
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1303,40 +1318,66 @@ footer {
   }, { threshold: 0.1 });
   reveals.forEach(el => { el.classList.add('animate-ready'); observer.observe(el); });
 
-  const nav = document.querySelector('nav[aria-label="Navegação principal"]');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.style.background = 'rgba(8,5,7,0.97)';
-      nav.style.backdropFilter = 'blur(10px)';
-    } else {
-      nav.style.background = 'linear-gradient(to bottom, rgba(8,5,7,0.97), transparent)';
-      nav.style.backdropFilter = 'none';
-    }
-  });
+  /* Nav scroll */
+  const nav = document.querySelector('nav[aria-label]');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.style.background = 'rgba(8,5,7,0.97)';
+        nav.style.backdropFilter = 'blur(10px)';
+      } else {
+        nav.style.background = 'linear-gradient(to bottom,rgba(8,5,7,0.97),transparent)';
+        nav.style.backdropFilter = 'none';
+      }
+    });
+  }
 
-  document.getElementById('btn-enviar').addEventListener('click', () => {
-    const nome  = document.getElementById('f-nome').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const msg   = document.getElementById('f-msg').value.trim();
-    if (!nome || !email || !msg) {
-      alert('Por favor preencha o nome, email e mensagem.');
-      return;
-    }
-    alert('Obrigado, ' + nome + '! Recebemos o seu pedido e responderemos em breve.');
-    document.getElementById('f-nome').value = '';
-    document.getElementById('f-email').value = '';
-    document.getElementById('f-tipo').selectedIndex = 0;
-    document.getElementById('f-msg').value = '';
-  });
+  /* Formulário */
+  const btnEnviar = document.getElementById('btn-enviar');
+  if (btnEnviar) {
+    btnEnviar.addEventListener('click', () => {
+      const nome  = document.getElementById('f-nome').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const msg   = document.getElementById('f-msg').value.trim();
+      if (!nome || !email || !msg) {
+        alert(document.documentElement.lang === 'pt' ? 'Por favor preencha o nome, email e mensagem.' :
+              document.documentElement.lang === 'fr' ? 'Veuillez remplir votre nom, email et message.' :
+              document.documentElement.lang === 'es' ? 'Por favor rellene su nombre, email y mensaje.' :
+              document.documentElement.lang === 'it' ? 'Per favore compila nome, email e messaggio.' :
+              'Please fill in your name, email and message.');
+        return;
+      }
+      alert((document.documentElement.lang === 'pt' ? 'Obrigado, ' :
+             document.documentElement.lang === 'fr' ? 'Merci, ' :
+             document.documentElement.lang === 'es' ? 'Gracias, ' :
+             document.documentElement.lang === 'it' ? 'Grazie, ' : 'Thank you, ')
+            + nome + '!');
+      document.getElementById('f-nome').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-tipo').selectedIndex = 0;
+      document.getElementById('f-msg').value = '';
+    });
+  }
 
+  /* Cookie banner */
   (function() {
     var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
     var consent = localStorage.getItem('onofriana_cookie_consent');
     if (!consent || window.location.hash === '#cookie-reset') {
       localStorage.removeItem('onofriana_cookie_consent');
       banner.style.display = 'flex';
     }
-  
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('onofriana_cookie_consent', 'accepted');
+      banner.style.display = 'none';
+      if (window._onofrianaGA) window._onofrianaGA();
+    });
+    document.getElementById('cookie-reject').addEventListener('click', function() {
+      localStorage.setItem('onofriana_cookie_consent', 'rejected');
+      banner.style.display = 'none';
+    });
+  })();
   /* Selector de língua flutuante */
   document.addEventListener('DOMContentLoaded', function() {
     var t = document.getElementById('lang-toggle');
@@ -1347,13 +1388,33 @@ footer {
     }
   });
 
-  document.getElementById('cookie-accept').addEventListener('click', function() {
-      localStorage.setItem('onofriana_cookie_consent', 'accepted');
-      banner.style.display = 'none';
-      if (window._onofrianaGA) window._onofrianaGA();
-    });
-    document.getElementById('cookie-reject').addEventListener('click', function() {
-      localStorage.setItem('onofriana_cookie_consent', 'rejected');
-      banner.style.display = 'none';
-    });
- 
+  /* Formulário */
+  document.getElementById('btn-enviar').addEventListener('click', () => {
+    const nome  = document.getElementById('f-nome').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const msg   = document.getElementById('f-msg').value.trim();
+    if (!nome || !email || !msg) {
+      alert('Por favor preencha o nome, email e mensagem.');
+      return;
+    }
+    alert('Obrigado, ' + nome + '!');
+    document.getElementById('f-nome').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-tipo').selectedIndex = 0;
+    document.getElementById('f-msg').value = '';
+  });
+</script>
+
+<!-- SELECTOR DE LÍNGUA FLUTUANTE -->
+<div class="lang-float">
+  <div class="lang-float-menu" id="lang-menu">
+    <a class="active" href="/">PT</a>
+    <a href="/en/">EN</a>
+    <a href="/fr/">FR</a>
+    <a href="/es/">ES</a>
+    <a href="/it/">IT</a>
+  </div>
+  <div class="lang-float-toggle" id="lang-toggle">PT &#9662;</div>
+</div>
+</body>
+</html>
