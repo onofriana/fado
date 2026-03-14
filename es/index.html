@@ -20,7 +20,6 @@
     'it': '/it/'
   };
 
-  // Determina a língua actual a partir do path
   function getCurrentLang() {
     var path = window.location.pathname;
     if (path.indexOf('/en/') === 0 || path === '/en') return 'en';
@@ -30,7 +29,6 @@
     return 'pt';
   }
 
-  // Detecta língua preferida do browser
   function detectBrowserLang() {
     var langs = navigator.languages || [navigator.language || navigator.userLanguage || 'pt'];
     for (var i = 0; i < langs.length; i++) {
@@ -43,22 +41,14 @@
   var currentLang = getCurrentLang();
   var saved = localStorage.getItem('onofriana_lang');
 
-  // Se há preferência guardada e é diferente da página actual, redireciona
-  if (saved && saved !== currentLang && langMap[saved]) {
-    window.location.replace(langMap[saved]);
-    return;
-  }
+  // Se já há preferência guardada, não fazer nada — respeitar a escolha do utilizador
+  if (saved) return;
 
-  // Se não há preferência guardada, detecta e redireciona (apenas uma vez)
-  if (!saved) {
-    var detected = detectBrowserLang();
-    if (detected !== currentLang && langMap[detected]) {
-      localStorage.setItem('onofriana_lang', detected);
-      window.location.replace(langMap[detected]);
-      return;
-    }
-    // Guarda a língua actual como preferência inicial
-    localStorage.setItem('onofriana_lang', currentLang);
+  // Primeira visita: detectar língua do browser e redirecionar uma única vez
+  var detected = detectBrowserLang();
+  localStorage.setItem('onofriana_lang', detected);
+  if (detected !== currentLang && langMap[detected]) {
+    window.location.replace(langMap[detected]);
   }
 })();
 </script>
