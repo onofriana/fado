@@ -1303,87 +1303,44 @@ footer {
   <div class="lang-float-toggle" id="lang-toggle">ES &#9662;</div>
 </div>
 
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  /* Animação de scroll */
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+<script>
+/* Animações de scroll */
+(function() {
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, i) {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => { el.classList.add('animate-ready'); observer.observe(el); });
+  reveals.forEach(function(el) { el.classList.add('animate-ready'); observer.observe(el); });
+})();
 
-  /* Nav scroll */
-  const nav = document.querySelector('nav[aria-label]');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        nav.style.background = 'rgba(8,5,7,0.97)';
-        nav.style.backdropFilter = 'blur(10px)';
-      } else {
-        nav.style.background = 'linear-gradient(to bottom,rgba(8,5,7,0.97),transparent)';
-        nav.style.backdropFilter = 'none';
-      }
-    });
-  }
-
-  /* Formulário */
-  const btnEnviar = document.getElementById('btn-enviar');
-  if (btnEnviar) {
-    btnEnviar.addEventListener('click', () => {
-      const nome  = document.getElementById('f-nome').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const msg   = document.getElementById('f-msg').value.trim();
-      if (!nome || !email || !msg) {
-        alert('Por favor rellene su nombre, email y mensaje.');
-      return;
-      }
-      alert('Gracias, ' + nome + '!');
-      document.getElementById('f-nome').value = '';
-      document.getElementById('f-email').value = '';
-      document.getElementById('f-tipo').selectedIndex = 0;
-      document.getElementById('f-msg').value = '';
-    });
-  }
-
-  /* Cookie banner */
-  (function() {
-    var banner = document.getElementById('cookie-banner');
-    if (!banner) return;
-    var consent = localStorage.getItem('onofriana_cookie_consent');
-    if (!consent || window.location.hash === '#cookie-reset') {
-      localStorage.removeItem('onofriana_cookie_consent');
-      banner.style.display = 'flex';
-    }
-    document.getElementById('cookie-accept').addEventListener('click', function() {
-      localStorage.setItem('onofriana_cookie_consent', 'accepted');
-      banner.style.display = 'none';
-      if (window._onofrianaGA) window._onofrianaGA();
-    });
-    document.getElementById('cookie-reject').addEventListener('click', function() {
-      localStorage.setItem('onofriana_cookie_consent', 'rejected');
-      banner.style.display = 'none';
-    });
-  })();
-  /* Selector de língua flutuante */
-  document.addEventListener('DOMContentLoaded', function() {
-    var t = document.getElementById('lang-toggle');
-    var m = document.getElementById('lang-menu');
-    if (t && m) {
-      t.addEventListener('click', function(e) { e.stopPropagation(); m.classList.toggle('open'); });
-      document.addEventListener('click', function() { m.classList.remove('open'); });
+/* Nav — fundo ao scroll */
+(function() {
+  var nav = document.querySelector('nav[aria-label="Navegación principal"]');
+  if (!nav) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(8,5,7,0.97)';
+      nav.style.backdropFilter = 'blur(10px)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom,rgba(8,5,7,0.97),transparent)';
+      nav.style.backdropFilter = 'none';
     }
   });
+})();
 
-  /* Formulário */
-  document.getElementById('btn-enviar').addEventListener('click', () => {
-    const nome  = document.getElementById('f-nome').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const msg   = document.getElementById('f-msg').value.trim();
+/* Formulário */
+(function() {
+  var btn = document.getElementById('btn-enviar');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    var nome  = document.getElementById('f-nome').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var msg   = document.getElementById('f-msg').value.trim();
     if (!nome || !email || !msg) {
       alert('Por favor rellene su nombre, email y mensaje.');
       return;
@@ -1394,18 +1351,50 @@ footer {
     document.getElementById('f-tipo').selectedIndex = 0;
     document.getElementById('f-msg').value = '';
   });
-</script>
+})();
 
-<!-- SELECTOR DE LÍNGUA FLUTUANTE -->
-<div class="lang-float">
-  <div class="lang-float-menu" id="lang-menu">
-    <a href="/">PT</a>
-    <a href="/en/">EN</a>
-    <a href="/fr/">FR</a>
-    <a class="active" href="/es/">ES</a>
-    <a href="/it/">IT</a>
-  </div>
-  <div class="lang-float-toggle" id="lang-toggle">ES &#9662;</div>
-</div>
+/* Cookie banner */
+(function() {
+  var banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  var consent = localStorage.getItem('onofriana_cookie_consent');
+  if (!consent || window.location.hash === '#cookie-reset') {
+    localStorage.removeItem('onofriana_cookie_consent');
+    banner.style.display = 'flex';
+  }
+  var btnAccept = document.getElementById('cookie-accept');
+  var btnReject = document.getElementById('cookie-reject');
+  if (btnAccept) btnAccept.addEventListener('click', function() {
+    localStorage.setItem('onofriana_cookie_consent', 'accepted');
+    banner.style.display = 'none';
+    if (window._onofrianaGA) window._onofrianaGA();
+  });
+  if (btnReject) btnReject.addEventListener('click', function() {
+    localStorage.setItem('onofriana_cookie_consent', 'rejected');
+    banner.style.display = 'none';
+  });
+})();
+
+/* Selector de língua flutuante */
+(function() {
+  function init() {
+    var toggle = document.getElementById('lang-toggle');
+    var menu   = document.getElementById('lang-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
