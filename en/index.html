@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onofriana — The Feminine Heritage of Fado</title>
 
-<meta name="description" content="Onofriana — fado performances for corporate events, municipal councils, festivals and institutional receptions. The feminine heritage of fado.">
+<meta name="description" content="Onofriana — fado performances for corporate events, municipalities, festivals and institutional receptions. The feminine heritage of fado.">
 <meta property="og:title" content="Onofriana — The Feminine Heritage of Fado">
-<meta property="og:description" content="Fado performances for corporate events, municipal councils, festivals and institutional receptions. Cultural presence with rigour and memory.">
+<meta property="og:description" content="Fado performances for companies, municipalities, festivals and institutional receptions. Cultural presence with rigour and memory.">
 <meta property="og:url" content="https://onofriana.pt/en/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
@@ -26,7 +26,7 @@
   "name": "Onofriana",
   "url": "https://onofriana.pt",
   "email": "fado@onofriana.pt",
-  "description": "Espetáculos de fado para eventos corporativos, câmaras municipais, festivais e receções institucionais.",
+  "description": "Fado performances for corporate events, municipalities, festivals and institutional receptions.",
   "genre": "Fado",
   "foundingLocation": { "@type": "Place", "name": "Lisboa, Portugal" },
   "sameAs": [
@@ -116,7 +116,7 @@ body::before {
 :focus-visible { outline: 2px solid var(--vinho-claro); outline-offset: 3px; }
 :focus:not(:focus-visible) { outline: none; }
 
-/* ── NAVEGAÇÃO ── */
+/* ── NAV ── */
 nav[aria-label="Main navigation"] {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -161,7 +161,6 @@ nav[aria-label="Main navigation"] {
 }
 .nav-links a:hover { opacity: 1; }
 
-/* Selector de língua */
 .lang-switcher {
   display: flex;
   gap: 10px;
@@ -282,7 +281,7 @@ nav[aria-label="Main navigation"] {
   letter-spacing: 0.48em;
 }
 
-/* ── SECÇÕES BASE ── */
+/* ── SECTIONS ── */
 section { padding: 120px 60px; position: relative; }
 
 .section-label {
@@ -316,7 +315,7 @@ section { padding: 120px 60px; position: relative; }
   opacity: 0.85;
 }
 
-/* ── SECÇÃO: NOME ── */
+/* ── NAME ── */
 #sobre {
   background: linear-gradient(to bottom, var(--preto), var(--escuro));
 }
@@ -405,7 +404,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .foto-credit a:hover { opacity: 1; color: var(--branco); }
 
-/* ── SECÇÃO: FADO ── */
+/* ── FADO (hidden) ── */
 #media {
   background: var(--escuro);
   padding: 100px 60px;
@@ -439,7 +438,7 @@ section { padding: 120px 60px; position: relative; }
   margin-bottom: 20px;
 }
 
-/* ── SECÇÃO: HISTÓRIA ── */
+/* ── HISTORY ── */
 #historia {
   background: var(--preto);
   text-align: center;
@@ -490,7 +489,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .historia-texto p { margin-bottom: 26px; }
 
-/* ── SECÇÃO: PRESENÇA ── */
+/* ── PRESENCE ── */
 #presenca {
   background: linear-gradient(to bottom, var(--escuro), var(--preto));
 }
@@ -540,7 +539,7 @@ section { padding: 120px 60px; position: relative; }
   margin-top: 56px;
 }
 
-/* ── SECÇÃO: CONTACTO ── */
+/* ── CONTACT ── */
 #contacto {
   background: linear-gradient(to bottom, var(--preto), #050305);
   padding: 140px 60px;
@@ -593,7 +592,6 @@ section { padding: 120px 60px; position: relative; }
 }
 .contacto-item-valor a:hover { color: var(--vinho-claro); }
 
-/* Redes sociais — mais visíveis */
 .contacto-social {
   display: flex;
   gap: 12px;
@@ -628,7 +626,7 @@ section { padding: 120px 60px; position: relative; }
   text-transform: uppercase;
 }
 
-/* ── FORMULÁRIO ── */
+/* ── FORM ── */
 .form-group { margin-bottom: 22px; }
 
 .form-label {
@@ -698,45 +696,43 @@ section { padding: 120px 60px; position: relative; }
 }
 .form-rgpd a { color: var(--vinho-claro); text-decoration: underline; opacity: 0.8; }
 
-/* ── RODAPÉ ── */
+/* ── FOOTER ── */
 footer {
-  background: #050305;
+  background: #040204;
   border-top: 1px solid rgba(107,16,32,0.18);
-  position: relative;
 }
 
 .footer-main {
-  padding: 64px 60px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 60px 56px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.footer-col-logo .footer-logo {
+.footer-logo {
   font-family: 'Petit Formal Script', cursive;
   font-size: 2rem;
   color: var(--branco);
-  opacity: 0.6;
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .footer-col-logo p {
-  font-size: 0.88rem;
-  font-style: italic;
+  font-size: 0.82rem;
   color: var(--cinza);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-style: italic;
 }
 
 .footer-col-title {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.55rem;
+  font-size: 0.52rem;
   letter-spacing: 0.38em;
   text-transform: uppercase;
   color: var(--vinho-claro);
-  opacity: 0.6;
+  opacity: 0.55;
   margin-bottom: 22px;
 }
 
@@ -744,261 +740,247 @@ footer {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .footer-col-links a {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--cinza);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.3s, color 0.3s;
-}
-.footer-col-links a:hover { opacity: 1; color: var(--branco); }
-
-.footer-contactos { display: flex; flex-direction: column; gap: 10px; }
-
-.footer-contacto-item a {
-  font-size: 0.9rem;
   color: var(--cinza);
   text-decoration: none;
   transition: color 0.3s;
 }
-.footer-contacto-item a:hover { color: var(--branco); }
+.footer-col-links a:hover { color: var(--branco); }
+
+.footer-contactos { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+
+.footer-contacto-item { display: flex; flex-direction: column; gap: 4px; }
 
 .footer-contacto-label {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.52rem;
-  letter-spacing: 0.3em;
+  font-size: 0.48rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--vinho-claro);
   opacity: 0.5;
-  display: block;
-  margin-bottom: 4px;
 }
+
+.footer-col-contacto a {
+  font-size: 0.88rem;
+  color: var(--cinza);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-col-contacto a:hover { color: var(--branco); }
 
 .footer-social {
   display: flex;
-  gap: 10px;
-  margin-top: 28px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .footer-social-link {
-  width: 34px; height: 34px;
-  border: 1px solid rgba(107,16,32,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid rgba(107,16,32,0.3);
+  color: var(--cinza);
   text-decoration: none;
-  transition: all 0.35s;
-  color: rgba(245,242,240,0.5);
-}
-.footer-social-link:hover {
-  border-color: var(--vinho-claro);
-  color: var(--branco);
-  background: rgba(107,16,32,0.1);
+  transition: all 0.3s;
 }
 .footer-social-link svg { width: 14px; height: 14px; fill: currentColor; }
+.footer-social-link:hover { border-color: var(--vinho-claro); color: var(--branco); background: rgba(107,16,32,0.1); }
 
 .footer-bottom {
-  border-top: 1px solid rgba(107,16,32,0.1);
-  padding: 20px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 60px;
+  border-top: 1px solid rgba(107,16,32,0.12);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
-  gap: 10px;
 }
 
 .footer-copy {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.52rem;
+  font-size: 0.5rem;
   letter-spacing: 0.2em;
-  color: var(--cinza);
-  opacity: 0.38;
-}
-
-.footer-bottom-tagline {
-  font-size: 0.8rem;
-  font-style: italic;
+  text-transform: uppercase;
   color: var(--cinza);
   opacity: 0.4;
 }
 
+.footer-bottom-tagline {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--cinza);
+  opacity: 0.3;
+}
+
 .footer-privacidade {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.52rem;
-  letter-spacing: 0.15em;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--cinza);
-  opacity: 0.38;
+  opacity: 0.4;
   text-decoration: none;
   transition: opacity 0.3s;
 }
-.footer-privacidade:hover { opacity: 0.7; color: var(--branco); }
+.footer-privacidade:hover { opacity: 0.8; }
+
+/* ── HERO SOCIAL ── */
+.hero-social {
+  position: absolute;
+  bottom: 40px;
+  right: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 2s;
+}
+
+.hero-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  color: rgba(245,242,240,0.28);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.hero-social-link svg { width: 13px; height: 13px; fill: currentColor; }
+.hero-social-link:hover { color: rgba(245,242,240,0.7); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-ready { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-ready.visible { opacity: 1; transform: translateY(0); }
 
 /* ── COOKIE BANNER ── */
 #cookie-banner {
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  background: #110a0e;
-  color: rgba(245,242,240,0.82);
-  padding: 1.2rem 2rem;
   z-index: 9999;
+  background: rgba(8,5,7,0.97);
+  border-top: 1px solid rgba(107,16,32,0.35);
+  padding: 1.2rem 2rem;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  line-height: 1.7;
-  border-top: 1px solid rgba(107,16,32,0.5);
-  box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  backdrop-filter: blur(8px);
 }
+
 #cookie-banner p { flex: 1 1 320px; margin: 0; }
 #cookie-banner a { color: var(--vinho-claro); text-decoration: underline; }
 .cookie-btn-wrap { display: flex; gap: 0.6rem; flex-shrink: 0; }
 .cookie-btn {
-  padding: 0.5rem 1.4rem;
-  border: none;
-  cursor: pointer;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 300;
+  font-size: 0.55rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  transition: opacity 0.2s, background 0.2s;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 0;
 }
 .cookie-btn:hover { opacity: 0.85; }
 .cookie-btn-accept { background: var(--vinho); color: var(--branco); border: 1px solid var(--vinho-claro); }
 .cookie-btn-reject { background: transparent; color: var(--cinza); border: 1px solid rgba(122,112,112,0.35); }
 
-/* ── ANIMAÇÕES ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal { opacity: 1; transform: translateY(0); transition: opacity 0.85s ease, transform 0.85s ease; }
-.reveal.animate-ready { opacity: 0; transform: translateY(28px); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ── RESPONSIVO ── */
-@media (max-width: 900px) {
-  nav[aria-label="Main navigation"] { padding: 22px 28px; }
-  .nav-links { gap: 20px; }
-  .nav-right { gap: 24px; }
-  .lang-switcher { display: none; }
-  section { padding: 80px 28px; }
-  #media { padding: 80px 28px; }
-  #contacto { padding: 100px 28px; }
-  #historia { padding: 100px 28px; }
-  .sobre-grid, .media-inner, .contacto-inner { grid-template-columns: 1fr; gap: 50px; }
-  .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 36px; }
-  .footer-bottom { flex-direction: column; gap: 10px; padding: 18px 28px; text-align: center; }
-  #cookie-banner { padding: 1rem 1.2rem; }
-  .social-link-label { display: none; }
-  .social-link { padding: 10px; }
-}
-
-@media (max-width: 600px) {
-  .curadoria-grid { grid-template-columns: 1fr; gap: 32px; }
-}
-
-/* Redes sociais no hero */
-.hero-social {
-  display: flex;
-  gap: 16px;
-  margin-top: 40px;
-  opacity: 0;
-  animation: fadeUp 1.2s ease forwards;
-  animation-delay: 1.9s;
-  position: relative;
-  justify-content: center;
-}
-.hero-social-link {
-  width: 34px; height: 34px;
-  border: 1px solid rgba(245,242,240,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.35s;
-  color: rgba(245,242,240,0.4);
-}
-.hero-social-link:hover {
-  border-color: var(--vinho-claro);
-  color: var(--branco);
-  background: rgba(107,16,32,0.15);
-}
-.hero-social-link svg { width: 13px; height: 13px; fill: currentColor; }
-
-
-/* ── SELECTOR DE LÍNGUA FLUTUANTE ── */
+/* ── LANG FLOAT ── */
 .lang-float {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-.lang-float-toggle {
+  bottom: 32px;
+  left: 32px;
+  z-index: 998;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.55rem;
+}
+
+.lang-float-toggle {
+  font-size: 0.52rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--branco);
-  background: rgba(8,5,7,0.88);
-  border: 1px solid rgba(107,16,32,0.5);
-  padding: 9px 16px;
+  color: rgba(245,242,240,0.35);
   cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: border-color 0.3s;
-  user-select: none;
+  padding: 8px 14px;
+  border: 1px solid rgba(107,16,32,0.22);
+  transition: all 0.3s;
+  background: rgba(8,5,7,0.8);
 }
-.lang-float-toggle:hover { border-color: var(--vinho-claro); }
+.lang-float-toggle:hover { color: var(--branco); border-color: rgba(107,16,32,0.5); }
+
 .lang-float-menu {
   display: none;
   flex-direction: column;
-  background: rgba(8,5,7,0.92);
-  border: 1px solid rgba(107,16,32,0.5);
-  border-bottom: none;
-  backdrop-filter: blur(8px);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: rgba(8,5,7,0.97);
+  border: 1px solid rgba(107,16,32,0.28);
+  min-width: 80px;
 }
 .lang-float-menu.open { display: flex; }
 .lang-float-menu a {
-  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.52rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(245,242,240,0.5);
+  color: rgba(245,242,240,0.4);
   text-decoration: none;
-  padding: 9px 16px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid rgba(107,16,32,0.2);
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(107,16,32,0.15);
+  transition: all 0.2s;
 }
 .lang-float-menu a:last-child { border-bottom: none; }
 .lang-float-menu a:hover { color: var(--branco); background: rgba(107,16,32,0.1); }
 .lang-float-menu a.active { color: var(--branco); }
 
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav[aria-label="Main navigation"] { padding: 22px 28px; }
+  .nav-links { gap: 20px; }
+  .nav-right { gap: 24px; }
+  .sobre-grid { grid-template-columns: 1fr; gap: 60px; }
+  .media-inner { grid-template-columns: 1fr; }
+  .contacto-inner { grid-template-columns: 1fr; gap: 60px; }
+  .footer-main { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px 40px; }
+  .footer-bottom { padding: 20px 28px; flex-direction: column; align-items: flex-start; }
+  section { padding: 80px 28px; }
+  #historia { padding: 100px 28px; }
+  #contacto { padding: 80px 28px; }
+  .curadoria-grid { grid-template-columns: 1fr; gap: 28px; }
+  .curadoria-foto img { max-width: 200px; }
+  .hero-social { display: none; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .footer-bottom { gap: 10px; }
+  #cookie-banner { padding: 1rem 1.2rem; }
+}
 </style>
 </head>
 <body>
 
-<a href="#conteudo-principal" class="skip-link">Skip to main content</a>
+<a href="#conteudo-principal" class="skip-link">Skip to content</a>
 
 <nav aria-label="Main navigation">
-  <a href="#inicio" class="nav-logo">Onofriana</a>
+  <a href="/en/" class="nav-logo">Onofriana</a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#sobre">Name</a></li>
-      <li><a href="#media">Fado</a></li>
       <li><a href="#presenca">Presence</a></li>
       <li><a href="#contacto">Contact</a></li>
     </ul>
@@ -1037,21 +1019,21 @@ footer {
   </div>
 </section>
 
-<!-- NOME -->
+<!-- NAME -->
 <section id="sobre" aria-labelledby="titulo-sobre">
   <div class="sobre-grid">
     <div class="sobre-texto reveal">
       <p class="section-label" aria-hidden="true">Name</p>
       <h2 class="section-title" id="titulo-sobre">I am<br><em>Onofriana</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
-      <p>I was born from a na que a História quase deixou cair no silêncio. Maria Severa Onofriana foi a primeira voz que o Fado reconheceu como sua. Severa, o nome que o mito glorificou. Onofriana, mais despercebido, íntimo, lembra parte de uma história que permanece por desvendar.</p>
+      <p>I was born from a name that History almost let fall into silence. Maria Severa Onofriana was the first voice that Fado recognised as its own. Severa, the name the myth glorified. Onofriana, quieter, more intimate, recalls part of a story that remains to be told.</p>
       <p>That is my name for the world.</p>
-      <p>I want to bring Fado to places where it can once again be listened to and appreciated — not as background, distraction or curiosity, but as living cultural presence, with pulse and memory.</p>
+      <p>I want to bring Fado to places where it can once again be heard and appreciated — not as background, distraction or curiosity, but as living cultural presence, with pulse and memory.</p>
       <div class="sobre-quote">
         <p>Fado is not staged.<br>It happens.</p>
       </div>
-      <p>Tradition has no meaning without purpose. Our commitment is integrity, intention and professionalism.</p>
-      <p>We work with those who want to offer something of weight — not a show, but a moment with memory.</p>
+      <p>Tradition has no meaning without purpose, and our commitment is to integrity, intention and professionalism.</p>
+      <p>We work with those who want to offer something with weight — not a performance, a moment with memory.</p>
     </div>
     <div class="sobre-visual reveal">
       <div class="foto-placeholder">
@@ -1062,13 +1044,13 @@ footer {
   </div>
 </section>
 
-<!-- FADO -->
-<section id="media" aria-labelledby="titulo-media">
+<!-- FADO — hidden until content is ready -->
+<section id="media" aria-labelledby="titulo-media" style="display:none;" aria-hidden="true">
   <div class="media-inner">
     <div class="media-video reveal">
       <iframe
         src="https://www.youtube.com/embed/b92AavcErkk"
-        title="Onofriana — espetáculo de fado"
+        title="Onofriana — fado performance"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
@@ -1079,30 +1061,30 @@ footer {
       <div class="ornament-line" aria-hidden="true"></div>
       <p>Fado has been Intangible Cultural Heritage of Humanity since 2011. Not by decree — by recognition. Because there was something there worth preserving: a way of being with music found nowhere else.</p>
       <p>That recognition carries responsibility.</p>
-      <p>Fado is not scenery. It is not background for a conversation that continues. When Fado enters a room, the room changes. Or it should.</p>
+      <p>Fado is not scenery. Not background to a conversation that continues. When Fado enters a room, the room changes. Or it should.</p>
       <p>That change is what Onofriana seeks — in every place it performs. Not Fado as product. Fado as event.</p>
       <p>Tradition is not preserved in museums. It lives in the moments when someone treats it with the seriousness it deserves.</p>
     </div>
   </div>
 </section>
 
-<!-- HISTÓRIA -->
+<!-- HISTORY -->
 <section id="historia" aria-labelledby="titulo-historia">
   <div class="historia-inner reveal">
     <p class="historia-data" aria-hidden="true">1820 — 1846</p>
     <h2 class="historia-titulo" id="titulo-historia">Maria Severa <em>Onofriana</em><br>the first fadista</h2>
     <div class="historia-ornamento" aria-hidden="true">✦</div>
     <div class="historia-texto">
-      <p>Maria Severa Onofriana was born in 1820, in Madragoa. The daughter of a fishwife, she grew up between the street and music. She sang in the tascas of Mouraria and in the salons of the Count of Vimioso. She died in 1846, aged twenty-six, in Rua do Capelão.</p>
-      <p>History kept the name Severa. Myth took care to glorify it — novels, plays, the first Portuguese sound film. Severa became a figure, a symbol, a narrative.</p>
-      <p>Onofriana remained in the shadow. More unassuming, less malleable to myth. It is the name of a person — not a character.</p>
+      <p>Maria Severa Onofriana was born in 1820. Daughter of a fishwife, she grew up between the street and music. She sang in the tascas of Mouraria and in the salons of the Count of Vimioso. She died in 1846, at twenty-six, in Rua do Capelão.</p>
+      <p>History kept the name Severa. The myth set about glorifying it — novels, theatre pieces, the first Portuguese sound film. Severa became figure, symbol, narrative.</p>
+      <p>Onofriana remained in shadow. Less conspicuous, less malleable for myth. It is the name of a person — not a character.</p>
       <p>That is why it is ours.</p>
-      <p>We did not choose the name history celebrated. We chose the one it almost lost. There is a position in this: Fado does not begin in myth. It begins in a voice. And that voice had a full name.</p>
+      <p>We did not choose the name history celebrated. We chose the one it almost lost. There is a position in that: Fado does not begin in myth. It begins in the voice. And the voice had a full name.</p>
     </div>
   </div>
 </section>
 
-<!-- PRESENÇA -->
+<!-- PRESENCE -->
 <section id="presenca" aria-labelledby="titulo-presenca">
   <div class="presenca-inner">
     <div class="reveal">
@@ -1111,23 +1093,22 @@ footer {
       <div class="ornament-line" aria-hidden="true"></div>
     </div>
     <div class="presenca-texto reveal">
-      <p>Some events call for solemnity. Others call for intimacy. Some call for both at once.</p>
-      <p>What they share is a criterion: those who seek us know that music is not decoration. They know that a well-crafted moment leaves memory — and that memory has value.</p>
-      <p>We work with companies, municipal councils, festivals, cultural institutions and families.</p>
-      <p>In every case, the starting point is the same: a conversation about the place, the moment and who will be listening. From there, Fado finds its way.</p>
+      <p>We work with companies, municipalities, festivals and cultural institutions. The starting point is always the same: a conversation about the place, the moment and who will be listening.</p>
+      <p>The musicians Onofriana chooses are not chosen by chance. There is a criterion — silent, exacting — that determines who enters this territory. We do not seek availability. We seek what is rare.</p>
     </div>
     <div class="presenca-curadoria reveal">
       <div class="curadoria-grid">
         <div class="curadoria-foto">
           <img
             src="https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/88e6d977150047.5c81688a827b0.jpg"
-            alt="Marta Rosa, artistic direction of Onofriana"
+            alt="Marta Rosa, artistic director of Onofriana"
             loading="lazy">
           <p class="foto-caption">Marta Rosa</p>
           <p class="foto-credit">© <a href="https://www.behance.net/robnucreativestudio" target="_blank" rel="noopener">Robnu Creative Studio</a></p>
         </div>
         <div class="curadoria-texto">
-          <p>The artistic direction of Onofriana is the responsibility of Marta Rosa — fadista, viola player, lyricist and composer. Holding degrees in Musical Sciences from Universidade Nova de Lisboa and in Singing from the Escola Superior de Música do IPL, she built her career across fado houses, composition and artistic direction. One of the rare women to play the viola de fado professionally.</p>
+          <p>The artistic direction of Onofriana is the responsibility of Marta Rosa — fadista, viola de fado player, lyricist and composer. Graduated in Musical Sciences from Universidade Nova de Lisboa and in Singing from Escola Superior de Música do IPL, she built her career across fado houses, composition and artistic direction. One of the few women to play viola de fado professionally.</p>
+          <p>She was responsible for the curation and programming of Povo Lisboa, one of Lisbon's reference fado houses. She was a member of the group Fado As Mariquinhas and has presented Onofriana at municipalities and corporate events throughout Portugal.</p>
         </div>
       </div>
     </div>
@@ -1137,12 +1118,12 @@ footer {
   </div>
 </section>
 
-<!-- CONTACTO -->
+<!-- CONTACT -->
 <section id="contacto" aria-labelledby="titulo-contacto">
   <div class="contacto-inner">
     <div class="contacto-info reveal">
       <p class="section-label" aria-hidden="true">Contact</p>
-      <h2 class="section-title" id="titulo-contacto">Falar<br><em>connosco</em></h2>
+      <h2 class="section-title" id="titulo-contacto">Get in<br><em>touch</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
       <p>Every performance begins before the first note. It begins in a conversation about the place, the moment and who will be listening.</p>
       <p>If you want to bring Fado to your event, write to us. Tell us the context, the space and the occasion.</p>
@@ -1157,26 +1138,12 @@ footer {
         </div>
       </div>
       <div class="contacto-social">
-        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          <span class="social-link-label">Instagram</span>
-        </a>
-        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <span class="social-link-label">Facebook</span>
-        </a>
-        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-          <span class="social-link-label">YouTube</span>
-        </a>
-        <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="social-link" aria-label="Spotify">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="social-link-label">Spotify</span>
-        </a>
-        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span class="social-link-label">LinkedIn</span>
-        </a>
-</div>
+        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span class="social-link-label">Instagram</span></a>
+        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="social-link-label">Facebook</span></a>
+        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span class="social-link-label">YouTube</span></a>
+        <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="social-link" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="social-link-label">Spotify</span></a>
+        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-link-label">LinkedIn</span></a>
+      </div>
     </div>
     <div class="contacto-form reveal">
       <div class="form-group">
@@ -1191,7 +1158,7 @@ footer {
         <label class="form-label" for="f-tipo">Event type</label>
         <select class="form-select" id="f-tipo" name="tipo_evento">
           <option value="" disabled selected>Select event type</option>
-          <option value="camara">Municipal Council / Public Institution</option>
+          <option value="camara">Municipality / Public Institution</option>
           <option value="corporativo">Corporate Event</option>
           <option value="privado">Private Celebration</option>
           <option value="festival">Festival / Cultural Programme</option>
@@ -1200,12 +1167,14 @@ footer {
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label" for="f-msg">Mensagem</label>
+        <label class="form-label" for="f-msg">Message</label>
         <textarea class="form-textarea" id="f-msg" name="mensagem" placeholder="Describe your event, approximate date and any relevant details..." aria-required="true"></textarea>
       </div>
-      <button class="form-submit" id="btn-enviar" type="button">Send Request</button>
+      <button class="form-submit" id="btn-enviar" type="button">Send Enquiry</button>
       <p class="form-rgpd">
-        By submitting this form you confirm you have read our <a href="/privacidade.html">Privacy Policy</a>. Your data is used solely to respond to your request.
+        By submitting this form you confirm you have read our
+        <a href="/privacidade.html">Privacy Policy</a>.
+        Your data is used solely to respond to your enquiry.
       </p>
     </div>
   </div>
@@ -1237,7 +1206,6 @@ footer {
       <p class="footer-col-title">Navigation</p>
       <ul class="footer-col-links">
         <li><a href="#sobre">Name</a></li>
-        <li><a href="#media">Fado</a></li>
         <li><a href="#presenca">Presence</a></li>
         <li><a href="#contacto">Contact</a></li>
       </ul>
@@ -1255,27 +1223,17 @@ footer {
         </div>
       </div>
       <div class="footer-social">
-        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
-                <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="footer-social-link" aria-label="Spotify">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        </a>
-        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
+        <a href="https://instagram.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://facebook.com/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+        <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="footer-social-link" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+        <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Onofriana · All rights reserved</span>
-    <span class="footer-bottom-tagline">The name that fado kept.</span>
+    <span class="footer-copy">© 2026 Onofriana · All rights reserved</span>
+    <span class="footer-bottom-tagline">The name fado kept.</span>
     <a href="/privacidade.html" class="footer-privacidade">Privacy &amp; Cookies</a>
   </div>
 </footer>
@@ -1291,7 +1249,7 @@ footer {
   </div>
 </div>
 
-<!-- SELECTOR DE LÍNGUA FLUTUANTE -->
+<!-- FLOATING LANGUAGE SELECTOR -->
 <div class="lang-float">
   <div class="lang-float-menu" id="lang-menu">
     <a href="/">PT</a>
@@ -1304,7 +1262,7 @@ footer {
 </div>
 
 <script>
-/* Animações de scroll */
+/* Scroll animations */
 (function() {
   var reveals = document.querySelectorAll('.reveal');
   var observer = new IntersectionObserver(function(entries) {
@@ -1318,7 +1276,7 @@ footer {
   reveals.forEach(function(el) { el.classList.add('animate-ready'); observer.observe(el); });
 })();
 
-/* Nav — fundo ao scroll */
+/* Nav background on scroll */
 (function() {
   var nav = document.querySelector('nav[aria-label="Main navigation"]');
   if (!nav) return;
@@ -1333,7 +1291,7 @@ footer {
   });
 })();
 
-/* Formulário */
+/* Form */
 (function() {
   var btn = document.getElementById('btn-enviar');
   if (!btn) return;
@@ -1375,7 +1333,7 @@ footer {
   });
 })();
 
-/* Selector de língua flutuante */
+/* Floating language selector */
 (function() {
   function init() {
     var toggle = document.getElementById('lang-toggle');
