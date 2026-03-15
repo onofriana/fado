@@ -13,15 +13,11 @@
 <meta property="og:locale" content="pt_PT">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Canonical -->
-<link rel="canonical" href="https://onofriana.pt/">
-
 <link rel="alternate" hreflang="pt" href="https://onofriana.pt/">
 <link rel="alternate" hreflang="en" href="https://onofriana.pt/en/">
 <link rel="alternate" hreflang="fr" href="https://onofriana.pt/fr/">
 <link rel="alternate" hreflang="es" href="https://onofriana.pt/es/">
 <link rel="alternate" hreflang="it" href="https://onofriana.pt/it/">
-<link rel="alternate" hreflang="x-default" href="https://onofriana.pt/">
 
 <script type="application/ld+json">
 {
@@ -37,8 +33,7 @@
     "https://instagram.com/onofriana",
     "https://facebook.com/onofriana",
     "https://youtube.com/@onofriana",
-    "https://linkedin.com/company/onofriana",
-    "https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2"
+    "https://linkedin.com/company/onofriana"
   ]
 }
 </script>
@@ -67,7 +62,6 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Petit+Formal+Script&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
@@ -77,7 +71,7 @@
   --vinho:       #6b1020;
   --vinho-claro: #a8384a;
   --branco:      #f5f2f0;
-  --cinza:       #a09090;
+  --cinza:       #7a7070;
   --borda:       rgba(107,16,32,0.28);
 }
 
@@ -166,6 +160,30 @@ nav[aria-label="Navegação principal"] {
   transition: opacity 0.3s;
 }
 .nav-links a:hover { opacity: 1; }
+
+/* Selector de língua */
+.lang-switcher {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.lang-switcher a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--branco);
+  text-decoration: none;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+.lang-switcher a:hover { opacity: 0.8; }
+.lang-switcher a.active { opacity: 0.85; border-bottom: 1px solid var(--vinho-claro); }
+.lang-switcher span {
+  color: var(--vinho);
+  opacity: 0.3;
+  font-size: 0.45rem;
+}
 
 /* ── HERO ── */
 #inicio {
@@ -402,74 +420,16 @@ section { padding: 120px 60px; position: relative; }
   align-items: center;
 }
 
-/* YouTube facade */
 .media-video {
   width: 100%;
   aspect-ratio: 16/9;
   position: relative;
-  background: #000;
-  cursor: pointer;
-  overflow: hidden;
-}
-.yt-facade {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.yt-facade-thumb {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://i.ytimg.com/vi/b92AavcErkk/hqdefault.jpg');
-  background-size: cover;
-  background-position: center;
-  transition: filter 0.3s;
-}
-.yt-facade:hover .yt-facade-thumb { filter: brightness(0.75); }
-.yt-facade-btn {
-  position: relative;
-  z-index: 2;
-  width: 68px;
-  height: 48px;
-  background: rgba(168, 56, 74, 0.92);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s, transform 0.3s;
-}
-.yt-facade:hover .yt-facade-btn {
-  background: var(--vinho-claro);
-  transform: scale(1.08);
-}
-.yt-facade-btn svg {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
-  margin-left: 4px;
-}
-.yt-facade-label {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.52rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(245,242,240,0.55);
-  z-index: 2;
 }
 .media-video iframe {
   width: 100%;
   height: 100%;
   border: none;
   display: block;
-  position: absolute;
-  inset: 0;
 }
 
 .media-texto p {
@@ -633,7 +593,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .contacto-item-valor a:hover { color: var(--vinho-claro); }
 
-/* Redes sociais */
+/* Redes sociais — mais visíveis */
 .contacto-social {
   display: flex;
   gap: 12px;
@@ -727,11 +687,6 @@ section { padding: 120px 60px; position: relative; }
   border-color: var(--vinho-claro);
   letter-spacing: 0.5em;
 }
-.form-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  letter-spacing: 0.4em;
-}
 
 .form-rgpd {
   font-size: 0.8rem;
@@ -742,28 +697,6 @@ section { padding: 120px 60px; position: relative; }
   letter-spacing: 0.04em;
 }
 .form-rgpd a { color: var(--vinho-claro); text-decoration: underline; opacity: 0.8; }
-
-.form-feedback {
-  display: none;
-  padding: 18px;
-  margin-top: 16px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-align: center;
-}
-.form-feedback.sucesso {
-  display: block;
-  border: 1px solid rgba(107,16,32,0.4);
-  color: rgba(245,242,240,0.75);
-  background: rgba(107,16,32,0.08);
-}
-.form-feedback.erro {
-  display: block;
-  border: 1px solid rgba(160,80,80,0.4);
-  color: rgba(245,200,200,0.75);
-  background: rgba(100,20,20,0.1);
-}
 
 /* ── RODAPÉ ── */
 footer {
@@ -959,6 +892,7 @@ footer {
   nav[aria-label="Navegação principal"] { padding: 22px 28px; }
   .nav-links { gap: 20px; }
   .nav-right { gap: 24px; }
+  .lang-switcher { display: none; }
   section { padding: 80px 28px; }
   #media { padding: 80px 28px; }
   #contacto { padding: 100px 28px; }
@@ -974,6 +908,35 @@ footer {
 @media (max-width: 600px) {
   .curadoria-grid { grid-template-columns: 1fr; gap: 32px; }
 }
+
+/* Redes sociais no hero */
+.hero-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease forwards;
+  animation-delay: 1.9s;
+  position: relative;
+  justify-content: center;
+}
+.hero-social-link {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(245,242,240,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.35s;
+  color: rgba(245,242,240,0.4);
+}
+.hero-social-link:hover {
+  border-color: var(--vinho-claro);
+  color: var(--branco);
+  background: rgba(107,16,32,0.15);
+}
+.hero-social-link svg { width: 13px; height: 13px; fill: currentColor; }
+
 
 /* ── SELECTOR DE LÍNGUA FLUTUANTE ── */
 .lang-float {
@@ -1024,34 +987,6 @@ footer {
 .lang-float-menu a:hover { color: var(--branco); background: rgba(107,16,32,0.1); }
 .lang-float-menu a.active { color: var(--branco); }
 
-/* Redes sociais no hero */
-.hero-social {
-  display: flex;
-  gap: 16px;
-  margin-top: 40px;
-  opacity: 0;
-  animation: fadeUp 1.2s ease forwards;
-  animation-delay: 1.9s;
-  position: relative;
-  justify-content: center;
-}
-.hero-social-link {
-  width: 34px; height: 34px;
-  border: 1px solid rgba(245,242,240,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.35s;
-  color: rgba(245,242,240,0.4);
-}
-.hero-social-link:hover {
-  border-color: var(--vinho-claro);
-  color: var(--branco);
-  background: rgba(107,16,32,0.15);
-}
-.hero-social-link svg { width: 13px; height: 13px; fill: currentColor; }
-
 </style>
 </head>
 <body>
@@ -1063,10 +998,20 @@ footer {
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#sobre">Nome</a></li>
-      <li><a href="#media">Fado</a></li>
       <li><a href="#presenca">Presença</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
+    <div class="lang-switcher">
+      <a href="/" class="active">PT</a>
+      <span>·</span>
+      <a href="/en/">EN</a>
+      <span>·</span>
+      <a href="/fr/">FR</a>
+      <span>·</span>
+      <a href="/es/">ES</a>
+      <span>·</span>
+      <a href="/it/">IT</a>
+    </div>
   </div>
 </nav>
 
@@ -1116,17 +1061,16 @@ footer {
   </div>
 </section>
 
-<!-- FADO -->
-<section id="media" aria-labelledby="titulo-media">
+<!-- FADO — oculto até haver conteúdo -->
+<section id="media" aria-labelledby="titulo-media" style="display:none;" aria-hidden="true">
   <div class="media-inner">
-    <div class="media-video reveal" id="yt-container">
-      <div class="yt-facade" id="yt-facade" role="button" tabindex="0" aria-label="Reproduzir vídeo da Onofriana no YouTube">
-        <div class="yt-facade-thumb" aria-hidden="true"></div>
-        <div class="yt-facade-btn" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <span class="yt-facade-label">Reproduzir</span>
-      </div>
+    <div class="media-video reveal">
+      <iframe
+        src="https://www.youtube.com/embed/b92AavcErkk"
+        title="Onofriana — espetáculo de fado"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
     <div class="media-texto reveal">
       <p class="section-label" aria-hidden="true">Fado</p>
@@ -1166,9 +1110,8 @@ footer {
       <div class="ornament-line" aria-hidden="true"></div>
     </div>
     <div class="presenca-texto reveal">
-      <p>Trabalhamos com empresas, câmaras municipais, festivais, instituições culturais e famílias. O ponto de partida é sempre o mesmo: uma conversa sobre o lugar, o momento e quem vai escutar.</p>
+      <p>Trabalhamos com empresas, câmaras municipais, festivais e instituições culturais. O ponto de partida é sempre o mesmo: uma conversa sobre o lugar, o momento e quem vai escutar.</p>
       <p>Os músicos que a Onofriana escolhe não se escolhem por acaso. Há um critério — silencioso, exigente — que determina quem entra neste território. Não se procura disponibilidade. Procura-se o que é raro.</p>
-      <p>A Onofriana tem também uma formação integralmente feminina. É o nosso território de eleição — onde a nossa presença é mais densa, onde esta música encontra a sua origem mais funda.</p>
     </div>
     <div class="presenca-curadoria reveal">
       <div class="curadoria-grid">
@@ -1182,6 +1125,7 @@ footer {
         </div>
         <div class="curadoria-texto">
           <p>A curadoria artística da Onofriana é da responsabilidade de Marta Rosa — fadista, violista, letrista e compositora. Licenciada em Ciências Musicais pela Universidade Nova de Lisboa e em Canto pela Escola Superior de Música do IPL, construiu o seu percurso entre as casas de fado, a composição e a direcção artística. Uma das raras mulheres a tocar viola de fado profissionalmente.</p>
+          <p>Foi responsável pela curadoria e programação do Povo Lisboa, uma das casas de fado de referência em Lisboa. Integrou o grupo Fado As Mariquinhas e tem apresentado a Onofriana em câmaras municipais e eventos corporativos em Portugal.</p>
         </div>
       </div>
     </div>
@@ -1196,7 +1140,7 @@ footer {
   <div class="contacto-inner">
     <div class="contacto-info reveal">
       <p class="section-label" aria-hidden="true">Contacto</p>
-      <h2 class="section-title" id="titulo-contacto">O fado<br><em>espera</em></h2>
+      <h2 class="section-title" id="titulo-contacto">Falar<br><em>connosco</em></h2>
       <div class="ornament-line" aria-hidden="true"></div>
       <p>Cada espetáculo começa antes da primeira nota. Começa numa conversa sobre o lugar, o momento e quem vai escutar.</p>
       <p>Se quer levar o Fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião.</p>
@@ -1224,17 +1168,14 @@ footer {
           <span class="social-link-label">YouTube</span>
         </a>
         <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="social-link" aria-label="Spotify">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-          <span class="social-link-label">Spotify</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg><span class="social-link-label">Spotify</span>
         </a>
         <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           <span class="social-link-label">LinkedIn</span>
         </a>
-      </div>
+</div>
     </div>
-
-    <!-- FORMULÁRIO — Web3Forms -->
     <div class="contacto-form reveal">
       <div class="form-group">
         <label class="form-label" for="f-nome">Nome</label>
@@ -1260,10 +1201,7 @@ footer {
         <label class="form-label" for="f-msg">Mensagem</label>
         <textarea class="form-textarea" id="f-msg" name="mensagem" placeholder="Descreva o seu evento, data aproximada e qualquer detalhe relevante..." aria-required="true"></textarea>
       </div>
-      <!-- Honeypot anti-spam -->
-      <input type="checkbox" name="botcheck" style="display:none;">
       <button class="form-submit" id="btn-enviar" type="button">Enviar Pedido</button>
-      <div class="form-feedback" id="form-feedback" role="alert" aria-live="polite"></div>
       <p class="form-rgpd">
         Ao submeter este formulário confirma que leu a nossa
         <a href="/privacidade.html">Política de Privacidade</a>.
@@ -1299,7 +1237,6 @@ footer {
       <p class="footer-col-title">Navegação</p>
       <ul class="footer-col-links">
         <li><a href="#sobre">Nome</a></li>
-        <li><a href="#media">Fado</a></li>
         <li><a href="#presenca">Presença</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -1326,7 +1263,7 @@ footer {
         <a href="https://youtube.com/@onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
         </a>
-        <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="footer-social-link" aria-label="Spotify">
+                <a href="https://open.spotify.com/playlist/7pUqSEz0ieKmzi5ORtAcP2" target="_blank" rel="noopener" class="footer-social-link" aria-label="Spotify">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         </a>
         <a href="https://linkedin.com/company/onofriana" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
@@ -1336,7 +1273,7 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Onofriana · Todos os direitos reservados</span>
+    <span class="footer-copy">© 2025 Onofriana · Todos os direitos reservados</span>
     <span class="footer-bottom-tagline">O nome que o fado guardou.</span>
     <a href="/privacidade.html" class="footer-privacidade">Privacidade &amp; Cookies</a>
   </div>
@@ -1395,91 +1332,23 @@ footer {
   });
 })();
 
-/* YouTube facade */
-(function() {
-  var facade = document.getElementById('yt-facade');
-  var container = document.getElementById('yt-container');
-  if (!facade || !container) return;
-  function loadVideo() {
-    var iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/b92AavcErkk?autoplay=1';
-    iframe.title = 'Onofriana — espetáculo de fado';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    container.innerHTML = '';
-    container.appendChild(iframe);
-  }
-  facade.addEventListener('click', loadVideo);
-  facade.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadVideo(); }
-  });
-})();
-
-/* Formulário — Web3Forms */
+/* Formulário */
 (function() {
   var btn = document.getElementById('btn-enviar');
-  var feedback = document.getElementById('form-feedback');
   if (!btn) return;
-
   btn.addEventListener('click', function() {
     var nome  = document.getElementById('f-nome').value.trim();
     var email = document.getElementById('f-email').value.trim();
-    var tipo  = document.getElementById('f-tipo').value;
     var msg   = document.getElementById('f-msg').value.trim();
-
-    feedback.className = 'form-feedback';
-    feedback.textContent = '';
-
     if (!nome || !email || !msg) {
-      feedback.className = 'form-feedback erro';
-      feedback.textContent = 'Por favor preencha o nome, email e mensagem.';
+      alert('Por favor preencha o nome, email e mensagem.');
       return;
     }
-    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRe.test(email)) {
-      feedback.className = 'form-feedback erro';
-      feedback.textContent = 'O endereço de email não é válido.';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'A enviar…';
-
-    var body = {
-      access_key: 'a6232ddc-a351-4243-915c-c83fe314eac8',
-      name: nome,
-      email: email,
-      subject: 'Pedido de contacto — Onofriana' + (tipo ? ' (' + tipo + ')' : ''),
-      message: msg,
-      botcheck: document.querySelector('input[name="botcheck"]').checked
-    };
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(body)
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.success) {
-        feedback.className = 'form-feedback sucesso';
-        feedback.textContent = 'Mensagem recebida. Entraremos em contacto brevemente.';
-        document.getElementById('f-nome').value = '';
-        document.getElementById('f-email').value = '';
-        document.getElementById('f-tipo').selectedIndex = 0;
-        document.getElementById('f-msg').value = '';
-      } else {
-        throw new Error(data.message || 'Erro desconhecido');
-      }
-    })
-    .catch(function(err) {
-      feedback.className = 'form-feedback erro';
-      feedback.textContent = 'Não foi possível enviar a mensagem. Por favor escreva directamente para fado@onofriana.pt';
-    })
-    .finally(function() {
-      btn.disabled = false;
-      btn.textContent = 'Enviar Pedido';
-    });
+    alert('Obrigado, ' + nome + '!');
+    document.getElementById('f-nome').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-tipo').selectedIndex = 0;
+    document.getElementById('f-msg').value = '';
   });
 })();
 
@@ -1504,6 +1373,7 @@ footer {
     banner.style.display = 'none';
   });
 })();
+
 /* Selector de língua flutuante */
 (function() {
   function init() {
