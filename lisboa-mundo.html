@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Lisboa → Mundo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; width: 100vw; height: 100vh; }
+  canvas { display: block; image-rendering: pixelated; }
+  #hud {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0ff;
+    font: bold 11px 'Courier New', monospace;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+  #progress {
+    position: fixed;
+    bottom: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: #001a1a;
+    pointer-events: none;
+  }
+  #progress-bar {
+    height: 100%;
+    background: #0ff;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="progress"><div id="progress-bar"></div></div>
+<div id="hud">LISBOA</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const hud = document.getElementById('hud');
+const progressBar = document.getElementById('progress-bar');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ─── GEO DATA ───────────────────────────────────────────────────────────────
+
+const MAPS = {
+  lisboa: {
+    name: "LISBOA // 38°N 9°W",
+    color: '#00ffff',
+    accent: '#ff0064',
+    pixelSize: 6,
+    bounds: { minLng: -9.24, maxLng: -9.12, minLat: 38.69, maxLat: 38.81 },
+    outlines: [[
+      [-9.2299,38.7914],[-9.2199,38.7950],[-9.2100,38.7970],[-9.1980,38.7990],
+      [-9.1850,38.8000],[-9.1720,38.7980],[-9.1620,38.7940],[-9.1540,38.7880],
+      [-9.1480,38.7820],[-9.1420,38.7750],[-9.1380,38.7670],[-9.1360,38.7580],
+      [-9.1350,38.7490],[-9.1360,38.7400],[-9.1390,38.7310],[-9.1440,38.7230],
+      [-9.1500,38.7160],[-9.1570,38.7100],[-9.1650,38.7060],[-9.1730,38.7040],
+      [-9.1820,38.7030],[-9.1910,38.7040],[-9.1990,38.7070],[-9.2060,38.7110],
+      [-9.2120,38.7160],[-9.2170,38.7220],[-9.2200,38.7290],[-9.2220,38.7370],
+      [-9.2230,38.7460],[-9.2240,38.7560],[-9.2260,38.7660],[-9.2280,38.7760],
+      [-9.2299,38.7914]
+    ]],
+    landmarks: [
+      { lng:-9.1364, lat:38.7075, name:"PRAÇA DO COMÉRCIO" },
+      { lng:-9.1334, lat:38.7139, name:"CASTELO S.JORGE" },
+      { lng:-9.2160, lat:38.6916, name:"TORRE DE BELÉM" },
+      { lng:-9.0950, lat:38.7633, name:"PARQUE DAS NAÇÕES" },
+    ],
+    center: { lng: -9.1399, lat: 38.7169 }
+  },
+
+  iberia: {
+    name: "PENÍNSULA IBÉRICA",
+    color: '#00ffcc',
+    accent: '#ffcc00',
+    pixelSize: 5,
+    bounds: { minLng: -9.5, maxLng: 3.4, minLat: 35.9, maxLat: 43.8 },
+    outlines: [
+      // Portugal
+      [
+        [-9.50,38.00],[-9.48,37.50],[-9.10,36.90],[-8.60,37.10],[-7.40,37.00],
+        [-7.00,37.50],[-7.00,38.00],[-6.80,38.20],[-7.05,39.70],[-6.90,40.10],
+        [-6.80,41.00],[-6.20,41.50],[-6.60,41.90],[-7.00,42.00],[-8.20,42.10],
+        [-8.80,41.80],[-9.00,41.20],[-9.50,40.50],[-9.50,38.00]
+      ],
+      // Spain (simplified)
+      [
+        [-9.00,42.00],[-8.20,43.40],[-4.60,43.70],[-1.80,43.40],[-1.80,43.30],
+        [3.30,42.30],[3.20,41.00],[0.70,40.00],[0.20,39.50],[0.20,38.00],
+        [-0.70,37.60],[-1.20,37.00],[-1.70,36.80],[-2.00,36.50],[-5.20,36.00],
+        [-5.40,36.10],[-6.30,36.50],[-7.40,37.00],[-8.60,37.10],[-9.10,36.90],
+        [-9.50,38.00],[-9.50,40.50],[-9.00,41.20],[-8.80,41.80],[-9.00,42.00]
+      ]
+    ],
+    landmarks: [
+      { lng:-9.1399, lat:38.7169, name:"LISBOA" },
+      { lng:-3.7038, lat:40.4168, name:"MADRID" },
+      { lng:2.1734, lat:41.3851, name:"BARCELONA" },
+      { lng:-8.6110, lat:41.1496, name:"PORTO" },
+      { lng:-5.9960, lat:37.3886, name:"SEVILHA" },
+    ],
+    center: { lng: -3.5, lat: 40.0 }
+  },
+
+  europe: {
+    name: "EUROPA",
+    color: '#00ff88',
+    accent: '#ff8800',
+    pixelSize: 4,
+    bounds: { minLng: -25.0, maxLng: 40.0, minLat: 34.0, maxLat: 71.0 },
+    outlines: [
+      // Europe simplified outline
+      [
+        [-9.5,36.0],[3.3,36.0],[12.0,37.5],[15.5,38.0],[18.5,39.5],
+        [20.0,38.0],[26.0,38.0],[28.0,36.5],[36.0,36.5],[40.0,38.0],
+        [40.0,43.0],[33.0,46.0],[30.0,47.0],[28.0,53.0],[24.0,57.0],
+        [22.0,60.0],[25.0,65.0],[28.0,71.0],[15.0,70.0],[5.0,62.0],
+        [0.0,58.0],[-4.0,54.0],[-5.0,50.0],[-1.5,49.0],[-2.0,47.0],
+        [-9.5,44.0],[-9.5,36.0]
+      ],
+      // Britain
+      [
+        [-5.5,50.0],[-3.0,58.5],[0.0,61.0],[2.0,58.0],[1.5,51.5],
+        [0.0,51.0],[-2.0,50.0],[-5.5,50.0]
+      ],
+      // Scandinavia
+      [
+        [5.0,58.0],[8.0,58.0],[10.0,59.0],[12.0,56.0],[14.0,56.0],
+        [18.0,60.0],[20.0,65.0],[25.0,70.5],[28.0,71.0],[22.0,70.0],
+        [15.0,69.0],[14.0,65.0],[12.0,62.0],[5.0,62.0],[5.0,58.0]
+      ]
+    ],
+    landmarks: [
+      { lng:-9.1399, lat:38.7169, name:"LISBOA" },
+      { lng:2.3522, lat:48.8566, name:"PARIS" },
+      { lng:-0.1276, lat:51.5074, name:"LONDON" },
+      { lng:13.4050, lat:52.5200, name:"BERLIM" },
+      { lng:12.4964, lat:41.9028, name:"ROMA" },
+      { lng:37.6173, lat:55.7558, name:"MOSCOVO" },
+    ],
+    center: { lng: 10.0, lat: 52.0 }
+  },
+
+  world: {
+    name: "MUNDO",
+    color: '#88ff00',
+    accent: '#ff00ff',
+    pixelSize: 3,
+    bounds: { minLng: -180, maxLng: 180, minLat: -90, maxLat: 90 },
+    outlines: [
+      // North America
+      [
+        [-170,70],[-140,72],[-100,74],[-80,73],[-65,50],[-60,45],
+        [-65,44],[-70,43],[-75,35],[-80,25],[-90,18],[-85,10],
+        [-80,8],[-77,8],[-75,10],[-80,15],[-88,15],[-90,20],
+        [-96,20],[-105,22],[-110,23],[-118,28],[-120,35],[-125,48],
+        [-130,55],[-145,60],[-160,65],[-170,70]
+      ],
+      // South America
+      [
+        [-80,8],[-77,8],[-65,0],[-55,-5],[-35,-8],[-35,-15],
+        [-40,-22],[-45,-23],[-48,-28],[-52,-33],[-58,-38],[-62,-42],
+        [-65,-48],[-68,-55],[-72,-50],[-75,-45],[-72,-38],[-70,-30],
+        [-70,-20],[-75,-10],[-80,0],[-80,8]
+      ],
+      // Europe/Africa (combined simplified)
+      [
+        [-18,20],[-17,15],[-15,12],[-10,5],[0,5],[10,5],[15,0],
+        [20,-5],[25,-10],[30,-15],[33,-20],[35,-25],[30,-30],
+        [25,-35],[20,-35],[15,-30],[10,-25],[5,-20],[0,-18],
+        [-5,-15],[-10,-10],[-15,-5],[-18,0],[-18,5],[-15,10],
+        [-18,15],[-18,20]
+      ],
+      // Europe
+      [
+        [-9.5,36],[3.3,36],[12,37.5],[15.5,38],[18.5,39.5],
+        [40,38],[40,43],[33,46],[28,53],[24,57],[22,60],
+        [25,65],[28,71],[15,70],[5,62],[0,58],[-4,54],
+        [-5,50],[-1.5,49],[-2,47],[-9.5,44],[-9.5,36]
+      ],
+      // Asia
+      [
+        [28,71],[40,72],[60,73],[80,74],[100,73],[120,70],
+        [140,68],[160,65],[170,60],[180,55],[180,20],[160,15],
+        [140,10],[130,5],[120,10],[110,15],[100,10],[90,8],
+        [80,10],[70,20],[60,22],[50,25],[40,38],[33,46],
+        [28,53],[24,57],[22,60],[25,65],[28,71]
+      ],
+      // Australia
+      [
+        [114,-22],[118,-20],[125,-15],[130,-12],[136,-12],[138,-15],
+        [142,-18],[148,-20],[152,-22],[154,-28],[150,-35],[145,-38],
+        [138,-35],[130,-32],[120,-28],[114,-26],[114,-22]
+      ],
+    ],
+    landmarks: [
+      { lng:-9.1399, lat:38.7169, name:"LISBOA" },
+      { lng:-74.006, lat:40.7128, name:"NEW YORK" },
+      { lng:139.6917, lat:35.6895, name:"TOKYO" },
+      { lng:116.3912, lat:39.9073, name:"BEIJING" },
+      { lng:151.2093, lat:-33.8688, name:"SYDNEY" },
+      { lng:28.9784, lat:41.0082, name:"ISTANBUL" },
+    ],
+    center: { lng: 0, lat: 20 }
+  }
+};
+
+const STAGES = ['lisboa', 'iberia', 'europe', 'world'];
+const STAGE_DURATION = 30000; // 30s each
+const TRANSITION_DURATION = 3000; // 3s zoom transition
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+
+let startTime = null;
+let t = 0;
+let animT = 0;
+
+// ─── GEO UTILS ──────────────────────────────────────────────────────────────
+
+function lerp(a, b, f) { return a + (f - a) * f; }
+function lerpV(a, b, f) {
+  return {
+    minLng: a.minLng + (b.minLng - a.minLng) * f,
+    maxLng: a.maxLng + (b.maxLng - a.maxLng) * f,
+    minLat: a.minLat + (b.minLat - a.minLat) * f,
+    maxLat: a.maxLat + (b.maxLat - a.maxLat) * f,
+  };
+}
+
+function easeInOut(t) {
+  return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+}
+
+function geoToScreen(lng, lat, bounds, pad) {
+  const W = canvas.width, H = canvas.height;
+  const mW = W - pad*2, mH = H - pad*2;
+  // maintain aspect
+  const geoW = bounds.maxLng - bounds.minLng;
+  const geoH = bounds.maxLat - bounds.minLat;
+  const scaleX = mW / geoW;
+  const scaleY = mH / geoH;
+  const scale = Math.min(scaleX, scaleY);
+  const offX = pad + (mW - geoW * scale) / 2;
+  const offY = pad + (mH - geoH * scale) / 2;
+  return {
+    x: offX + (lng - bounds.minLng) * scale,
+    y: offY + (bounds.maxLat - lat) * scale
+  };
+}
+
+function snapPx(v, ps) { return Math.round(v / ps) * ps; }
+
+// ─── DRAW FUNCTIONS ─────────────────────────────────────────────────────────
+
+function buildPath(outline, bounds, pad, ps) {
+  ctx.beginPath();
+  outline.forEach((pt, i) => {
+    const { x, y } = geoToScreen(pt[0], pt[1], bounds, pad);
+    const sx = snapPx(x, ps), sy = snapPx(y, ps);
+    if (i === 0) ctx.moveTo(sx, sy);
+    else ctx.lineTo(sx, sy);
+  });
+  ctx.closePath();
+}
+
+function drawMap(mapKey, bounds, alpha, at) {
+  const map = MAPS[mapKey];
+  const W = canvas.width, H = canvas.height;
+  const ps = map.pixelSize;
+  const pad = 60;
+
+  ctx.globalAlpha = alpha;
+
+  // Draw each outline region
+  map.outlines.forEach(outline => {
+    buildPath(outline, bounds, pad, ps);
+
+    // Save for clipping
+    ctx.save();
+    ctx.clip();
+
+    // Interior fill
+    ctx.fillStyle = '#000d0d';
+    ctx.fillRect(0, 0, W, H);
+
+    // Scanlines
+    for (let sy = 0; sy < H; sy += ps * 2) {
+      const a = 0.06 + 0.04 * Math.sin(sy * 0.04 + at);
+      ctx.globalAlpha = a * alpha;
+      ctx.fillStyle = map.color;
+      ctx.fillRect(0, sy, W, ps);
+    }
+    ctx.globalAlpha = alpha;
+    ctx.restore();
+
+    // Border
+    buildPath(outline, bounds, pad, ps);
+    ctx.strokeStyle = map.color;
+    ctx.lineWidth = ps;
+    ctx.setLineDash([ps * 2, ps]);
+    ctx.lineDashOffset = -at * 10;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Glow
+    buildPath(outline, bounds, pad, ps);
+    ctx.strokeStyle = map.color.replace(')', ',0.2)').replace('rgb', 'rgba');
+    ctx.lineWidth = ps * 3;
+    ctx.stroke();
+  });
+
+  // Landmarks
+  map.landmarks.forEach((lm, i) => {
+    const { x, y } = geoToScreen(lm.lng, lm.lat, bounds, pad);
+    const sx = snapPx(x, ps), sy = snapPx(y, ps);
+
+    // Pulse ring
+    const phase = (at * 1.5 + i * 1.1) % (Math.PI * 2);
+    const r = snapPx((Math.sin(phase) * 0.5 + 0.5) * 24 + 4, ps);
+    const ra = 1 - r / 28;
+    ctx.globalAlpha = ra * 0.8 * alpha;
+    ctx.strokeStyle = map.accent;
+    ctx.lineWidth = ps;
+    ctx.beginPath();
+    ctx.arc(sx, sy, r, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Dot
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = map.accent;
+    ctx.fillRect(sx - ps, sy - ps, ps * 2, ps * 2);
+
+    // Label
+    ctx.globalAlpha = (0.5 + 0.5 * Math.sin(at + i)) * alpha;
+    ctx.fillStyle = map.accent;
+    ctx.font = `bold ${Math.max(8, ps * 1.6)}px 'Courier New'`;
+    ctx.fillText(lm.name, sx + ps * 2, sy - ps);
+  });
+
+  ctx.globalAlpha = alpha;
+
+  // Center expanding squares
+  const center = geoToScreen(map.center.lng, map.center.lat, bounds, pad);
+  const cx = snapPx(center.x, ps), cy = snapPx(center.y, ps);
+  for (let ring = 0; ring < 3; ring++) {
+    const rr = snapPx(((at * 25 + ring * 35) % 90), ps);
+    const ra = (1 - rr / 90) * alpha;
+    ctx.globalAlpha = ra * 0.5;
+    ctx.strokeStyle = map.accent;
+    ctx.lineWidth = ps;
+    ctx.strokeRect(cx - rr, cy - rr, rr * 2, rr * 2);
+  }
+
+  ctx.globalAlpha = alpha;
+
+  // HUD
+  ctx.fillStyle = map.color;
+  ctx.font = `bold ${Math.max(9, ps * 1.8)}px 'Courier New'`;
+  ctx.globalAlpha = 0.7 * alpha;
+  ctx.fillText(`> ${map.name}`, ps * 3, ps * 5);
+  ctx.globalAlpha = alpha;
+}
+
+// ─── BACKGROUND GRID ────────────────────────────────────────────────────────
+
+function drawGrid(color, at) {
+  const W = canvas.width, H = canvas.height;
+  ctx.globalAlpha = 0.05;
+  const gs = 12;
+  for (let gx = 0; gx < W; gx += gs * 2) {
+    for (let gy = 0; gy < H; gy += gs * 2) {
+      const b = (Math.sin(gx * 0.04 + at) + Math.sin(gy * 0.04 + at * 0.7)) * 0.5 + 0.5;
+      if (b > 0.6) {
+        ctx.fillStyle = color;
+        ctx.fillRect(gx, gy, gs - 1, gs - 1);
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ─── MAIN LOOP ──────────────────────────────────────────────────────────────
+
+function draw(ts) {
+  if (!startTime) startTime = ts;
+  const elapsed = ts - startTime;
+  animT += 0.025;
+
+  const W = canvas.width, H = canvas.height;
+
+  // Total cycle = 4 stages * 30s + 4 transitions * 3s = 132s
+  const cycleDuration = STAGES.length * STAGE_DURATION;
+  const cycleElapsed = elapsed % cycleDuration;
+
+  // Which stage are we in?
+  const stageF = cycleElapsed / STAGE_DURATION;
+  const currentStageIdx = Math.min(Math.floor(stageF), STAGES.length - 1);
+  const nextStageIdx = (currentStageIdx + 1) % STAGES.length;
+  const stageProgress = stageF - currentStageIdx; // 0..1 within stage
+
+  // Transition happens in last TRANSITION_DURATION of each stage
+  const transitionStart = 1 - TRANSITION_DURATION / STAGE_DURATION;
+  const inTransition = stageProgress > transitionStart;
+  const transitionF = inTransition
+    ? easeInOut((stageProgress - transitionStart) / (1 - transitionStart))
+    : 0;
+
+  const currentKey = STAGES[currentStageIdx];
+  const nextKey = STAGES[nextStageIdx];
+  const currentMap = MAPS[currentKey];
+  const nextMap = MAPS[nextKey];
+
+  // Interpolate bounds for smooth zoom
+  const bounds = lerpV(currentMap.bounds, nextMap.bounds, transitionF);
+
+  // Background
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  const gridColor = inTransition
+    ? nextMap.color
+    : currentMap.color;
+  drawGrid(gridColor, animT);
+
+  // Draw current map fading out
+  if (transitionF < 1) {
+    drawMap(currentKey, bounds, 1 - transitionF * 0.8, animT);
+  }
+
+  // Draw next map fading in
+  if (transitionF > 0) {
+    drawMap(nextKey, bounds, transitionF, animT);
+  }
+
+  if (!inTransition) {
+    drawMap(currentKey, currentMap.bounds, 1, animT);
+  }
+
+  // HUD label
+  hud.textContent = inTransition
+    ? `${currentMap.name} → ${nextMap.name}`
+    : currentMap.name;
+
+  // Progress bar (within current stage)
+  progressBar.style.width = `${stageProgress * 100}%`;
+
+  // Blinking cursor
+  if (Math.floor(animT * 2) % 2 === 0) {
+    ctx.fillStyle = currentMap.color;
+    ctx.globalAlpha = 0.8;
+    ctx.fillRect(18, 28, currentMap.pixelSize * 5, currentMap.pixelSize * 1.5);
+    ctx.globalAlpha = 1;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
