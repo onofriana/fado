@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>LUZ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; width: 100vw; height: 100vh; cursor: none; }
+  canvas { display: block; image-rendering: pixelated; position: absolute; top:0; left:0; }
+  #ui {
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font: 10px 'Courier New', monospace;
+    letter-spacing: 3px;
+    pointer-events: none;
+    text-align: center;
+  }
+  #section-label {
+    position: fixed; top: 24px; left: 50%;
+    transform: translateX(-50%);
+    font: bold 11px 'Courier New', monospace;
+    letter-spacing: 6px;
+    pointer-events: none;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  #start-screen {
+    position: fixed; inset: 0;
+    background: #000;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  #start-screen h1 {
+    color: #fff;
+    font: bold 48px 'Courier New', monospace;
+    letter-spacing: 20px;
+  }
+  #start-screen p {
+    color: rgba(255,255,255,0.4);
+    font: 11px 'Courier New', monospace;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="section-label"></div>
+<div id="ui"></div>
+<div id="start-screen">
+  <h1>LUZ</h1>
+  <p>CLICA PARA COMEÇAR</p>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const ui = document.getElementById('ui');
+const sectionLabel = document.getElementById('section-label');
+const startScreen = document.getElementById('start-screen');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ─── SECTIONS ───────────────────────────────────────────────────────────────
+
+const SECTIONS = [
+  {
+    id: 'I',
+    title: 'LUZ · I · ÁGUA',
+    color: '#e8f4ff',
+    accent: '#ffffff',
+    bgColor: '#000d1a',
+    pixelSize: 6,
+    element: 'water',
+    quote: '"Há olhos tão saudáveis e tão fortes que, assim que se abrem,\neles se voltam sem nenhuma hesitação para o sol."',
+    author: 'Santo Agostinho, Solilóquios (386–387 d.C.)',
+    imagética: ['CONQUISTA', 'ARCO', 'COROA'],
+    horse: 'BRANCO',
+    horseColor: '#ffffff',
+  },
+  {
+    id: 'II',
+    title: 'LUZ · II · FOGO',
+    color: '#ff4400',
+    accent: '#ff9900',
+    bgColor: '#1a0000',
+    pixelSize: 5,
+    element: 'fire',
+    quote: '"A chama é, em si mesma, uma grande presença,\nmas, perto dela, sonha-se longe, longe demais."',
+    author: 'Bachelard, A Chama da Vela (1961)',
+    imagética: ['GUERRA', 'ESPADA', 'GUERRA CIVIL'],
+    horse: 'VERMELHO',
+    horseColor: '#ff2200',
+  },
+  {
+    id: 'III',
+    title: 'LUZ · III · AR',
+    color: '#222222',
+    accent: '#555555',
+    bgColor: '#000000',
+    pixelSize: 4,
+    element: 'air',
+    quote: '"Os escravizados não são os únicos habitantes da caverna.\nSó vêem sombras."',
+    author: 'Platão, A República (séc. IV a.C.)',
+    imagética: ['FOME', 'BALANÇA', 'POBREZA'],
+    horse: 'PRETO',
+    horseColor: '#333333',
+  },
+  {
+    id: 'IV',
+    title: 'LUZ · IV · TERRA',
+    color: '#88cc66',
+    accent: '#aaffaa',
+    bgColor: '#001100',
+    pixelSize: 5,
+    element: 'earth',
+    quote: '"Remamos para a frente olhando para trás,\ne contar esta história é parte do que nos ajuda a navegar."',
+    author: 'Solnit, Hope in the Dark (2004)',
+    imagética: ['MORTE', 'HADES', 'PESTILÊNCIA'],
+    horse: 'VERDE PÁLIDO',
+    horseColor: '#88cc66',
+  }
+];
+
+const SECTION_DURATION = 60000; // 60s each
+const TRANSITION_DURATION = 4000; // 4s between sections
+const TOTAL_DURATION = SECTIONS.length * SECTION_DURATION;
+
+// Lisboa outline
+const LISBON = [
+  [-9.2299,38.7914],[-9.2199,38.7950],[-9.2100,38.7970],[-9.1980,38.7990],
+  [-9.1850,38.8000],[-9.1720,38.7980],[-9.1620,38.7940],[-9.1540,38.7880],
+  [-9.1480,38.7820],[-9.1420,38.7750],[-9.1380,38.7670],[-9.1360,38.7580],
+  [-9.1350,38.7490],[-9.1360,38.7400],[-9.1390,38.7310],[-9.1440,38.7230],
+  [-9.1500,38.7160],[-9.1570,38.7100],[-9.1650,38.7060],[-9.1730,38.7040],
+  [-9.1820,38.7030],[-9.1910,38.7040],[-9.1990,38.7070],[-9.2060,38.7110],
+  [-9.2120,38.7160],[-9.2170,38.7220],[-9.2200,38.7290],[-9.2220,38.7370],
+  [-9.2230,38.7460],[-9.2240,38.7560],[-9.2260,38.7660],[-9.2280,38.7760],
+  [-9.2299,38.7914]
+];
+
+const LISBON_BOUNDS = { minLng:-9.24, maxLng:-9.12, minLat:38.69, maxLat:38.81 };
+const WORLD_BOUNDS  = { minLng:-180, maxLng:180, minLat:-90, maxLat:90 };
+
+// ─── UTILS ───────────────────────────────────────────────────────────────────
+
+function easeInOut(t) { return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; }
+function lerp(a,b,t) { return a+(b-a)*t; }
+function lerpBounds(a,b,t) {
+  return {
+    minLng: lerp(a.minLng,b.minLng,t), maxLng: lerp(a.maxLng,b.maxLng,t),
+    minLat: lerp(a.minLat,b.minLat,t), maxLat: lerp(a.maxLat,b.maxLat,t)
+  };
+}
+
+function geoToScreen(lng, lat, bounds, pad) {
+  const W=canvas.width, H=canvas.height;
+  const mW=W-pad*2, mH=H-pad*2;
+  const gW=bounds.maxLng-bounds.minLng, gH=bounds.maxLat-bounds.minLat;
+  const scale=Math.min(mW/gW, mH/gH);
+  const offX=pad+(mW-gW*scale)/2, offY=pad+(mH-gH*scale)/2;
+  return { x:offX+(lng-bounds.minLng)*scale, y:offY+(bounds.maxLat-lat)*scale };
+}
+
+function snap(v, ps) { return Math.round(v/ps)*ps; }
+
+function hexToRgb(hex) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return {r,g,b};
+}
+
+// ─── PARTICLES ───────────────────────────────────────────────────────────────
+
+class Particle {
+  constructor(x,y,color,ps) {
+    this.x=x; this.y=y;
+    this.vx=(Math.random()-0.5)*2;
+    this.vy=(Math.random()-0.5)*2;
+    this.color=color; this.ps=ps;
+    this.life=1; this.decay=0.005+Math.random()*0.01;
+  }
+  update() {
+    this.x+=this.vx; this.y+=this.vy;
+    this.life-=this.decay;
+  }
+  draw() {
+    const s=snap(this.ps*this.life,this.ps)||this.ps;
+    ctx.globalAlpha=this.life*0.8;
+    ctx.fillStyle=this.color;
+    ctx.fillRect(snap(this.x,this.ps), snap(this.y,this.ps), s, s);
+  }
+}
+
+const particles = [];
+function spawnParticles(x, y, color, ps, n=5) {
+  for(let i=0;i<n;i++) particles.push(new Particle(x,y,color,ps));
+  if(particles.length>300) particles.splice(0,50);
+}
+
+// ─── ELEMENT RENDERERS ────────────────────────────────────────────────────────
+
+function drawWater(t, sec, alpha, W, H) {
+  const ps = sec.pixelSize;
+  const c = hexToRgb(sec.color);
+  for(let y=0;y<H;y+=ps*2) {
+    for(let x=0;x<W;x+=ps*2) {
+      const wave = Math.sin(x*0.02+t*1.5) * Math.cos(y*0.015+t) * 0.5 + 0.5;
+      const deep = Math.sin(x*0.01-t*0.7+y*0.01) * 0.3 + 0.5;
+      const v = wave*deep;
+      if(v>0.4) {
+        ctx.globalAlpha = v*0.15*alpha;
+        ctx.fillStyle = sec.color;
+        ctx.fillRect(snap(x,ps), snap(y,ps), ps, ps);
+      }
+    }
+  }
+  // Ripples from center
+  for(let ring=0;ring<6;ring++) {
+    const r = ((t*60+ring*40)%300);
+    const ra = (1-r/300)*alpha*0.4;
+    ctx.globalAlpha=ra;
+    ctx.strokeStyle=sec.accent;
+    ctx.lineWidth=ps/2;
+    ctx.beginPath();
+    ctx.arc(snap(W/2,ps), snap(H/2,ps), snap(r,ps), 0, Math.PI*2);
+    ctx.stroke();
+  }
+  ctx.globalAlpha=alpha;
+}
+
+function drawFire(t, sec, alpha, W, H) {
+  const ps = sec.pixelSize;
+  for(let x=0;x<W;x+=ps) {
+    const h = (Math.sin(x*0.04+t*3)*0.3+0.5) * H*0.7;
+    for(let y=H;y>H-h;y-=ps) {
+      const prog = (H-y)/h;
+      const r = hexToRgb(sec.color);
+      const a = hexToRgb(sec.accent);
+      const cr = Math.round(lerp(r.r,a.r,prog));
+      const cg = Math.round(lerp(r.g,a.g,prog));
+      const cb = Math.round(lerp(r.b,a.b,prog));
+      ctx.globalAlpha=(1-prog)*0.3*alpha;
+      ctx.fillStyle=`rgb(${cr},${cg},${cb})`;
+      ctx.fillRect(snap(x,ps), snap(y,ps), ps, ps);
+    }
+  }
+  // Sparks
+  if(Math.random()>0.7) {
+    const sx = Math.random()*W;
+    spawnParticles(sx, H*0.7, sec.accent, ps, 3);
+  }
+  ctx.globalAlpha=alpha;
+}
+
+function drawAir(t, sec, alpha, W, H) {
+  const ps = sec.pixelSize;
+  // Cave shadows — dark with very faint movement
+  for(let y=0;y<H;y+=ps*2) {
+    for(let x=0;x<W;x+=ps*2) {
+      const v = Math.sin(x*0.03+t*0.3)*Math.sin(y*0.02+t*0.2)*0.5+0.5;
+      if(v>0.6) {
+        ctx.globalAlpha=v*0.08*alpha;
+        ctx.fillStyle=sec.accent;
+        ctx.fillRect(snap(x,ps), snap(y,ps), ps, ps);
+      }
+    }
+  }
+  // Shadow projections on floor
+  for(let i=0;i<5;i++) {
+    const sx = W*0.2+i*(W*0.15);
+    const sw = 20+Math.sin(t*0.5+i)*10;
+    ctx.globalAlpha=0.3*alpha;
+    ctx.fillStyle=sec.accent;
+    ctx.fillRect(snap(sx,ps), snap(H*0.75,ps), snap(sw,ps), snap(H*0.25,ps));
+  }
+  ctx.globalAlpha=alpha;
+}
+
+function drawEarth(t, sec, alpha, W, H) {
+  const ps = sec.pixelSize;
+  // Decay/dissolution — disintegrating pixels
+  for(let y=0;y<H;y+=ps*3) {
+    for(let x=0;x<W;x+=ps*3) {
+      const v = Math.sin(x*0.05+t*0.8)*Math.cos(y*0.04+t*0.6)*0.5+0.5;
+      const decay = Math.sin(t*0.3+x*0.01)*0.5+0.5;
+      if(v>0.5 && decay>0.3) {
+        ctx.globalAlpha=v*decay*0.2*alpha;
+        ctx.fillStyle=sec.color;
+        ctx.fillRect(snap(x,ps), snap(y,ps), ps, ps);
+      }
+    }
+  }
+  // Rising particles — hope
+  if(Math.random()>0.8) {
+    const px2=Math.random()*W;
+    spawnParticles(px2, H, sec.accent, ps, 2);
+  }
+  ctx.globalAlpha=alpha;
+}
+
+// ─── MAP DRAWING ──────────────────────────────────────────────────────────────
+
+function drawMap(sec, bounds, alpha, t, mapStyle) {
+  const ps = sec.pixelSize;
+  const pad = 60;
+
+  // mapStyle: 0=full, 1=fragmenting, 2=shadow only, 3=dissolving
+  ctx.save();
+
+  // Build path
+  ctx.beginPath();
+  LISBON.forEach((pt,i)=>{
+    const {x,y}=geoToScreen(pt[0],pt[1],bounds,pad);
+    const sx=snap(x,ps), sy=snap(y,ps);
+    if(i===0) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+  });
+  ctx.closePath();
+
+  if(mapStyle===0) {
+    // Full — bright, scanlines inside
+    ctx.save(); ctx.clip();
+    ctx.fillStyle='#001020'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(let sy2=0;sy2<canvas.height;sy2+=ps*2) {
+      ctx.globalAlpha=(0.05+0.03*Math.sin(sy2*0.04+t))*alpha;
+      ctx.fillStyle=sec.color;
+      ctx.fillRect(0,sy2,canvas.width,ps);
+    }
+    ctx.restore();
+    ctx.globalAlpha=alpha;
+    ctx.strokeStyle=sec.color;
+    ctx.lineWidth=ps;
+    ctx.setLineDash([ps*2,ps]);
+    ctx.lineDashOffset=-t*8;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+  } else if(mapStyle===1) {
+    // Fragmenting — broken outline
+    ctx.save(); ctx.clip();
+    ctx.fillStyle='#100000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.restore();
+    ctx.globalAlpha=alpha*0.6;
+    ctx.strokeStyle=sec.color;
+    ctx.lineWidth=ps;
+    ctx.setLineDash([ps, ps*3]);
+    ctx.lineDashOffset=-t*12;
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+  } else if(mapStyle===2) {
+    // Shadow only — faint ghost
+    ctx.globalAlpha=alpha*0.15;
+    ctx.strokeStyle=sec.accent;
+    ctx.lineWidth=ps*2;
+    ctx.stroke();
+
+  } else if(mapStyle===3) {
+    // Dissolving — dotted, fading
+    ctx.globalAlpha=alpha*0.25;
+    ctx.strokeStyle=sec.color;
+    ctx.lineWidth=ps;
+    ctx.setLineDash([ps, ps*5]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  ctx.restore();
+  ctx.globalAlpha=alpha;
+}
+
+// ─── TEXT RENDERING ───────────────────────────────────────────────────────────
+
+function drawText(sec, elapsed, duration, alpha) {
+  const W=canvas.width, H=canvas.height;
+  const ps=sec.pixelSize;
+  ctx.globalAlpha=alpha;
+
+  // Quote — appears after 15s, fades at 50s
+  const quoteAlpha = Math.min(
+    Math.max(0,(elapsed-15000)/5000),
+    Math.max(0,(duration-elapsed)/5000)
+  )*alpha;
+
+  if(quoteAlpha>0) {
+    ctx.globalAlpha=quoteAlpha*0.8;
+    ctx.fillStyle=sec.color;
+    ctx.font=`${Math.max(10,ps*2)}px 'Courier New'`;
+    const lines=sec.quote.split('\n');
+    lines.forEach((line,i)=>{
+      ctx.fillText(line, ps*4, H*0.82+i*(ps*3));
+    });
+    ctx.font=`${Math.max(8,ps*1.5)}px 'Courier New'`;
+    ctx.globalAlpha=quoteAlpha*0.4;
+    ctx.fillText(`— ${sec.author}`, ps*4, H*0.82+lines.length*(ps*3)+ps*2);
+  }
+
+  // Imagética — Roman numeral + keywords at top
+  ctx.globalAlpha=alpha*0.6;
+  ctx.fillStyle=sec.color;
+  ctx.font=`bold ${Math.max(14,ps*3)}px 'Courier New'`;
+  ctx.fillText(`${sec.id}`, ps*3, ps*6);
+
+  ctx.font=`${Math.max(9,ps*1.6)}px 'Courier New'`;
+  ctx.globalAlpha=alpha*0.4;
+  sec.imagética.forEach((word,i)=>{
+    const blink = Math.sin(elapsed*0.001*1.5+i*2)>0;
+    if(blink) ctx.fillText(`> ${word}`, ps*3, ps*(10+i*3));
+  });
+
+  // Horse symbol
+  ctx.globalAlpha=alpha*0.5;
+  ctx.fillStyle=sec.horseColor;
+  ctx.font=`bold ${Math.max(9,ps*1.6)}px 'Courier New'`;
+  ctx.fillText(`◈ ${sec.horse}`, ps*3, H-ps*4);
+
+  ctx.globalAlpha=alpha;
+}
+
+// ─── HORSE SILHOUETTE (pixel) ─────────────────────────────────────────────────
+
+function drawHorse(sec, elapsed, alpha) {
+  const W=canvas.width, H=canvas.height;
+  const ps=sec.pixelSize;
+  // Simple pixel horse shape (grid of pixels)
+  const horse=[
+    [0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,1,1,0,0,0,0,1,1,0,0,0,0],
+    [0,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0],
+    [0,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0],
+    [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+    [0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],
+    [0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0],
+    [0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0],
+    [0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0],
+    [0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0],
+    [0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0],
+  ];
+
+  const scale=ps*2;
+  const ox=W-horse[0].length*scale-ps*4;
+  const oy=H*0.3;
+  const gallop=Math.sin(elapsed*0.003)*ps;
+
+  ctx.globalAlpha=(0.3+0.2*Math.sin(elapsed*0.002))*alpha;
+  ctx.fillStyle=sec.horseColor;
+  horse.forEach((row,r)=>{
+    row.forEach((cell,c)=>{
+      if(cell) ctx.fillRect(ox+c*scale, oy+r*scale+gallop, scale-1, scale-1);
+    });
+  });
+  ctx.globalAlpha=alpha;
+}
+
+// ─── MAIN LOOP ────────────────────────────────────────────────────────────────
+
+let startTime=null;
+let animT=0;
+let running=false;
+
+function getSectionInfo(elapsed) {
+  const cycleElapsed = elapsed % TOTAL_DURATION;
+  const stageF = cycleElapsed / SECTION_DURATION;
+  const idx = Math.min(Math.floor(stageF), SECTIONS.length-1);
+  const nextIdx = (idx+1) % SECTIONS.length;
+  const progress = stageF - idx;
+  const transStart = 1 - TRANSITION_DURATION/SECTION_DURATION;
+  const inTrans = progress > transStart;
+  const transF = inTrans ? easeInOut((progress-transStart)/(1-transStart)) : 0;
+  const secElapsed = (cycleElapsed - idx*SECTION_DURATION);
+  return { idx, nextIdx, progress, inTrans, transF, secElapsed };
+}
+
+function draw(ts) {
+  if(!running) return;
+  if(!startTime) startTime=ts;
+  const elapsed=ts-startTime;
+  animT+=0.02;
+
+  const W=canvas.width, H=canvas.height;
+  const { idx, nextIdx, inTrans, transF, secElapsed } = getSectionInfo(elapsed);
+
+  const sec=SECTIONS[idx];
+  const nextSec=SECTIONS[nextIdx];
+
+  // Background
+  const bgR=hexToRgb(sec.bgColor);
+  const nextBgR=hexToRgb(nextSec.bgColor);
+  const bgBlend=(v,a,b)=>Math.round(lerp(a,b,transF));
+  const br=bgBlend('r',bgR.r,hexToRgb(nextSec.bgColor).r);
+  const bg2=lerp(0,0,0);
+  ctx.fillStyle=`rgb(${Math.round(lerp(bgR.r,hexToRgb(nextSec.bgColor).r,transF))},${Math.round(lerp(bgR.g,hexToRgb(nextSec.bgColor).g,transF))},${Math.round(lerp(bgR.b,hexToRgb(nextSec.bgColor).b,transF))})`;
+  ctx.fillRect(0,0,W,H);
+
+  const alpha1=1-transF*0.9;
+  const alpha2=transF;
+
+  // Map bounds zoom: within each section, slowly zoom from lisbon toward world
+  const sectionZoom=idx/SECTIONS.length + (secElapsed/SECTION_DURATION)/SECTIONS.length;
+  const nextSectionZoom=(idx+1)/SECTIONS.length;
+  const currentZoom=lerp(sectionZoom, nextSectionZoom, transF);
+  const mapBounds=lerpBounds(LISBON_BOUNDS, WORLD_BOUNDS, easeInOut(currentZoom));
+
+  // Map style per section
+  const mapStyles=[0,1,2,3];
+
+  // Draw current section
+  if(alpha1>0.01) {
+    drawMap(sec, mapBounds, alpha1, animT, mapStyles[idx]);
+
+    // Element
+    ctx.globalAlpha=alpha1;
+    if(sec.element==='water') drawWater(animT, sec, alpha1, W, H);
+    if(sec.element==='fire') drawFire(animT, sec, alpha1, W, H);
+    if(sec.element==='air') drawAir(animT, sec, alpha1, W, H);
+    if(sec.element==='earth') drawEarth(animT, sec, alpha1, W, H);
+
+    drawHorse(sec, secElapsed, alpha1);
+    drawText(sec, secElapsed, SECTION_DURATION, alpha1);
+  }
+
+  // Draw next section (transition)
+  if(alpha2>0.01) {
+    drawMap(nextSec, mapBounds, alpha2, animT, mapStyles[nextIdx]);
+    ctx.globalAlpha=alpha2;
+    if(nextSec.element==='water') drawWater(animT, nextSec, alpha2, W, H);
+    if(nextSec.element==='fire') drawFire(animT, nextSec, alpha2, W, H);
+    if(nextSec.element==='air') drawAir(animT, nextSec, alpha2, W, H);
+    if(nextSec.element==='earth') drawEarth(animT, nextSec, alpha2, W, H);
+    drawHorse(nextSec, 0, alpha2);
+  }
+
+  // Particles
+  ctx.globalAlpha=1;
+  particles.forEach((p,i)=>{
+    p.update(); p.draw();
+  });
+  for(let i=particles.length-1;i>=0;i--) {
+    if(particles[i].life<=0) particles.splice(i,1);
+  }
+
+  // Scanline overlay (CRT feel)
+  ctx.globalAlpha=0.03;
+  ctx.fillStyle='#000';
+  for(let y=0;y<H;y+=2) ctx.fillRect(0,y,W,1);
+  ctx.globalAlpha=1;
+
+  // HUD
+  const mins=Math.floor(elapsed/60000);
+  const secs=Math.floor((elapsed%60000)/1000);
+  ui.textContent=`${sec.id} · ${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')} · LUZ`;
+  ui.style.color=sec.color;
+
+  // Section label
+  sectionLabel.textContent=sec.title;
+  sectionLabel.style.color=sec.color;
+  sectionLabel.style.opacity=inTrans?'0':'0.6';
+
+  requestAnimationFrame(draw);
+}
+
+// Start
+startScreen.addEventListener('click',()=>{
+  startScreen.style.opacity='0';
+  setTimeout(()=>{ startScreen.style.display='none'; },600);
+  startScreen.style.transition='opacity 0.6s';
+  running=true;
+  requestAnimationFrame(draw);
+});
+</script>
+</body>
+</html>
