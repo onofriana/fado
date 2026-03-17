@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doze Cordas — Uma selecção Onofriana</title>
+<meta name="description" content="Doze Cordas — uma selecção Onofriana. Ada de Castro, Fernanda Maria, Celeste Rodrigues, Marta Rosa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:          #080c12;
+  --bg2:         #0d1219;
+  --bg3:         #111720;
+  --bg4:         #161d28;
+  --ambar:       #d4924a;
+  --ambar-claro: #e8b06a;
+  --ambar-muted: rgba(212,146,74,0.10);
+  --branco:      #eef0f4;
+  --cinza1:      #8892a4;
+  --cinza2:      #4a5568;
+  --borda:       rgba(212,146,74,0.13);
+  --borda2:      rgba(255,255,255,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--branco);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.14;
+}
+
+/* ── TOPO ── */
+.topo {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 58px;
+  background: rgba(8,12,18,0.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--borda2);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 28px;
+}
+
+.topo-marca {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--branco);
+  text-decoration: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.topo-marca-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  opacity: 0.65;
+  font-weight: 300;
+}
+
+.topo-pesquisa {
+  flex: 1;
+  max-width: 440px;
+  position: relative;
+}
+.topo-pesquisa input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--borda2);
+  color: var(--branco);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 300;
+  padding: 8px 16px 8px 36px;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 2px;
+}
+.topo-pesquisa input:focus { border-color: rgba(212,146,74,0.38); }
+.topo-pesquisa input::placeholder { color: var(--cinza2); }
+.icone-pesquisa {
+  position: absolute;
+  left: 11px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--cinza2);
+}
+
+/* Identidade Onofriana no topo — direita */
+.topo-identidade {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  opacity: 0.75;
+}
+.topo-identidade:hover { opacity: 1; }
+.topo-identidade-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.4rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cinza2);
+}
+.topo-identidade-nome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ambar-claro);
+  letter-spacing: 0.04em;
+}
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 214px 1fr;
+  padding-top: 58px;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--bg2);
+  border-right: 1px solid var(--borda2);
+  position: fixed;
+  top: 58px; bottom: 0;
+  width: 214px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,146,74,0.2) transparent;
+}
+
+.sb-secao { padding: 18px 14px 6px; }
+
+.sb-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  opacity: 0.5;
+  margin-bottom: 8px;
+  padding: 0 6px;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  color: var(--cinza1);
+  font-size: 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 1px;
+  border: 1px solid transparent;
+  user-select: none;
+}
+.sb-item:hover { background: var(--bg3); color: var(--branco); }
+.sb-item.active { background: var(--ambar-muted); color: var(--ambar-claro); border-color: rgba(212,146,74,0.18); }
+
+.sb-avatar {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.62rem;
+  flex-shrink: 0;
+}
+
+.sb-count {
+  margin-left: auto;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem;
+  color: var(--cinza2);
+}
+
+.sb-divisor { height: 1px; background: var(--borda2); margin: 10px 14px; }
+
+/* Assinatura Onofriana na sidebar */
+.sb-onofriana {
+  padding: 20px 14px 24px;
+  border-top: 1px solid var(--borda2);
+  margin-top: 8px;
+}
+.sb-onofriana-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.4rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cinza2);
+  opacity: 0.5;
+  margin-bottom: 6px;
+}
+.sb-onofriana-nome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--branco);
+  opacity: 0.28;
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.sb-onofriana-nome:hover { opacity: 0.7; }
+
+/* cores por intérprete */
+.c-ada     { background: rgba(180,120,60,0.22);  color: #e8c080; }
+.c-fernanda{ background: rgba(60,140,180,0.22);  color: #80c8e8; }
+.c-celeste { background: rgba(160,60,120,0.22);  color: #e880c0; }
+.c-marta   { background: rgba(80,160,100,0.22);  color: #80e8a0; }
+
+/* ── CONTEÚDO ── */
+.conteudo { margin-left: 214px; }
+
+/* ── PLAYER ZONE ── */
+.player-zone {
+  padding: 24px 28px 0;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.player-col { position: sticky; top: 72px; }
+
+.video-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  position: relative;
+}
+.video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+.placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--bg3);
+  border: 1px solid var(--borda2);
+  gap: 14px;
+}
+.placeholder-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,146,74,0.22);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ambar); opacity: 0.4;
+}
+.placeholder-txt {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cinza2);
+}
+
+.player-meta { padding: 16px 0 0; }
+
+.meta-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 400;
+  color: var(--branco);
+  line-height: 1.35; margin-bottom: 10px;
+}
+
+.meta-interprete {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.8rem; color: var(--ambar-claro);
+  margin-bottom: 14px;
+}
+.meta-badge {
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 0.55rem;
+}
+
+.meta-nota {
+  font-size: 0.85rem; line-height: 1.82;
+  color: var(--cinza1); font-style: italic;
+  padding: 13px 16px;
+  border-left: 2px solid var(--ambar);
+  background: var(--ambar-muted);
+}
+
+/* Assinatura de curadoria no player */
+.meta-curadoria {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borda2);
+}
+.meta-curadoria-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.4rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cinza2);
+  opacity: 0.6;
+}
+.meta-curadoria-nome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ambar);
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.meta-curadoria-nome:hover { opacity: 1; }
+
+/* ── FILA ── */
+.fila {
+  background: var(--bg2);
+  border: 1px solid var(--borda2);
+  display: flex; flex-direction: column;
+  position: sticky; top: 72px;
+  max-height: calc(100vh - 90px);
+}
+
+.fila-head {
+  padding: 14px 16px 11px;
+  border-bottom: 1px solid var(--borda2);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+.fila-head-titulo {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--ambar); opacity: 0.65;
+}
+.fila-head-n {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.44rem; color: var(--cinza2);
+}
+
+.fila-scroll {
+  overflow-y: auto; flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,146,74,0.15) transparent;
+}
+
+.fila-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 9px; padding: 9px 12px;
+  cursor: pointer; transition: background 0.18s;
+  border-bottom: 1px solid rgba(255,255,255,0.025);
+}
+.fila-item:hover { background: var(--bg3); }
+.fila-item.ativo { background: var(--ambar-muted); }
+
+.fila-thumb {
+  width: 100px; aspect-ratio: 16/9;
+  overflow: hidden; position: relative; background: var(--bg4);
+}
+.fila-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; transition: opacity 0.25s; }
+.fila-item:hover .fila-thumb img { opacity: 1; }
+.fila-item.ativo .fila-thumb::after {
+  content: '▶';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(212,146,74,0.28); color: var(--ambar-claro); font-size: 0.9rem;
+}
+
+.fila-info-titulo {
+  font-size: 0.76rem; font-weight: 400;
+  color: var(--branco); line-height: 1.35; margin-bottom: 5px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.fila-item.ativo .fila-info-titulo { color: var(--ambar-claro); }
+
+.fila-info-interp {
+  font-size: 0.69rem; color: var(--cinza1);
+  display: flex; align-items: center; gap: 5px;
+}
+.fila-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── GRELHA ── */
+.grelha-zone { padding: 28px 28px 48px; }
+
+.filtros { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 24px; }
+
+.f-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 6px 14px; border: 1px solid var(--borda2);
+  background: transparent; color: var(--cinza1);
+  cursor: pointer; transition: all 0.22s; border-radius: 2px;
+}
+.f-btn:hover { border-color: rgba(212,146,74,0.28); color: var(--branco); }
+.f-btn.active { background: var(--ambar-muted); border-color: rgba(212,146,74,0.35); color: var(--ambar-claro); }
+
+.grelha-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.46rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--cinza2); margin-bottom: 18px;
+}
+
+.grelha { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+
+.card { cursor: pointer; transition: transform 0.22s; }
+.card:hover { transform: translateY(-3px); }
+
+.card-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--bg4); position: relative; overflow: hidden;
+  margin-bottom: 10px; border: 1px solid var(--borda2); transition: border-color 0.22s;
+}
+.card:hover .card-thumb { border-color: rgba(212,146,74,0.28); }
+.card.ativo .card-thumb { border-color: var(--ambar); }
+
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; transition: opacity 0.25s; }
+.card:hover .card-thumb img { opacity: 1; }
+
+.card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,12,18,0.35);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.22s;
+}
+.card:hover .card-overlay { opacity: 1; }
+.card-play {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(212,146,74,0.88);
+  display: flex; align-items: center; justify-content: center; color: var(--bg);
+}
+
+.card-tag {
+  position: absolute; bottom: 7px; left: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.42rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 2px 7px; backdrop-filter: blur(4px);
+}
+
+.card-titulo { font-size: 0.84rem; font-weight: 400; color: var(--branco); line-height: 1.38; margin-bottom: 5px; }
+
+.card-interp { font-size: 0.72rem; color: var(--cinza1); display: flex; align-items: center; gap: 5px; }
+.card-ini {
+  width: 15px; height: 15px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.52rem; flex-shrink: 0;
+}
+
+.sem-res { display: none; text-align: center; padding: 56px 20px; }
+.sem-res.vis { display: block; }
+.sem-res p {
+  font-family: 'DM Mono', monospace; font-size: 0.5rem;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--cinza2);
+}
+
+/* ── RODAPÉ ── */
+.rodape {
+  background: var(--bg2); border-top: 1px solid var(--borda2);
+  padding: 28px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.rodape-marca {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; color: var(--branco); opacity: 0.3; text-decoration: none;
+}
+
+.rodape-centro {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.rodape-centro-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.38rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--cinza2); opacity: 0.5;
+}
+.rodape-centro-nome {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.1rem;
+  color: var(--ambar); opacity: 0.55;
+  text-decoration: none; transition: opacity 0.3s;
+}
+.rodape-centro-nome:hover { opacity: 1; }
+
+.rodape-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.38rem; letter-spacing: 0.18em;
+  color: var(--cinza2); opacity: 0.4; text-align: right;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 1080px) {
+  .player-zone { grid-template-columns: 1fr; }
+  .fila { position: static; max-height: 380px; }
+}
+@media (max-width: 780px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .conteudo { margin-left: 0; }
+  .player-zone { padding: 14px 14px 0; }
+  .grelha-zone { padding: 18px 14px 40px; }
+  .grelha { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .rodape { grid-template-columns: 1fr; text-align: center; padding: 20px 14px; }
+  .rodape-copy { text-align: center; }
+  .topo-identidade { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <a href="#" class="topo-marca">
+    Doze Cordas
+    <span class="topo-marca-sub">Uma selecção Onofriana</span>
+  </a>
+  <div class="topo-pesquisa">
+    <svg class="icone-pesquisa" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="pesq" placeholder="Pesquisar fado, intérprete…" autocomplete="off">
+  </div>
+  <a href="https://onofriana.pt" class="topo-identidade">
+    <span class="topo-identidade-label">Uma selecção</span>
+    <span class="topo-identidade-nome">Onofriana</span>
+  </a>
+</header>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <div class="sb-secao">
+      <p class="sb-label">Intérpretes</p>
+      <div class="sb-item active" data-f="todos">
+        <span class="sb-avatar" style="background:rgba(212,146,74,0.15);color:var(--ambar)">✦</span>
+        Todas
+        <span class="sb-count" id="n-todos"></span>
+      </div>
+      <div class="sb-item" data-f="ada">
+        <span class="sb-avatar c-ada">A</span>
+        Ada de Castro
+        <span class="sb-count" id="n-ada"></span>
+      </div>
+      <div class="sb-item" data-f="fernanda">
+        <span class="sb-avatar c-fernanda">F</span>
+        Fernanda Maria
+        <span class="sb-count" id="n-fernanda"></span>
+      </div>
+      <div class="sb-item" data-f="celeste">
+        <span class="sb-avatar c-celeste">C</span>
+        Celeste Rodrigues
+        <span class="sb-count" id="n-celeste"></span>
+      </div>
+      <div class="sb-item" data-f="marta">
+        <span class="sb-avatar c-marta">M</span>
+        Marta Rosa
+        <span class="sb-count" id="n-marta"></span>
+      </div>
+    </div>
+
+    <div class="sb-divisor"></div>
+
+    <div class="sb-secao">
+      <p class="sb-label">Arquivo</p>
+      <div class="sb-item" data-f="classico">
+        <span class="sb-avatar" style="background:rgba(255,255,255,0.04);color:var(--cinza1)">C</span>
+        Fado Clássico
+      </div>
+      <div class="sb-item" data-f="hoje">
+        <span class="sb-avatar" style="background:rgba(255,255,255,0.04);color:var(--cinza1)">H</span>
+        Fado Hoje
+      </div>
+    </div>
+
+    <div class="sb-onofriana">
+      <p class="sb-onofriana-label">Curadoria</p>
+      <a href="https://onofriana.pt" class="sb-onofriana-nome">Onofriana</a>
+    </div>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="player-zone">
+      <div class="player-col">
+        <div class="video-wrap" id="video-wrap">
+          <div class="placeholder" id="placeholder">
+            <div class="placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
+            </div>
+            <p class="placeholder-txt">Selecione um fado</p>
+          </div>
+          <iframe id="iframe-player" style="display:none" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+        <div class="player-meta" id="meta" style="display:none">
+          <h1 class="meta-titulo" id="meta-titulo"></h1>
+          <div class="meta-interprete" id="meta-interp"></div>
+          <div class="meta-nota" id="meta-nota"></div>
+          <div class="meta-curadoria">
+            <span class="meta-curadoria-label">Curadoria</span>
+            <a href="https://onofriana.pt" class="meta-curadoria-nome">Onofriana</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fila">
+        <div class="fila-head">
+          <span class="fila-head-titulo">A seguir</span>
+          <span class="fila-head-n" id="fila-n"></span>
+        </div>
+        <div class="fila-scroll" id="fila-lista"></div>
+      </div>
+    </div>
+
+    <div class="grelha-zone">
+      <div class="filtros" id="filtros">
+        <button class="f-btn active" data-f="todos">Todas</button>
+        <button class="f-btn" data-f="ada">Ada de Castro</button>
+        <button class="f-btn" data-f="fernanda">Fernanda Maria</button>
+        <button class="f-btn" data-f="celeste">Celeste Rodrigues</button>
+        <button class="f-btn" data-f="marta">Marta Rosa</button>
+      </div>
+      <p class="grelha-label" id="grelha-label">Selecção completa</p>
+      <div class="grelha" id="grelha"></div>
+      <div class="sem-res" id="sem-res"><p>Nenhum fado encontrado</p></div>
+    </div>
+
+    <footer class="rodape">
+      <a href="#" class="rodape-marca">Doze Cordas</a>
+      <div class="rodape-centro">
+        <span class="rodape-centro-label">Uma selecção</span>
+        <a href="https://onofriana.pt" class="rodape-centro-nome">Onofriana</a>
+      </div>
+      <span class="rodape-copy">© 2025 Onofriana · Todos os direitos reservados</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+const INTERPS = {
+  ada:      { nome: 'Ada de Castro',      c: 'c-ada',      i: 'A' },
+  fernanda: { nome: 'Fernanda Maria',     c: 'c-fernanda', i: 'F' },
+  celeste:  { nome: 'Celeste Rodrigues',  c: 'c-celeste',  i: 'C' },
+  marta:    { nome: 'Marta Rosa',         c: 'c-marta',    i: 'M' },
+};
+
+const FADOS = [
+  // Ada de Castro
+  { id:'ada1', titulo:'Estranha Forma de Vida',     interp:'ada',      yt:'z4TNIs_xXOw', era:'classico', nota:'Ada de Castro num dos temas mais exigentes do repertório clássico. A contenção como escolha — cada silêncio é tão preciso quanto cada nota.' },
+  { id:'ada2', titulo:'Há uma Música do Povo',      interp:'ada',      yt:'lsqMFhECQDo', era:'classico', nota:'A voz de Ada de Castro tem uma qualidade rara: a clareza sem esforço. Aqui o fado chega como se sempre tivesse estado ali, à espera.' },
+  { id:'ada3', titulo:'Perseguição',                interp:'ada',      yt:'6AqSKFBYYiU', era:'hoje',     nota:'Ada de Castro ao vivo. O palco revela o que o estúdio organiza: a presença física de uma intérprete que habita completamente o que canta.' },
+  { id:'ada4', titulo:'Lisboa Antiga',              interp:'ada',      yt:'Sl5DQXVPJJI', era:'classico', nota:'O fado como mapa afectivo de uma cidade. Ada de Castro encontra a melancolia sem a forçar — o resultado é intimidade, não espectáculo.' },
+
+  // Fernanda Maria
+  { id:'fer1', titulo:'Saudade Deste Rio',          interp:'fernanda', yt:'nrUV5U4Lfh0', era:'classico', nota:'Fernanda Maria gravou este tema num momento em que a sua voz estava na sua forma mais completa. O rio como metáfora de tudo o que passa e fica.' },
+  { id:'fer2', titulo:'Solidão',                    interp:'fernanda', yt:'sJlNPNPTjFM', era:'classico', nota:'A solidão no fado não é ausência — é uma presença muito específica. Fernanda Maria sabe exactamente onde mora essa diferença.' },
+  { id:'fer3', titulo:'Rosa Enjeitada',             interp:'fernanda', yt:'C7jMq1SdNcQ', era:'classico', nota:'Um dos temas mais representativos da carreira de Fernanda Maria. A voz lírica, o fraseado cuidado — o fado na sua dimensão mais pura.' },
+  { id:'fer4', titulo:'Fado da Saudade',            interp:'fernanda', yt:'7zBJ0JVNbSA', era:'classico', nota:'Fernanda Maria e a saudade: não é um tema que escolheu, é um tema que a escolheu a ela. Aqui isso é completamente evidente.' },
+
+  // Celeste Rodrigues
+  { id:'cel1', titulo:'Maria Lisboa',               interp:'celeste',  yt:'Aq_GFxpPPG4', era:'classico', nota:'Celeste Rodrigues, irmã de Amália, construiu uma carreira própria com uma identidade vocal inconfundível. Este tema define o seu território.' },
+  { id:'cel2', titulo:'Fado da Saudade',            interp:'celeste',  yt:'_-rrDv7KHEY', era:'classico', nota:'A voz de Celeste tem uma textura diferente da de Amália — mais directa, menos velada. Não é comparação, é distinção.' },
+  { id:'cel3', titulo:'Estranha Forma de Vida',     interp:'celeste',  yt:'v2N_YXsRqxg', era:'classico', nota:'Celeste Rodrigues com um dos temas mais cantados do fado. A sua interpretação é uma declaração de independência artística.' },
+  { id:'cel4', titulo:'Fado Menor',                 interp:'celeste',  yt:'rCiVfV2AwuQ', era:'classico', nota:'Fado Menor — o título diz tudo sobre o que o fado faz com a tristeza: não a elimina, afina-a. Celeste Rodrigues sabe isso de cor.' },
+
+  // Marta Rosa
+  { id:'mar1', titulo:'Alma Minha Gentil',          interp:'marta',    yt:'sHkJIoQ8U-g', era:'hoje',     nota:'Marta Rosa, voz e viola de fado da Onofriana. Licenciada em Ciências Musicais e Canto, uma das raras mulheres a tocar viola de fado profissionalmente.' },
+  { id:'mar2', titulo:'Fado Oiça Lá Ó Senhor Vinho',interp:'marta',   yt:'m6yKzJBp23E', era:'hoje',     nota:'O fado de taberna na voz de Marta Rosa — a alegria que não nega a melancolia, a festa que não esquece a noite.' },
+  { id:'mar3', titulo:'Povo que Lavas no Rio',      interp:'marta',    yt:'1_3OGiGGpf8', era:'hoje',     nota:'Marta Rosa sobre um dos poemas mais cantados do fado. A viola de fado que ela própria toca redefine o espaço entre a voz e o silêncio.' },
+];
+
+let ativo  = null;
+let filtro = 'todos';
+let pesq   = '';
+
+function lista() {
+  let l = FADOS;
+  if (filtro !== 'todos') {
+    if (filtro === 'classico' || filtro === 'hoje') l = l.filter(f => f.era === filtro);
+    else l = l.filter(f => f.interp === filtro);
+  }
+  if (pesq) {
+    const t = pesq.toLowerCase();
+    l = l.filter(f => f.titulo.toLowerCase().includes(t) || INTERPS[f.interp].nome.toLowerCase().includes(t));
+  }
+  return l;
+}
+
+function tocar(id) {
+  const f = FADOS.find(x => x.id === id);
+  if (!f) return;
+  ativo = f;
+  const ip = INTERPS[f.interp];
+
+  document.getElementById('placeholder').style.display = 'none';
+  const ifr = document.getElementById('iframe-player');
+  ifr.style.display = 'block';
+  ifr.src = `https://www.youtube.com/embed/${f.yt}?autoplay=1&rel=0&modestbranding=1`;
+
+  const meta = document.getElementById('meta');
+  meta.style.display = 'block';
+  document.getElementById('meta-titulo').textContent = f.titulo;
+  document.getElementById('meta-interp').innerHTML =
+    `<span class="meta-badge ${ip.c}">${ip.i}</span>${ip.nome}`;
+  document.getElementById('meta-nota').textContent = f.nota;
+
+  window.scrollTo({ top: 58, behavior: 'smooth' });
+  render();
+}
+
+function render() {
+  const l = lista();
+
+  const LABELS = { todos:'Selecção completa', classico:'Fado Clássico', hoje:'Fado Hoje' };
+  let lbl = LABELS[filtro] || INTERPS[filtro]?.nome || 'Selecção';
+  if (pesq) lbl = `Resultados para "${pesq}"`;
+  document.getElementById('grelha-label').textContent = lbl;
+
+  // fila
+  document.getElementById('fila-n').textContent = l.length + (l.length === 1 ? ' fado' : ' fados');
+  document.getElementById('fila-lista').innerHTML = l.map(f => {
+    const ip = INTERPS[f.interp];
+    const a  = ativo && ativo.id === f.id ? 'ativo' : '';
+    return `<div class="fila-item ${a}" data-id="${f.id}">
+      <div class="fila-thumb">
+        <img src="https://img.youtube.com/vi/${f.yt}/mqdefault.jpg" alt="${f.titulo}" loading="lazy">
+      </div>
+      <div>
+        <p class="fila-info-titulo">${f.titulo}</p>
+        <p class="fila-info-interp">
+          <span class="fila-dot ${ip.c}" style="background:currentColor;opacity:.65"></span>
+          ${ip.nome}
+        </p>
+      </div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.fila-item').forEach(el =>
+    el.addEventListener('click', () => tocar(el.dataset.id)));
+
+  // grelha
+  const sem = document.getElementById('sem-res');
+  const gr  = document.getElementById('grelha');
+  if (!l.length) { gr.innerHTML = ''; sem.classList.add('vis'); return; }
+  sem.classList.remove('vis');
+  gr.innerHTML = l.map(f => {
+    const ip = INTERPS[f.interp];
+    const a  = ativo && ativo.id === f.id ? 'ativo' : '';
+    return `<div class="card ${a}" data-id="${f.id}">
+      <div class="card-thumb">
+        <img src="https://img.youtube.com/vi/${f.yt}/mqdefault.jpg" alt="${f.titulo}" loading="lazy">
+        <div class="card-overlay">
+          <div class="card-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
+        <span class="card-tag ${ip.c}">${ip.nome}</span>
+      </div>
+      <p class="card-titulo">${f.titulo}</p>
+      <p class="card-interp">
+        <span class="card-ini ${ip.c}">${ip.i}</span>
+        ${ip.nome}
+      </p>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.card').forEach(el =>
+    el.addEventListener('click', () => tocar(el.dataset.id)));
+}
+
+function setFiltro(f) {
+  filtro = f;
+  document.querySelectorAll('.sb-item[data-f]').forEach(el =>
+    el.classList.toggle('active', el.dataset.f === f));
+  document.querySelectorAll('.f-btn[data-f]').forEach(el =>
+    el.classList.toggle('active', el.dataset.f === f));
+  render();
+}
+
+document.querySelectorAll('.sb-item[data-f]').forEach(el =>
+  el.addEventListener('click', () => setFiltro(el.dataset.f)));
+document.querySelectorAll('.f-btn[data-f]').forEach(el =>
+  el.addEventListener('click', () => setFiltro(el.dataset.f)));
+document.getElementById('pesq').addEventListener('input', e => {
+  pesq = e.target.value.trim(); render();
+});
+
+// contagens
+Object.keys(INTERPS).forEach(k => {
+  const el = document.getElementById('n-' + k);
+  if (el) el.textContent = FADOS.filter(f => f.interp === k).length;
+});
+document.getElementById('n-todos').textContent = FADOS.length;
+
+render();
+</script>
+</body>
+</html>
