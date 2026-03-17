@@ -408,18 +408,14 @@ window.addEventListener('message', function(e) {
   if (!e.data) return;
   try {
     const d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    // Só mostrar fallback em erros reais do YouTube: 100 (não encontrado), 101/150 (embedding bloqueado pelo dono)
     if (d.event === 'onError' && (d.info === 100 || d.info === 101 || d.info === 150)) mostrarFallback();
-    if (d.event) document.getElementById('iframe-player').dataset.respondeu = '1';
   } catch(err) {}
 });
 
-let fallbackTimer = null;
 function iniciarTimerFallback() {
-  clearTimeout(fallbackTimer);
-  fallbackTimer = setTimeout(() => {
-    const ifr = document.getElementById('iframe-player');
-    if (ifr.style.display !== 'none' && !ifr.dataset.respondeu) mostrarFallback();
-  }, 6000);
+  // Timer removido — o fallback por timeout criava falsos positivos.
+  // O fallback só activa agora em erros reais comunicados pelo YouTube.
 }
 
 function render() {
