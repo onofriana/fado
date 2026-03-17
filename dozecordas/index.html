@@ -42,10 +42,10 @@ body::after { content:''; position:fixed; inset:0; background-image:url("data:im
 .topo-identidade-nome { font-family:'Playfair Display',serif; font-style:italic; font-size:0.9rem; color:var(--ambar-claro); letter-spacing:0.04em; }
 
 /* LAYOUT */
-.layout { display:grid; grid-template-columns:214px 1fr; padding-top:58px; min-height:100vh; }
+.layout { padding-top:58px; min-height:100vh; }
 
 /* SIDEBAR */
-.sidebar { background:var(--bg2); border-right:1px solid var(--borda2); position:fixed; top:58px; bottom:0; width:214px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:rgba(212,146,74,0.2) transparent; }
+.sidebar { background:var(--bg2); border-right:1px solid var(--borda2); position:fixed; top:58px; bottom:0; width:214px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:rgba(212,146,74,0.2) transparent; z-index:50; }
 .sb-secao { padding:18px 14px 6px; }
 .sb-label { font-family:'DM Mono',monospace; font-size:0.44rem; letter-spacing:0.38em; text-transform:uppercase; color:var(--ambar); opacity:0.5; margin-bottom:8px; padding:0 6px; }
 .sb-item { display:flex; align-items:center; gap:9px; padding:8px; cursor:pointer; transition:background 0.2s,color 0.2s; color:var(--cinza1); font-size:0.8rem; border-radius:2px; margin-bottom:1px; border:1px solid transparent; user-select:none; }
@@ -67,7 +67,7 @@ body::after { content:''; position:fixed; inset:0; background-image:url("data:im
 .conteudo { margin-left:214px; }
 
 /* PLAYER ZONE */
-.player-zone { padding:24px 28px 0; display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; align-items:start; }
+.player-zone { padding:24px 28px 0; display:grid; grid-template-columns:1fr 300px; gap:20px; align-items:start; width:100%; }
 .player-col { position:sticky; top:72px; min-width:0; }
 .video-wrap { width:100%; aspect-ratio:16/9; background:#000; position:relative; }
 .video-wrap iframe { width:100%; height:100%; border:none; display:block; }
@@ -152,9 +152,26 @@ body::after { content:''; position:fixed; inset:0; background-image:url("data:im
 .rodape-copy { font-family:'DM Mono',monospace; font-size:0.38rem; letter-spacing:0.18em; color:var(--cinza2); opacity:0.4; text-align:right; }
 
 /* RESPONSIVO */
-@media (max-width:1200px) { .player-zone { grid-template-columns:minmax(0,1fr) 260px; } }
-@media (max-width:1000px) { .player-zone { grid-template-columns:1fr; } .fila { position:static; max-height:340px; } }
-@media (max-width:780px) { .layout { grid-template-columns:1fr; } .sidebar { display:none; } .conteudo { margin-left:0; } .player-zone { padding:14px 14px 0; } .grelha-zone { padding:18px 14px 40px; } .grelha { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; } .rodape { grid-template-columns:1fr; text-align:center; padding:20px 14px; } .rodape-copy { text-align:center; } .topo-identidade { display:none; } }
+@media (max-width:1100px) {
+  .player-zone { grid-template-columns:1fr 260px; }
+}
+@media (max-width:900px) {
+  .player-zone { grid-template-columns:1fr; }
+  .fila { position:static; max-height:320px; }
+}
+@media (max-width:780px) {
+  .sidebar { display:none; }
+  .conteudo { margin-left:0 !important; }
+  .player-zone { padding:14px 14px 0; }
+  .grelha-zone { padding:18px 14px 40px; }
+  .grelha { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+  .rodape { grid-template-columns:1fr; text-align:center; padding:20px 14px; }
+  .rodape-copy { text-align:center; }
+  .topo-identidade { display:none; }
+}
+
+
+
 </style>
 </head>
 <body>
@@ -327,13 +344,9 @@ function tocar(id) {
   document.getElementById('fallback-embed').classList.remove('visivel');
   const ifr = document.getElementById('iframe-player');
   ifr.style.display = 'block';
-  ifr.src = `https://www.youtube.com/embed/${f.yt}?autoplay=1&rel=0&modestbranding=1`;
-
-  // Detectar embedding bloqueado via mensagem do iframe
-  const timer = setTimeout(() => {
-    // Se após 4s o iframe não carregou conteúdo visível, mostrar fallback
-    // (detecção básica — o YouTube bloqueia cross-origin access)
-  }, 4000);
+  ifr.dataset.respondeu = '';
+  ifr.src = `https://www.youtube.com/embed/${f.yt}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(location.origin || 'https://onofriana.pt')}`;
+  iniciarTimerFallback();
 
   // Meta
   document.getElementById('meta').style.display = 'block';
@@ -350,23 +363,49 @@ function tocar(id) {
   render();
 }
 
-// Detectar iframe com "Video unavailable"
-window.addEventListener('message', function(e) {
-  if (e.data && e.data.event === 'video-unavailable') {
-    mostrarFallback();
-  }
-});
-
-// Fallback manual ao clicar no iframe que mostra erro
-document.getElementById('iframe-player').addEventListener('load', function() {
-  // Não conseguimos detectar cross-origin, mas o listener de mensagem acima ajuda
-});
-
 function mostrarFallback() {
   const ifr = document.getElementById('iframe-player');
   ifr.style.display = 'none';
   document.getElementById('fallback-embed').classList.add('visivel');
 }
+
+// Detectar vídeo indisponível via YouTube iframe API (postMessage)
+window.addEventListener('message', function(e) {
+  if (!e.data) return;
+  try {
+    const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    // YouTube envia info: -1 (sem iniciar), 0 (ended), 1 (a tocar), 2 (pausado), 3 (buffering), 5 (cued)
+    // Erro de vídeo indisponível chega como event:"onError" com info: 100, 101, 150
+    if (data.event === 'onError' && (data.info === 100 || data.info === 101 || data.info === 150)) {
+      mostrarFallback();
+    }
+    // Fallback adicional: se o estado for -1 passados 5 segundos, provavelmente embedding bloqueado
+  } catch(err) {}
+});
+
+// Timer de segurança: se ao fim de 6s o iframe não reportou nenhum estado, mostrar fallback
+let fallbackTimer = null;
+function iniciarTimerFallback() {
+  clearTimeout(fallbackTimer);
+  fallbackTimer = setTimeout(() => {
+    const ifr = document.getElementById('iframe-player');
+    // Só activa se o iframe está visível e não houve resposta do YouTube
+    if (ifr.style.display !== 'none' && !ifr.dataset.respondeu) {
+      mostrarFallback();
+    }
+  }, 6000);
+}
+
+// Marcar que o iframe respondeu quando receber qualquer mensagem do YouTube
+window.addEventListener('message', function(e) {
+  if (!e.data) return;
+  try {
+    const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    if (data.event) {
+      document.getElementById('iframe-player').dataset.respondeu = '1';
+    }
+  } catch(err) {}
+});
 
 function render() {
   const l = lista();
