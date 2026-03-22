@@ -969,16 +969,16 @@ h3.f-col-title,
 }
 .f-priv:hover{color:#e8c97a;}
 .analytics-ctrl{
-  display:flex;align-items:center;gap:5px;
+  display:flex;align-items:center;gap:4px;
   font-family:'Josefin Sans',sans-serif;
-  font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(250,247,242,.5);
+  font-size:0.65rem;letter-spacing:.02em;text-transform:none;
+  color:rgba(250,247,242,.35);
 }
 .analytics-ctrl button{
-  background:none;border:1px solid rgba(250,247,242,.2);
-  cursor:pointer;color:rgba(250,247,242,.5);
+  background:none;border:1px solid rgba(250,247,242,.15);
+  cursor:pointer;color:rgba(250,247,242,.35);
   font-family:'Josefin Sans',sans-serif;
-  font-size:0.75rem;padding:3px 7px;transition:all .25s;
+  font-size:0.65rem;padding:2px 5px;transition:all .25s;
 }
 .analytics-ctrl button:hover{border-color:#8a5e0d;color:#e8c97a;}
 .analytics-ctrl button.on{border-color:#8a5e0d;color:#8a5e0d;}
@@ -1078,45 +1078,42 @@ h3.f-col-title,
 
 /* === BANNER RGPD === */
 #cookie-banner{
-  position:fixed;bottom:0;left:0;right:0;
-  background:#1a120a;
-  border-top:1px solid rgba(250,247,242,.15);
-  z-index:9000;
-  padding:16px 48px;
+  background:rgba(255,255,255,0.06);
+  border-top:1px solid rgba(250,247,242,.1);
+  padding:10px 48px;
   display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-  transform:translateY(0);
-  transition:transform .4s ease;
+  flex-wrap:wrap;gap:8px;
 }
-#cookie-banner.hidden{transform:translateY(110%);}
+#cookie-banner.hidden{display:none;}
 .cb-text{
   font-family:'Josefin Sans',sans-serif;
-  font-size:0.78rem;letter-spacing:.04em;
-  color:rgba(250,247,242,.75);
-  flex:1;min-width:240px;line-height:1.6;
+  font-size:0.72rem;letter-spacing:.03em;
+  color:rgba(250,247,242,.6);
+  flex:1;min-width:200px;line-height:1.5;
 }
-.cb-text a{color:#e8c97a;text-decoration:underline;text-underline-offset:3px;}
+.cb-text a{color:#e8c97a;text-decoration:underline;text-underline-offset:2px;}
 .cb-text a:hover{color:#f0deb0;}
-.cb-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.cb-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;}
 .cb-btn{
   font-family:'Josefin Sans',sans-serif;
-  font-size:0.72rem;font-weight:400;letter-spacing:.14em;
+  font-size:0.65rem;font-weight:400;letter-spacing:.12em;
   text-transform:uppercase;cursor:pointer;
-  padding:9px 20px;border:none;min-height:40px;
-  transition:all .25s;white-space:nowrap;
+  padding:6px 14px;border:none;min-height:32px;
+  transition:all .2s;white-space:nowrap;
 }
 .cb-accept{background:#8a5e0d;color:#fff;}
 .cb-accept:hover{background:#6b4509;}
-.cb-reject{background:transparent;color:rgba(250,247,242,.65);border:1px solid rgba(250,247,242,.25);}
+.cb-reject{background:transparent;color:rgba(250,247,242,.5);border:1px solid rgba(250,247,242,.2);}
 .cb-reject:hover{border-color:#8a5e0d;color:#e8c97a;}
 @media(max-width:1020px){
-  #cookie-banner{padding:14px 24px;}
+  #cookie-banner{padding:10px 24px;}
 }
 @media(max-width:600px){
-  #cookie-banner{padding:12px 16px;}
-  .cb-actions{width:100%;}
-  .cb-btn{flex:1;text-align:center;}
+  #cookie-banner{padding:8px 16px;}
+  .cb-text{font-size:0.65rem;}
+  .cb-btn{padding:5px 10px;}
 }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 </style>
 </head>
 <body>
@@ -1289,10 +1286,10 @@ h3.f-col-title,
       <span class="label-sup">Oferta Artística</span>
       <h2 class="titulo-sec" id="h-formatos">Formatos de <em>Programação</em></h2>
       <div class="traço-ouro" aria-hidden="true"></div>
-      <p class="corpo" style="max-width:500px;">Veja alguns formatos disponíveis. E contacte-nos para adaptarmos ao seu evento.</p>
     </div>
 
-    <div class="carousel-wrap rv" id="carousel-wrap" aria-live="polite" aria-atomic="true">
+    <div class="carousel-wrap rv" id="carousel-wrap">
+      <span class="sr-only" aria-live="polite" aria-atomic="true" id="carousel-status"></span>
       <div class="carousel-track" id="carousel-track">
 
         <!-- SEVERA -->
@@ -1611,21 +1608,26 @@ h3.f-col-title,
   <div class="footer-bot">
     <span class="f-copy">© 2026 Onofriana · Todos os direitos reservados</span>
     <span class="f-tagline-bot">A Herança Feminina do Fado.</span>
+    <div class="analytics-ctrl">
+      <span>cookies de análise</span>
+      <button id="btn-sim" type="button" aria-pressed="false" title="Aceitar cookies de análise">✓</button>
+      <button id="btn-nao" type="button" aria-pressed="false" title="Recusar cookies de análise">✗</button>
+    </div>
     <a href="/privacidade.html" class="f-priv">Privacidade</a>
+  </div>
+  <!-- ═══ BANNER RGPD ═══ -->
+  <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies e privacidade" aria-describedby="cb-desc">
+    <p class="cb-text" id="cb-desc">
+      Utilizamos o Google Analytics para compreender como os visitantes usam este site. Os dados são anonimizados.
+      Pode aceitar ou recusar a qualquer momento. <a href="/privacidade.html">Política de Privacidade</a>
+    </p>
+    <div class="cb-actions">
+      <button class="cb-btn cb-accept" id="cb-accept" type="button">Aceitar</button>
+      <button class="cb-btn cb-reject" id="cb-reject" type="button">Recusar</button>
+    </div>
   </div>
 </footer>
 
-<!-- ═══ BANNER RGPD ═══ -->
-<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies e privacidade" aria-describedby="cb-desc">
-  <p class="cb-text" id="cb-desc">
-    Utilizamos o Google Analytics para compreender como os visitantes usam este site. Os dados são anonimizados.
-    Pode aceitar ou recusar a qualquer momento. <a href="/privacidade.html">Política de Privacidade</a>
-  </p>
-  <div class="cb-actions">
-    <button class="cb-btn cb-accept" id="cb-accept" type="button">Aceitar</button>
-    <button class="cb-btn cb-reject" id="cb-reject" type="button">Recusar</button>
-  </div>
-</div>
 
 <!-- Lang float com CTA acima -->
 <div class="lang-float">
@@ -1709,12 +1711,14 @@ h3.f-col-title,
     dotsWrap.appendChild(d);
   }
 
+  var statusEl=document.getElementById('carousel-status');
   function goTo(n){
     cur=(n+total)%total;
     track.style.transform='translateX(-'+cur*100+'%)';
     dotsWrap.querySelectorAll('.carousel-dot').forEach(function(d,idx){
       d.classList.toggle('on',idx===cur);
     });
+    if(statusEl) statusEl.textContent='Formato '+(cur+1)+' de '+total;
   }
 
   document.getElementById('c-prev').addEventListener('click',function(){goTo(cur-1);resetAuto();});
@@ -1793,7 +1797,7 @@ h3.f-col-title,
     else{bN.classList.add('on');bN.setAttribute('aria-pressed','true');bY.classList.remove('on');bY.setAttribute('aria-pressed','false');}
   }
 
-  function hideBanner(){if(banner)banner.classList.add('hidden');}
+  function hideBanner(){if(banner){banner.classList.add('hidden');}}
 
   function acceptAnalytics(){
     localStorage.setItem(STORAGE_KEY,'yes');
