@@ -1,174 +1,230 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidade · Onofriana</title>
-  <meta name="description" content="Política de privacidade e cookies da Onofriana." />
-  <meta name="robots" content="noindex, follow" />
+  <meta name="description" content="Política de privacidade e cookies da Onofriana — curadoria e produção de Fado.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://onofriana.pt/privacidade.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&family=Petit+Formal+Script&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Georgia, 'Times New Roman', serif;
-      background: #faf9f7;
-      color: #2d2d2d;
-      line-height: 1.8;
+    :root {
+      --bg:        #ffffff;
+      --bg-alt:    #faf7f2;
+      --bg-deep:   #f3ede2;
+      --ouro:      #8a5e0d;
+      --ouro-esc:  #6b4509;
+      --ouro-lite: #d4a84b;
+      --ouro-vl:   #f0deb0;
+      --texto:     #1e1610;
+      --texto-med: #4a3c28;
+      --texto-dim: #7a6a52;
+      --borda:     rgba(176,124,32,0.18);
+      --borda-f:   rgba(176,124,32,0.40);
+      --sombra:    rgba(30,22,16,0.07);
+      --nav-h:     60px;
     }
-    header {
-      background: #1a1a1a;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--texto);
+      font-family:'Cormorant Garamond',serif;
+      font-weight:300;
+      font-size:18px;
+      line-height:1.7;
     }
-    header a {
-      color: #c9a96e;
-      text-decoration: none;
-      font-family: 'Georgia', serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.05em;
+    a{color:var(--ouro-esc);text-decoration:none;}
+    a:hover{color:var(--ouro);}
+
+    /* NAV */
+    nav{
+      position:sticky;top:0;z-index:200;
+      background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--borda);
+      padding:0 48px;
+      display:flex;align-items:center;justify-content:space-between;
+      height:var(--nav-h);
     }
-    header a.back {
-      font-size: 0.9rem;
-      color: #aaa;
-      border: 1px solid #444;
-      padding: 0.4rem 1rem;
-      border-radius: 2px;
-      transition: color 0.2s, border-color 0.2s;
+    .nav-logo-wrap{
+      display:flex;align-items:center;gap:12px;
+      text-decoration:none;transition:opacity .25s;
     }
-    header a.back:hover { color: #fff; border-color: #888; }
-    main {
-      max-width: 760px;
-      margin: 3rem auto;
-      padding: 0 2rem 4rem;
+    .nav-logo-wrap:hover{opacity:.8;}
+    .nav-logo-placeholder-box{
+      width:28px;height:28px;flex-shrink:0;
+      border:1px solid var(--borda-f);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--ouro);font-size:.9rem;
     }
-    h1 {
-      font-size: 1.8rem;
-      font-weight: normal;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.4rem;
-      color: #1a1a1a;
+    .nav-logo-text{
+      font-family:'Petit Formal Script',cursive;
+      font-size:1.3rem;color:var(--texto);
     }
-    .updated {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 2.5rem;
+    .nav-back{
+      font-family:'Josefin Sans',sans-serif;
+      font-size:0.65rem;font-weight:300;letter-spacing:.16em;
+      text-transform:uppercase;text-decoration:none;
+      color:var(--texto-dim);border:1px solid var(--borda-f);
+      padding:7px 16px;transition:all .25s;
     }
-    h2 {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: 2rem 0 0.6rem;
-      color: #1a1a1a;
-      border-left: 3px solid #8b1a2e;
-      padding-left: 0.75rem;
+    .nav-back:hover{border-color:var(--ouro);color:var(--ouro-esc);}
+    @media(max-width:600px){nav{padding:0 20px;}}
+
+    /* MAIN */
+    main{
+      max-width:760px;margin:0 auto;
+      padding:56px 48px 80px;
     }
-    p { margin-bottom: 0.9rem; font-size: 0.97rem; }
-    ul { margin: 0.4rem 0 0.9rem 1.5rem; font-size: 0.97rem; }
-    ul li { margin-bottom: 0.3rem; }
-    a { color: #8b1a2e; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0.8rem 0 1.2rem;
-      font-size: 0.93rem;
+    @media(max-width:600px){main{padding:40px 24px 60px;}}
+
+    .label-sup{
+      font-family:'Josefin Sans',sans-serif;
+      font-size:0.7rem;font-weight:400;letter-spacing:.38em;
+      text-transform:uppercase;color:var(--ouro);
+      display:block;margin-bottom:10px;
     }
-    table th, table td {
-      border: 1px solid #ddd;
-      padding: 0.5rem 0.75rem;
-      text-align: left;
+    h1{
+      font-size:clamp(2rem,4vw,2.8rem);
+      font-weight:300;line-height:1.2;
+      color:var(--texto);margin-bottom:8px;
     }
-    table th { background: #f0ece6; font-weight: bold; }
-    .footer-note {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #ddd;
-      font-size: 0.85rem;
-      color: #888;
+    .traço{
+      width:32px;height:2px;background:var(--ouro);
+      margin:16px 0 36px;opacity:.75;
     }
+    .data-atualizacao{
+      font-family:'Josefin Sans',sans-serif;
+      font-size:0.7rem;letter-spacing:.1em;
+      color:var(--texto-dim);opacity:.6;
+      margin-bottom:40px;
+    }
+
+    h2{
+      font-size:1.25rem;font-weight:400;
+      color:var(--texto);
+      margin-top:40px;margin-bottom:12px;
+      padding-bottom:8px;
+      border-bottom:1px solid var(--borda);
+    }
+    p{
+      font-size:1.05rem;line-height:1.85;
+      color:var(--texto-dim);margin-bottom:14px;
+    }
+    ul{
+      list-style:none;margin-bottom:14px;
+      display:flex;flex-direction:column;gap:6px;
+    }
+    ul li{
+      font-size:1.05rem;line-height:1.7;
+      color:var(--texto-dim);
+      padding-left:20px;position:relative;
+    }
+    ul li::before{
+      content:'—';
+      position:absolute;left:0;
+      color:var(--ouro);opacity:.6;
+      font-size:.85rem;
+    }
+    strong{color:var(--texto-med);font-weight:400;}
+    a{color:var(--ouro-esc);}
+    a:hover{color:var(--ouro);}
+
+    /* FOOTER */
+    footer{
+      background:#1a120a;
+      padding:24px 48px;
+      display:flex;justify-content:space-between;align-items:center;
+      flex-wrap:wrap;gap:10px;
+    }
+    @media(max-width:600px){footer{padding:20px 24px;flex-direction:column;text-align:center;}}
+    .f-copy{
+      font-family:'Josefin Sans',sans-serif;
+      font-size:0.62rem;letter-spacing:.1em;
+      color:rgba(250,247,242,.55);
+    }
+    .f-back{
+      font-family:'Josefin Sans',sans-serif;
+      font-size:0.62rem;letter-spacing:.14em;text-transform:uppercase;
+      color:rgba(250,247,242,.55);text-decoration:none;
+      border:1px solid rgba(250,247,242,.2);padding:6px 14px;
+      transition:all .25s;
+    }
+    .f-back:hover{border-color:#8a5e0d;color:#e8c97a;}
   </style>
 </head>
 <body>
 
-<header>
-  <a href="/">Onofriana</a>
-  <a href="/" class="back">← Voltar ao site</a>
-</header>
+<nav aria-label="Navegação">
+  <a href="/" class="nav-logo-wrap">
+    <span class="nav-logo-placeholder-box" role="img" aria-label="Logótipo Onofriana">
+      <span aria-hidden="true">♩</span>
+    </span>
+    <span class="nav-logo-text">Onofriana</span>
+  </a>
+  <a href="/" class="nav-back">← Voltar ao site</a>
+</nav>
 
 <main>
-  <h1>Política de Privacidade e Cookies</h1>
-  <p class="updated">Última atualização: março de 2026</p>
+  <span class="label-sup">Documentos Legais</span>
+  <h1>Política de Privacidade</h1>
+  <div class="traço" aria-hidden="true"></div>
+  <p class="data-atualizacao">Última atualização: março de 2026</p>
 
-  <h2>Quem somos</h2>
-  <p>Este site pertence à <strong>Onofriana</strong>, empresa de espetáculos de fado com sede em Portugal. Para questões de privacidade, pode contactar-nos através de <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a>.</p>
+  <p>A Onofriana respeita a sua privacidade e está comprometida com a proteção dos seus dados pessoais. Esta política explica que dados recolhemos, como os utilizamos e quais os seus direitos ao abrigo do Regulamento Geral de Proteção de Dados (RGPD).</p>
 
-  <h2>Que dados recolhemos</h2>
-  <p>Recolhemos apenas os dados que nos fornece voluntariamente através do formulário de contacto:</p>
+  <h2>1. Responsável pelo tratamento</h2>
+  <p><strong>Onofriana</strong> · <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a> · Lisboa, Portugal</p>
+
+  <h2>2. Dados que recolhemos</h2>
+  <p>Recolhemos apenas os dados necessários para responder ao seu pedido ou melhorar o nosso serviço:</p>
   <ul>
-    <li><strong>Nome</strong> — para personalizar a resposta</li>
-    <li><strong>Email</strong> — para lhe responder</li>
-    <li><strong>Tipo de evento e mensagem</strong> — para compreender o pedido</li>
+    <li><strong>Formulário de contacto:</strong> nome, endereço de email, tipo de evento e mensagem.</li>
+    <li><strong>Google Analytics (opcional):</strong> dados de navegação anonimizados (páginas visitadas, duração, país de origem). Apenas ativado com o seu consentimento expresso.</li>
   </ul>
-  <p>Não recolhemos dados sensíveis, não criamos perfis de utilizador e não vendemos dados a terceiros.</p>
 
-  <h2>Para que usamos os dados</h2>
-  <p>Os dados do formulário são usados exclusivamente para responder ao seu pedido de informação ou proposta de espetáculo. Não utilizamos esses dados para fins de marketing sem o seu consentimento explícito.</p>
+  <h2>3. Finalidade e base legal</h2>
+  <ul>
+    <li><strong>Resposta a pedidos:</strong> os dados do formulário são usados exclusivamente para responder ao seu contacto (base legal: execução de medidas pré-contratuais).</li>
+    <li><strong>Análise de tráfego:</strong> o Google Analytics é ativado apenas com o seu consentimento, que pode revogar a qualquer momento.</li>
+  </ul>
 
-  <h2>Base legal</h2>
-  <p>O tratamento dos dados do formulário baseia-se no <strong>interesse legítimo</strong> em responder a um contacto iniciado por si (art. 6.º, n.º 1, al. f) do RGPD). Ao submeter o formulário, reconhece que leu esta política.</p>
+  <h2>4. Cookies</h2>
+  <p>Este site utiliza dois tipos de cookies:</p>
+  <ul>
+    <li><strong>Cookie de preferência de privacidade</strong> (<code>onofriana_analytics</code>): guarda a sua escolha de aceitar ou recusar cookies de análise. Essencial para o funcionamento do banner de consentimento. Não requer consentimento.</li>
+    <li><strong>Cookies do Google Analytics</strong> (<code>_ga</code>, <code>_gid</code>, etc.): ativados apenas se aceitar. Recolhem dados de navegação anonimizados para fins estatísticos. Pode recusar ou revogar o consentimento a qualquer momento através do painel no rodapé do site.</li>
+  </ul>
 
-  <h2>Cookies e tecnologias de rastreio</h2>
-  <p>Este site utiliza cookies. Existem dois tipos:</p>
-  <table>
-    <thead>
-      <tr><th>Tipo</th><th>Finalidade</th><th>Necessário</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cookies técnicos</td>
-        <td>Funcionamento básico do site (ex: memorizar preferências de consentimento)</td>
-        <td>Sim — sem necessidade de consentimento</td>
-      </tr>
-      <tr>
-        <td>Google Analytics</td>
-        <td>Análise estatística anónima de visitas (páginas visitadas, duração, origem)</td>
-        <td>Não — ativado apenas com o seu consentimento</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>O Google Analytics está configurado com anonimização de IP. Os dados recolhidos são processados pela Google LLC (EUA) ao abrigo das Cláusulas Contratuais Padrão aprovadas pela Comissão Europeia.</p>
-  <p>Pode gerir ou retirar o seu consentimento a qualquer momento clicando em <a href="https://onofriana.pt/#cookie-reset">Gerir preferências de cookies</a>.</p>
+  <h2>5. Partilha de dados</h2>
+  <p>Não vendemos nem cedemos os seus dados a terceiros. Os dados do formulário de contacto são recebidos diretamente pela Onofriana. Caso ative o Google Analytics, os dados são processados pela Google LLC ao abrigo das suas políticas de privacidade, com IP anonimizado.</p>
 
-  <h2>Quanto tempo guardamos os dados</h2>
-  <p>Os dados do formulário de contacto são guardados apenas durante o tempo necessário para responder ao pedido e, no máximo, 12 meses. Os dados de analytics são retidos pelo período padrão do Google Analytics (26 meses).</p>
+  <h2>6. Retenção de dados</h2>
+  <p>Os dados do formulário são conservados apenas pelo tempo necessário para responder ao seu pedido. Os dados de analytics são retidos de acordo com as configurações padrão do Google Analytics (26 meses), caso os aceite.</p>
 
-  <h2>Os seus direitos</h2>
+  <h2>7. Os seus direitos</h2>
   <p>Ao abrigo do RGPD, tem direito a:</p>
   <ul>
-    <li>Aceder aos seus dados pessoais</li>
-    <li>Corrigir dados incorretos</li>
-    <li>Solicitar a eliminação dos seus dados</li>
-    <li>Opor-se ao tratamento</li>
-    <li>Apresentar reclamação à <a href="https://www.cnpd.pt" target="_blank" rel="noopener">CNPD</a> (Comissão Nacional de Proteção de Dados)</li>
+    <li>Aceder, corrigir ou apagar os seus dados pessoais;</li>
+    <li>Opor-se ao tratamento ou solicitar a sua limitação;</li>
+    <li>Retirar o consentimento a qualquer momento, sem prejuízo da licitude do tratamento anterior;</li>
+    <li>Apresentar reclamação à autoridade de controlo (CNPD — <a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).</li>
   </ul>
   <p>Para exercer qualquer destes direitos, contacte-nos em <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a>.</p>
 
-  <h2>Transferências internacionais</h2>
-  <p>Os dados processados pelo Google Analytics podem ser transferidos para os EUA, ao abrigo de mecanismos legais reconhecidos pela UE (Cláusulas Contratuais Padrão).</p>
-
-  <h2>Alterações a esta política</h2>
-  <p>Podemos atualizar esta política ocasionalmente. A data de atualização no topo indica a versão em vigor.</p>
-
-  <p class="footer-note">Onofriana · <a href="mailto:fado@onofriana.pt">fado@onofriana.pt</a> · Portugal</p>
+  <h2>8. Alterações a esta política</h2>
+  <p>Podemos atualizar esta política ocasionalmente. A data de última atualização está indicada no topo da página. Recomendamos que a consulte periodicamente.</p>
 </main>
 
-<script>
-  document.getElementById('open-cookie-settings').addEventListener('click', function(e) {
-    e.preventDefault();
-    // Limpa o consentimento guardado e recarrega para mostrar o banner
-    localStorage.removeItem('onofriana_cookie_consent');
-    window.location.href = '/#cookie-reset';
-  });
-</script>
+<footer role="contentinfo">
+  <span class="f-copy">© 2026 Onofriana · Todos os direitos reservados</span>
+  <a href="/" class="f-back">← Voltar ao site</a>
+</footer>
 
 </body>
 </html>
