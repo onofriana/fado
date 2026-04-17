@@ -388,44 +388,6 @@
   <footer class="footer" aria-label="Rodapé">
     <div class="wrap">
 
-      <!-- Banner de consentimento de cookies (inline, aparece no fim do site) -->
-      <aside class="cookie-banner" id="cookieBanner" role="region" aria-label="Consentimento de cookies" hidden>
-        <div class="cookie-banner__inner">
-          <div class="cookie-banner__text">
-            Este site utiliza cookies para garantir o funcionamento adequado e, com o seu consentimento, para analisar o tráfego. Consulte a nossa <button class="link cookie-banner__link" id="openPrivacyFromBanner" type="button">Política de Privacidade</button>.
-          </div>
-          <div class="cookie-banner__actions">
-            <button class="cookie-btn cookie-btn--ghost" id="cookieSettings" type="button">Personalizar</button>
-            <button class="cookie-btn cookie-btn--ghost" id="cookieReject" type="button">Recusar</button>
-            <button class="cookie-btn" id="cookieAccept" type="button">Aceitar</button>
-          </div>
-
-          <div class="cookie-settings" id="cookieSettingsPanel">
-            <div class="cookie-option">
-              <div>
-                <h4>Essenciais</h4>
-                <p>Necessários para o funcionamento do site. Sempre ativos.</p>
-              </div>
-              <button class="toggle" aria-checked="true" aria-label="Cookies essenciais (sempre ativos)" disabled></button>
-            </div>
-            <div class="cookie-option">
-              <div>
-                <h4>Analíticos</h4>
-                <p>Ajudam-nos a perceber como o site é utilizado (Google Analytics).</p>
-              </div>
-              <button class="toggle" aria-checked="false" aria-label="Ativar cookies analíticos" id="toggleAnalytics" type="button"></button>
-            </div>
-            <div class="cookie-option">
-              <div>
-                <h4>Marketing</h4>
-                <p>Para campanhas personalizadas. Não utilizamos atualmente.</p>
-              </div>
-              <button class="toggle" aria-checked="false" aria-label="Ativar cookies de marketing" id="toggleMarketing" type="button"></button>
-            </div>
-          </div>
-        </div>
-      </aside>
-
       <div class="footer__inner">
         <ul class="footer__social" aria-label="Redes sociais" style="list-style:none;padding:0;">
           <li><a href="https://instagram.com/onofriana" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a></li>
@@ -443,6 +405,44 @@
         </div>
       </div>
     </div>
+
+    <!-- Banner de consentimento de cookies — fundo absoluto da página -->
+    <aside class="cookie-banner" id="cookieBanner" role="region" aria-label="Consentimento de cookies" hidden>
+      <div class="cookie-banner__inner">
+        <div class="cookie-banner__text">
+          Este site utiliza cookies para garantir o funcionamento adequado e, com o seu consentimento, para analisar o tráfego. Consulte a nossa <button class="link cookie-banner__link" id="openPrivacyFromBanner" type="button">Política de Privacidade</button>.
+        </div>
+        <div class="cookie-banner__actions">
+          <button class="cookie-btn cookie-btn--ghost" id="cookieSettings" type="button">Personalizar</button>
+          <button class="cookie-btn cookie-btn--ghost" id="cookieReject" type="button">Recusar</button>
+          <button class="cookie-btn" id="cookieAccept" type="button">Aceitar</button>
+        </div>
+
+        <div class="cookie-settings" id="cookieSettingsPanel">
+          <div class="cookie-option">
+            <div>
+              <h4>Essenciais</h4>
+              <p>Necessários para o funcionamento do site. Sempre ativos.</p>
+            </div>
+            <button class="toggle" aria-checked="true" aria-label="Cookies essenciais (sempre ativos)" disabled></button>
+          </div>
+          <div class="cookie-option">
+            <div>
+              <h4>Analíticos</h4>
+              <p>Ajudam-nos a perceber como o site é utilizado (Google Analytics).</p>
+            </div>
+            <button class="toggle" aria-checked="false" aria-label="Ativar cookies analíticos" id="toggleAnalytics" type="button"></button>
+          </div>
+          <div class="cookie-option">
+            <div>
+              <h4>Marketing</h4>
+              <p>Para campanhas personalizadas. Não utilizamos atualmente.</p>
+            </div>
+            <button class="toggle" aria-checked="false" aria-label="Ativar cookies de marketing" id="toggleMarketing" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </aside>
   </footer>
 
   <a href="mailto:fado@onofriana.pt" class="fab" id="fab" aria-label="Contactar por email">
