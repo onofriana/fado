@@ -947,12 +947,12 @@ section + section { padding-top: calc(var(--section-pad) * 0.85); }
 }
 .modal li { margin-bottom: 0.4em; }
 
-/* COOKIE BANNER (inline, no rodapé) */
+/* COOKIE BANNER (fundo absoluto da página, fora do .wrap do footer) */
 .cookie-banner {
   background: var(--ink);
   color: var(--paper);
   padding: 1.5rem var(--gutter);
-  margin: 0 calc(-1 * var(--gutter)) 2rem;
+  margin: 2rem 0 0;
   border-top: 3px solid var(--rose);
   font-size: var(--fs-sm);
   animation: cookieFadeIn 0.5s var(--ease);
