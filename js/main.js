@@ -27,6 +27,32 @@
     onScroll();
   }
 
+  /* MOBILE NAV TOGGLE */
+  const navToggle = $('#navToggle');
+  const navMenu = $('#nav-menu');
+  if (navToggle && navMenu) {
+    const closeNav = () => {
+      navMenu.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+    };
+    const openNav = () => {
+      navMenu.classList.add('is-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Fechar menu');
+    };
+    navToggle.addEventListener('click', () => {
+      if (navMenu.classList.contains('is-open')) closeNav(); else openNav();
+    });
+    $$('a', navMenu).forEach(link => link.addEventListener('click', closeNav));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('is-open')) closeNav();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820 && navMenu.classList.contains('is-open')) closeNav();
+    });
+  }
+
   /* REVEAL */
   const reveals = $$('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {

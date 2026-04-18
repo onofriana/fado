@@ -196,7 +196,11 @@
   <nav class="nav" id="nav" aria-label="Navegação principal">
     <div class="nav__inner">
       <a href="#top" class="nav__brand" aria-label="Onofriana — início">Onofriana</a>
-      <ul class="nav__menu">
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menu" type="button">
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav__menu" id="nav-menu">
         <li><a href="#about">A Onofriana</a></li>
         <li><a href="#formats">Formatos</a></li>
         <li><a href="#marta">Marta Rosa</a></li>
@@ -264,9 +268,6 @@
           </article>
         </div>
 
-        <div class="about__pullquote reveal">
-          <blockquote>A tradição não existe sem um sentido.</blockquote>
-        </div>
       </div>
     </section>
 
@@ -287,7 +288,7 @@
           </div>
           <figure class="format__media">
             <img src="images/formacaosevera.png" alt="Fadista em palco, acompanhada por contrabaixo e guitarra portuguesa" loading="lazy" width="1200" height="900" />
-            <figcaption><span class="credit">· foto © Emilio Fraile</span></figcaption>
+            <figcaption><span class="credit">Fotografia © Emilio Fraile</span></figcaption>
           </figure>
         </article>
 
@@ -377,15 +378,14 @@
           <details class="faq__item"><summary>Qual é a duração de um espetáculo de Fado? <span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__answer">Depende do formato. Desde breves apontamentos de 20 a 45 minutos a atuações de 60 a 90 minutos, com intervalo, até formatos adaptados. Programas longos podem incluir pausas ou múltiplos momentos musicais.</div></details>
           <details class="faq__item"><summary>Quanto custa contratar um evento de Fado? <span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__answer">Varia consoante o número de artistas, duração do espetáculo, localização, necessidades técnicas, etc. Cada orçamento é personalizado.</div></details>
           <details class="faq__item"><summary>A Onofriana trabalha com públicos internacionais? <span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__answer">Sim. Temos experiência com públicos estrangeiros. Podemos fazer breves introduções em inglês, francês e espanhol, contextualização cultural e histórica do Fado, e formatos mais acessíveis e interativos.</div></details>
-          <details class="faq__item"><summary>O que diferencia e torna a Onofriana tão especial? <span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__answer">A tradição não existe sem um sentido. Trabalhar com um património vivo, e em constante transformação, é fazer parte de uma história inacabada, de raízes profundas, e marcada pela forte herança feminina que desbastou caminhos para o mundo — desde a primeira fadista.</div></details>
+          <details class="faq__item"><summary>O que diferencia e torna a Onofriana tão especial? <span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__answer">Trabalhar com um património vivo, e em constante transformação, é fazer parte de uma história inacabada, de raízes profundas, marcada pela forte herança feminina que desbastou caminhos para o mundo — desde a primeira fadista.</div></details>
         </div>
       </div>
     </section>
 
     <section class="social-feature" id="social" aria-labelledby="social-title">
       <div class="wrap">
-        <h2 class="social-feature__title reveal" id="social-title">Contacte-nos.</h2>
-        <p class="social-feature__sub reveal">A Tradição não existe sem um sentido.</p>
+        <h2 class="social-feature__title reveal" id="social-title">Siga-nos.</h2>
 
         <ul class="social-grid reveal">
           <li><a href="mailto:fado@onofriana.pt" target="_blank" rel="noopener" aria-label="Correio Eletrónico">
@@ -421,6 +421,11 @@
             </svg>Spotify
           </a></li>
         </ul>
+
+        <div class="social-feature__spotify reveal" aria-label="Playlist Onofriana no Spotify">
+          <h3>Ouça alguns dos fados preferidos da Onofriana</h3>
+          <iframe src="https://open.spotify.com/embed/playlist/7pUqSEz0ieKmzi5ORtAcP2?utm_source=generator&theme=0" width="100%" height="420" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Playlist Onofriana no Spotify"></iframe>
+        </div>
       </div>
     </section>
 
@@ -499,18 +504,9 @@
         <div class="eyebrow reveal">VI — Falar Connosco</div>
         <h2 class="sr-only" id="contact-title">Contacto</h2>
 
-        <div class="contact__grid">
-          <div class="contact__main">
-            <p class="contact__quote reveal">Cada espetáculo começa antes da primeira nota. Começa numa conversa sobre o lugar, o momento e quem vai escutar.</p>
-            <p class="contact__body reveal">Se quer levar o Fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião.</p>
-            <a href="mailto:fado@onofriana.pt" class="contact__email reveal">fado@onofriana.pt</a>
-          </div>
-
-          <aside class="contact__spotify reveal" aria-label="Playlist Onofriana no Spotify">
-            <h3>Ouve alguns dos fados preferidos da Onofriana</h3>
-            <iframe src="https://open.spotify.com/embed/playlist/7pUqSEz0ieKmzi5ORtAcP2?utm_source=generator&theme=0" width="100%" height="420" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Playlist Onofriana no Spotify"></iframe>
-          </aside>
-        </div>
+        <p class="contact__quote reveal">Cada espetáculo começa antes da primeira nota. Começa numa conversa sobre o lugar, o momento e quem vai escutar.</p>
+        <p class="contact__body reveal">Se quer levar o Fado ao seu evento, escreva-nos. Conte-nos o contexto, o espaço e a ocasião.</p>
+        <a href="mailto:fado@onofriana.pt" class="contact__email reveal">fado@onofriana.pt</a>
       </div>
     </section>
 
