@@ -37,6 +37,9 @@
   <meta name="apple-mobile-web-app-title" content="Onofriana" />
   <link rel="manifest" href="/site.webmanifest" />
 
+  <link rel="preload" href="svg/guitarra.svg" as="image" type="image/svg+xml" />
+  <link rel="preload" href="svg/logo.svg" as="image" type="image/svg+xml" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -60,13 +63,13 @@
     gtag('set', 'ads_data_redaction', true);
   </script>
 
-  <!-- TODO: Google Analytics 4 — ativar quando tiver o ID
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRL8WTN2XQ"></script>
   <script>
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+    gtag('config', 'G-LRL8WTN2XQ', { 'anonymize_ip': true });
+    gtag('config', 'GT-NSS6PXTF');
   </script>
-  -->
 
   <script type="application/ld+json">
   {
@@ -126,6 +129,67 @@
   <script type="application/ld+json">
   { "@context": "https://schema.org", "@type": "WebSite", "name": "Onofriana", "url": "https://onofriana.pt/", "inLanguage": "pt-PT" }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marta Rosa",
+    "jobTitle": "Curadora artística, fadista, violista, letrista e compositora",
+    "description": "Responsável pela curadoria artística da Onofriana. Fadista, violista, letrista e compositora. Licenciada em Ciências Musicais pela Universidade Nova de Lisboa e em Canto pela Escola Superior de Música do Instituto Politécnico de Lisboa. Uma das poucas mulheres a tocar viola de Fado profissionalmente.",
+    "image": "https://onofriana.pt/images/marta_rosa.png",
+    "url": "https://onofriana.pt/#marta",
+    "worksFor": { "@type": "Organization", "name": "Onofriana", "url": "https://onofriana.pt/" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Universidade Nova de Lisboa" },
+      { "@type": "CollegeOrUniversity", "name": "Escola Superior de Música do Instituto Politécnico de Lisboa" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Severa — Tradicional Conjunto de Fado",
+        "description": "Conjunto tradicional de Fado composto por fadista, guitarra portuguesa, viola de fado e baixo acústico (opcional). Ideal para eventos culturais, casamentos, hotéis e eventos corporativos em Portugal.",
+        "provider": { "@type": "Organization", "name": "Onofriana", "url": "https://onofriana.pt/" },
+        "serviceType": "Espetáculo de Fado",
+        "areaServed": { "@type": "Country", "name": "Portugal" },
+        "url": "https://onofriana.pt/#severa"
+      },
+      {
+        "@type": "Service",
+        "name": "Mariquinhas — Conjunto de Fado Integralmente Feminino",
+        "description": "Conjunto de Fado integralmente feminino: fadista, guitarra portuguesa e viola de fado. Uma especialidade única da Onofriana, inspirada na herança feminina do Fado.",
+        "provider": { "@type": "Organization", "name": "Onofriana", "url": "https://onofriana.pt/" },
+        "serviceType": "Espetáculo de Fado",
+        "areaServed": { "@type": "Country", "name": "Portugal" },
+        "url": "https://onofriana.pt/#mariquinhas"
+      },
+      {
+        "@type": "Service",
+        "name": "Guitarradas — Repertório Instrumental de Fado",
+        "description": "Formato instrumental com guitarra portuguesa, viola de fado e baixo acústico (opcional). Ideal para ambientes intimistas, cocktails e recepções.",
+        "provider": { "@type": "Organization", "name": "Onofriana", "url": "https://onofriana.pt/" },
+        "serviceType": "Espetáculo de Fado",
+        "areaServed": { "@type": "Country", "name": "Portugal" },
+        "url": "https://onofriana.pt/#guitarradas"
+      },
+      {
+        "@type": "Service",
+        "name": "Vimioso — Voz e Quinteto de Cordas",
+        "description": "Formato camerístico com fadista acompanhada por quinteto de cordas: viola de fado, violino, viola d'arco, violoncelo e contrabaixo. Para palcos e eventos de prestígio.",
+        "provider": { "@type": "Organization", "name": "Onofriana", "url": "https://onofriana.pt/" },
+        "serviceType": "Espetáculo de Fado",
+        "areaServed": { "@type": "Country", "name": "Portugal" },
+        "url": "https://onofriana.pt/#vimioso"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -140,12 +204,12 @@
         <li><a href="#formats">Formatos</a></li>
         <li><a href="#marta">Marta Rosa</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#orcamento">Contacto</a></li>
       </ul>
       <div class="nav__lang" role="group" aria-label="Selecionar idioma">
         <button class="is-active" aria-current="true" aria-label="Português (selecionado)">PT</button>
         <span class="sep" aria-hidden="true">/</span>
-        <button disabled aria-label="English — em breve">EN</button>
+        <button disabled aria-label="English — em breve" title="Em breve">EN</button>
       </div>
     </div>
   </nav>
@@ -222,6 +286,7 @@
             <h3 class="format__name">Severa</h3>
             <p class="format__tag">Tradicional conjunto de Fado</p>
             <p class="format__desc">Fadista(s) • Guitarra portuguesa • Viola de Fado • Baixo acústico (opcional)</p>
+            <a href="#orcamento" class="format__cta" data-format="Severa — Conjunto Tradicional">Pedir orçamento</a>
           </div>
           <figure class="format__media">
             <img src="images/formacaosevera.png" alt="Fadista em palco, acompanhada por contrabaixo e guitarra portuguesa" loading="lazy" width="1200" height="900" />
@@ -235,7 +300,7 @@
             <h3 class="format__name">Mariquinhas</h3>
             <p class="format__tag">Conjunto de Fado integralmente Feminino</p>
             <p class="format__desc">Fadista(s) • Guitarra portuguesa • Viola de Fado</p>
-
+            <a href="#orcamento" class="format__cta" data-format="Mariquinhas — Conjunto Feminino">Pedir orçamento</a>
           </div>
           <figure class="format__media">
             <img src="images/formacaomariquinhas.png" alt="Três músicas sentadas num banco com guitarras portuguesas e viola, com painel de azulejos azuis ao fundo" loading="lazy" width="1200" height="900" />
@@ -249,6 +314,7 @@
             <h3 class="format__name">Guitarradas</h3>
             <p class="format__tag">Repertório instrumental</p>
             <p class="format__desc">Guitarra portuguesa • Viola de Fado • Baixo acústico (opcional)</p>
+            <a href="#orcamento" class="format__cta" data-format="Guitarradas — Instrumental">Pedir orçamento</a>
           </div>
           <figure class="format__media">
             <img src="images/formacaoguitarradas.png" alt="Dois guitarristas em diálogo instrumental sob iluminação vermelha e azul" loading="lazy" width="1200" height="900" />
@@ -261,6 +327,7 @@
             <h3 class="format__name">Vimioso</h3>
             <p class="format__tag">Voz &amp; Quinteto de cordas</p>
             <p class="format__desc">Fadista • Viola de Fado • Violino • Viola d’ arco • Violoncelo • Contrabaixo</p>
+            <a href="#orcamento" class="format__cta" data-format="Vimioso — Voz &amp; Quinteto">Pedir orçamento</a>
           </div>
           <figure class="format__media">
             <img src="images/formacaovimioso.png" alt="Quinteto de cordas em palco sob iluminação cénica verde e vermelha" loading="lazy" width="1200" height="900" />
@@ -360,9 +427,79 @@
       </div>
     </section>
 
+    <section class="quote-section" id="orcamento" aria-labelledby="orcamento-title">
+      <div class="wrap">
+        <div class="eyebrow reveal">V — Pedido de Orçamento</div>
+        <h2 class="quote-section__title reveal" id="orcamento-title">Vamos conversar.</h2>
+        <p class="quote-section__lead reveal">Conte-nos o contexto, o espaço e a ocasião.<br>Respondemos em 48 horas.</p>
+
+        <form class="quote-form reveal" id="quoteForm"
+              action="https://formspree.io/f/SUBSTITUA_PELO_SEU_ID"
+              method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Pedido de Orçamento — Onofriana" />
+          <div class="quote-form__grid">
+            <div class="quote-form__field">
+              <label for="qf-name">Nome <abbr title="obrigatório" aria-label="obrigatório">*</abbr></label>
+              <input type="text" id="qf-name" name="nome" required autocomplete="name" />
+            </div>
+            <div class="quote-form__field">
+              <label for="qf-email">Email <abbr title="obrigatório" aria-label="obrigatório">*</abbr></label>
+              <input type="email" id="qf-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="quote-form__field">
+              <label for="qf-phone">Telefone</label>
+              <input type="tel" id="qf-phone" name="telefone" autocomplete="tel" />
+            </div>
+            <div class="quote-form__field">
+              <label for="qf-event">Tipo de evento <abbr title="obrigatório" aria-label="obrigatório">*</abbr></label>
+              <select id="qf-event" name="tipo_de_evento" required>
+                <option value="" disabled selected>Selecionar...</option>
+                <option value="Casamento">Casamento</option>
+                <option value="Evento corporativo">Evento Corporativo</option>
+                <option value="Hotel / Restaurante">Hotel / Restaurante</option>
+                <option value="Espaço cultural / Instituição">Espaço Cultural / Instituição</option>
+                <option value="Escola">Escola</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="quote-form__field">
+              <label for="qf-format">Formato preferido</label>
+              <select id="qf-format" name="formato">
+                <option value="Sem preferência">Sem preferência</option>
+                <option value="Severa — Conjunto Tradicional">Severa — Conjunto Tradicional</option>
+                <option value="Mariquinhas — Conjunto Feminino">Mariquinhas — Conjunto Feminino</option>
+                <option value="Guitarradas — Instrumental">Guitarradas — Instrumental</option>
+                <option value="Vimioso — Voz &amp; Quinteto">Vimioso — Voz &amp; Quinteto</option>
+              </select>
+            </div>
+            <div class="quote-form__field">
+              <label for="qf-date">Data prevista</label>
+              <input type="text" id="qf-date" name="data_prevista" placeholder="Ex: Junho 2025" />
+            </div>
+            <div class="quote-form__field quote-form__field--full">
+              <label for="qf-location">Local / Cidade <abbr title="obrigatório" aria-label="obrigatório">*</abbr></label>
+              <input type="text" id="qf-location" name="local" required />
+            </div>
+            <div class="quote-form__field quote-form__field--full">
+              <label for="qf-message">Mais detalhes sobre o seu evento</label>
+              <textarea id="qf-message" name="mensagem" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="quote-form__footer">
+            <p class="quote-form__note">Ao submeter, aceita a nossa <button type="button" class="link" id="openPrivacyFromForm">Política de Privacidade</button>.</p>
+            <button type="submit" class="quote-form__submit">
+              <span class="quote-form__submit-text">Enviar pedido de orçamento</span>
+              <span class="quote-form__submit-loading" hidden>A enviar…</span>
+            </button>
+          </div>
+          <div class="quote-form__feedback" role="alert" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <div class="eyebrow reveal">V — Falar Connosco</div>
+        <div class="eyebrow reveal">VI — Falar Connosco</div>
         <h2 class="sr-only" id="contact-title">Contacto</h2>
 
         <div class="contact__grid">
@@ -373,7 +510,7 @@
           </div>
 
           <aside class="contact__spotify reveal" aria-label="Playlist Onofriana no Spotify">
-            <h3>Escutar</h3>
+            <h3>Ouve alguns dos fados preferidos da Onofriana</h3>
             <iframe src="https://open.spotify.com/embed/playlist/7pUqSEz0ieKmzi5ORtAcP2?utm_source=generator&theme=0" width="100%" height="420" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Playlist Onofriana no Spotify"></iframe>
           </aside>
         </div>
@@ -449,8 +586,8 @@
     </aside>
   </footer>
 
-  <a href="mailto:fado@onofriana.pt" class="fab" id="fab" aria-label="Contactar por email">
-    <span class="fab__label" aria-hidden="true">Contactar</span>
+  <a href="#orcamento" class="fab" id="fab" aria-label="Pedir orçamento">
+    <span class="fab__label" aria-hidden="true">Orçamento</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/>
     </svg>

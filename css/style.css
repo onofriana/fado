@@ -198,7 +198,7 @@ img, svg { max-width: 100%; display: block; }
   transition: color 0.3s var(--ease);
 }
 .nav__lang button.is-active { color: var(--ink); }
-.nav__lang button:disabled { opacity: 0.5; cursor: not-allowed; }
+.nav__lang button:disabled { opacity: 0.65; cursor: not-allowed; }
 .nav__lang .sep { color: var(--rule); }
 
 @media (max-width: 820px) {
@@ -800,7 +800,7 @@ section + section { padding-top: calc(var(--section-pad) * 0.85); }
   border: 0; color: var(--stone);
   display: inline-flex;
   align-items: center; justify-content: center;
-  width: 2rem; height: 2rem;
+  width: 2.75rem; height: 2.75rem;
   transition: color 0.3s var(--ease);
 }
 .footer__social a:hover { color: var(--rose); }
@@ -1089,6 +1089,184 @@ section + section { padding-top: calc(var(--section-pad) * 0.85); }
   html { scroll-behavior: auto; }
   .fab, .social-grid a { transition: none; }
   .cookie-banner { animation: none; }
+}
+
+/* FORMAT CTA */
+.format__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: var(--display);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--rose) 50%, transparent);
+  padding-bottom: 0.25rem;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease), gap 0.3s var(--ease);
+}
+.format__cta::after { content: "→"; }
+.format__cta:hover {
+  color: var(--rose-dark);
+  border-color: var(--rose-dark);
+  gap: 0.75rem;
+}
+
+/* QUOTE SECTION */
+.quote-section { background: var(--paper); }
+.quote-section__title {
+  font-size: var(--fs-xl);
+  margin-bottom: 0.75rem;
+  max-width: 16ch;
+  line-height: 1.1;
+}
+.quote-section__lead {
+  color: var(--stone);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: var(--fs-md);
+  margin-bottom: 3rem;
+  max-width: 34rem;
+}
+
+.quote-form__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+  border-top: 1px solid var(--rule);
+  padding-top: 2.5rem;
+}
+.quote-form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.quote-form__field--full { grid-column: 1 / -1; }
+
+.quote-form__field label {
+  font-family: var(--display);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.6rem;
+}
+.quote-form__field label abbr {
+  text-decoration: none;
+  color: var(--rose);
+  margin-left: 0.2em;
+}
+
+.quote-form__field input,
+.quote-form__field select,
+.quote-form__field textarea {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--fs-md);
+  padding: 0.5rem 0 0.6rem;
+  width: 100%;
+  transition: border-color 0.3s var(--ease);
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.quote-form__field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%235C5650' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+.quote-form__field textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.6;
+}
+.quote-form__field input:focus,
+.quote-form__field select:focus,
+.quote-form__field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+.quote-form__field input:focus-visible,
+.quote-form__field select:focus-visible,
+.quote-form__field textarea:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+
+.quote-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.quote-form__note {
+  color: var(--stone);
+  font-size: var(--fs-xs);
+  margin: 0;
+}
+.quote-form__note button.link {
+  background: none; border: 0; padding: 0;
+  color: var(--stone);
+  cursor: pointer;
+  font: inherit;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.quote-form__note button.link:hover { color: var(--rose); border-color: var(--rose); }
+
+.quote-form__submit {
+  font-family: var(--display);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  white-space: nowrap;
+}
+.quote-form__submit:hover:not(:disabled) {
+  background: var(--rose);
+  transform: translateY(-2px);
+}
+.quote-form__submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.quote-form__feedback {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  font-family: var(--display);
+  font-size: var(--fs-sm);
+}
+.quote-form__feedback--success {
+  background: color-mix(in srgb, var(--rose) 8%, var(--paper));
+  border-left: 3px solid var(--rose);
+  color: var(--ink);
+}
+.quote-form__feedback--error {
+  background: color-mix(in srgb, var(--rose) 12%, var(--paper));
+  border-left: 3px solid var(--rose);
+  color: var(--rose-dark);
+}
+
+@media (max-width: 820px) {
+  .quote-form__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .quote-form__grid { grid-template-columns: 1fr; }
+  .quote-form__footer { flex-direction: column; align-items: flex-start; }
+  .quote-form__submit { width: 100%; text-align: center; }
 }
 
 ::selection { background: var(--rose); color: var(--paper); }
