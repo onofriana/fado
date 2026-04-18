@@ -98,9 +98,81 @@
     });
   }
 
+  /* QUOTE FORM */
+  const quoteForm = $('#quoteForm');
+
+  // Privacy link inside the form
+  const openPrivacyFromForm = $('#openPrivacyFromForm');
+  if (openPrivacyFromForm && privacyModal) {
+    openPrivacyFromForm.addEventListener('click', () => openModal(privacyModal));
+  }
+
+  // Format CTAs — scroll to form and pre-select format
+  $$('.format__cta[data-format]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const format = btn.dataset.format;
+      const formatSelect = $('#qf-format');
+      if (formatSelect && format) formatSelect.value = format;
+      const formSection = $('#orcamento');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          const firstInput = formSection.querySelector('input[type="text"]');
+          if (firstInput) firstInput.focus();
+        }, 600);
+      }
+    });
+  });
+
+  // Form AJAX submission (Formspree)
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!quoteForm.checkValidity()) { quoteForm.reportValidity(); return; }
+      const submitBtn   = quoteForm.querySelector('.quote-form__submit');
+      const submitText  = quoteForm.querySelector('.quote-form__submit-text');
+      const submitLoad  = quoteForm.querySelector('.quote-form__submit-loading');
+      const feedback    = quoteForm.querySelector('.quote-form__feedback');
+
+      submitBtn.disabled  = true;
+      submitText.hidden   = true;
+      submitLoad.hidden   = false;
+      feedback.hidden     = true;
+
+      try {
+        const res = await fetch(quoteForm.action, {
+          method: 'POST',
+          body: new FormData(quoteForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          quoteForm.reset();
+          feedback.textContent = 'Pedido enviado. Entraremos em contacto em breve.';
+          feedback.className = 'quote-form__feedback quote-form__feedback--success';
+          feedback.hidden = false;
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', { event_category: 'orcamento' });
+          }
+        } else {
+          throw new Error();
+        }
+      } catch {
+        feedback.textContent = 'Erro ao enviar. Por favor, tente novamente ou contacte-nos em fado@onofriana.pt.';
+        feedback.className = 'quote-form__feedback quote-form__feedback--error';
+        feedback.hidden = false;
+      } finally {
+        submitBtn.disabled = false;
+        submitText.hidden  = false;
+        submitLoad.hidden  = true;
+      }
+    });
+  }
+
   /* FAB */
   const fab = $('#fab');
   const contactSection = $('#contact');
+  const orcamentoSection = $('#orcamento');
 
   function updateFab() {
     if (!fab) return;
@@ -110,14 +182,18 @@
       const r = contactSection.getBoundingClientRect();
       onContact = r.top < window.innerHeight * 0.6 && r.bottom > 0;
     }
-    // Esconder também se o rodapé (footer) estiver à vista
+    let onOrcamento = false;
+    if (orcamentoSection) {
+      const r = orcamentoSection.getBoundingClientRect();
+      onOrcamento = r.top < window.innerHeight * 0.6 && r.bottom > 0;
+    }
     const footer = document.querySelector('.footer');
     let onFooter = false;
     if (footer) {
       const r = footer.getBoundingClientRect();
       onFooter = r.top < window.innerHeight * 0.8;
     }
-    if (scrolled && !onContact && !onFooter) {
+    if (scrolled && !onContact && !onOrcamento && !onFooter) {
       fab.classList.add('is-visible');
       fab.classList.remove('is-hidden');
     } else {
